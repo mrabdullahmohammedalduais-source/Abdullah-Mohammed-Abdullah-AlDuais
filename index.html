@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>موقع المطور عبدالله</title>
 
-  <!-- خط عربي فاخر -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- مكتبات أنيميشن وتأثيرات عالمية مشهورة -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -46,7 +44,6 @@
       position: relative;
     }
 
-    /* خطوط متحركة عالمية تذهب يمين ويسار مثل البرق */
     .lightning-layer {
       position: fixed;
       inset: 0;
@@ -106,7 +103,6 @@
       100% { transform: translateX(-135vw) skewX(24deg); opacity: 0; }
     }
 
-    /* جزيئات ذهبية متحركة في الخلفية */
     #particles-js {
       position: fixed;
       inset: 0;
@@ -145,7 +141,6 @@
       100% { transform: translate(35px, 42px) scale(1.16); }
     }
 
-    /* الشريط العلوي الزجاجي الذهبي */
     .top-bar {
       position: sticky;
       top: 0;
@@ -174,23 +169,21 @@
       gap: 12px;
     }
 
-    .brand-badge {
-      width: 48px;
-      height: 48px;
-      border-radius: 15px;
-      background: linear-gradient(135deg, var(--gold-light), var(--gold-main), var(--gold-deep));
+    .brand-pro-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(253, 230, 138, 0.22), rgba(245, 158, 11, 0.12));
+      border: 1.5px solid var(--gold-light);
       display: grid;
       place-items: center;
-      font-weight: 900;
-      font-size: 1.15rem;
-      color: #140e02;
-      box-shadow: 0 0 25px rgba(245, 158, 11, 0.45);
+      box-shadow: 0 0 24px rgba(245, 158, 11, 0.42);
       animation: goldPulse 2.5s ease-in-out infinite;
     }
 
     @keyframes goldPulse {
       0%, 100% { transform: scale(1) rotate(0deg); }
-      50% { transform: scale(1.08) rotate(-4deg); }
+      50% { transform: scale(1.07) rotate(-3deg); }
     }
 
     .brand-title {
@@ -206,13 +199,20 @@
       color: var(--text-muted);
     }
 
+    .nav-controls-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
     .nav-tabs {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
     }
 
-    .nav-btn {
+    .nav-btn, .lang-btn {
       background: rgba(255, 255, 255, 0.04);
       backdrop-filter: blur(10px);
       color: var(--text-main);
@@ -226,8 +226,14 @@
       transition: all 0.3s ease;
     }
 
-    .nav-btn:hover {
-      background: rgba(245, 158, 11, 0.18);
+    .lang-btn {
+      background: rgba(245, 158, 11, 0.14);
+      color: var(--gold-light);
+      font-weight: 900;
+    }
+
+    .nav-btn:hover, .lang-btn:hover {
+      background: rgba(245, 158, 11, 0.22);
       transform: translateY(-2px);
     }
 
@@ -258,7 +264,6 @@
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* البطاقات الزجاجية الذهبية الفاخرة */
     .hero-card,
     .glass-card,
     .showcase-stage,
@@ -354,7 +359,6 @@
       transform: translateY(-3px);
     }
 
-    /* منصة العرض الرئيسية: الصورة الأولى + الهاتف المتحرك ثلاثي الأبعاد */
     .showcase-stage {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
@@ -386,6 +390,7 @@
       object-fit: cover;
       object-position: top center;
       display: block;
+      transition: opacity 0.45s ease;
     }
 
     .gold-caption-bar {
@@ -466,7 +471,6 @@
       margin-bottom: 12px;
     }
 
-    /* أنيميشن مربعات تتقسم ويظهر بها هاتف محمول ولمسات عالمية */
     .split-phone-stage {
       border-radius: 28px;
       padding: 32px 24px;
@@ -498,15 +502,14 @@
       padding: 14px;
       font-weight: 800;
       color: var(--gold-light);
-      animation: tileSplitPulse 3.6s ease-in-out infinite;
     }
 
     .split-tile:nth-child(odd) {
-      animation-name: tileShiftRight;
+      animation: tileShiftRight 3.6s ease-in-out infinite;
     }
 
     .split-tile:nth-child(even) {
-      animation-name: tileShiftLeft;
+      animation: tileShiftLeft 3.6s ease-in-out infinite;
     }
 
     @keyframes tileShiftRight {
@@ -530,7 +533,6 @@
       animation: phoneBounceFloat 3.2s ease-in-out infinite;
     }
 
-    /* قسم مستقل للصور الثلاث الجديدة */
     .gallery-section-box {
       border-radius: 28px;
       padding: 30px 24px;
@@ -584,9 +586,9 @@
       object-fit: cover;
       object-position: top center;
       display: block;
+      transition: opacity 0.45s ease;
     }
 
-    /* نافذة فتح الصورة من الموقع مع زر إغلاق X للرجوع */
     .lightbox-modal {
       display: none;
       position: fixed;
@@ -649,7 +651,6 @@
       margin: 0 auto 12px;
     }
 
-    /* إشعار ترحيبي ملء الموقع بعد تقديم الطلب */
     .welcome-notif-overlay {
       display: none;
       position: fixed;
@@ -678,7 +679,6 @@
       box-shadow: 0 30px 80px rgba(245, 158, 11, 0.35);
     }
 
-    /* شبكة الخدمات */
     .grid-2 {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -741,7 +741,7 @@
       border: none;
       color: var(--text-main);
       padding: 18px 22px;
-      text-align: right;
+      text-align: inherit;
       font-family: 'Cairo', sans-serif;
       font-size: 1.02rem;
       font-weight: 800;
@@ -834,7 +834,6 @@
 </head>
 
 <body>
-  <!-- خطوط متحركة عالمية تذهب يمين ويسار مثل البرق -->
   <div class="lightning-layer" aria-hidden="true">
     <div class="lightning-bolt bolt-right-1"></div>
     <div class="lightning-bolt bolt-right-2"></div>
@@ -849,19 +848,31 @@
   <header class="top-bar">
     <div class="top-bar-inner">
       <div class="brand-box animate__animated animate__fadeInRight">
-        <div class="brand-badge">&lt;/&gt;</div>
+        <!-- أيقونة احترافية للموقع بجانب الاسم -->
+        <div class="brand-pro-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2.5L24.5 8.5V19.5L14 25.5L3.5 19.5V8.5L14 2.5Z" stroke="#fde68a" stroke-width="2"/>
+            <path d="M9.5 11.5L6.5 14L9.5 16.5" stroke="#f59e0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M18.5 11.5L21.5 14L18.5 16.5" stroke="#f59e0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15.2 10L12.8 18" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
         <div>
-          <div class="brand-title">موقع المطور عبدالله</div>
-          <div class="brand-sub">تصميم مواقع وتطبيقات حسب الطلب</div>
+          <div class="brand-title" id="t-brandTitle">موقع المطور عبدالله</div>
+          <div class="brand-sub" id="t-brandSub">تصميم مواقع وتطبيقات حسب الطلب</div>
         </div>
       </div>
 
-      <nav class="nav-tabs" aria-label="التنقل بين الصفحات">
-        <button type="button" class="nav-btn active" data-page="home" onclick="switchPage('home', this)">الرئيسية</button>
-        <button type="button" class="nav-btn" data-page="services" onclick="switchPage('services', this)">الخدمات</button>
-        <button type="button" class="nav-btn" data-page="faq" onclick="switchPage('faq', this)">الأسئلة الشائعة</button>
-        <button type="button" class="nav-btn" data-page="order" onclick="switchPage('order', this)">تعبئة البيانات والطلب</button>
-      </nav>
+      <div class="nav-controls-wrap">
+        <nav class="nav-tabs" aria-label="التنقل بين الصفحات">
+          <button type="button" class="nav-btn active" data-page="home" id="nav-home" onclick="switchPage('home', this)">الرئيسية</button>
+          <button type="button" class="nav-btn" data-page="services" id="nav-services" onclick="switchPage('services', this)">الخدمات</button>
+          <button type="button" class="nav-btn" data-page="faq" id="nav-faq" onclick="switchPage('faq', this)">الأسئلة الشائعة</button>
+          <button type="button" class="nav-btn" data-page="order" id="nav-order" onclick="switchPage('order', this)">تعبئة البيانات والطلب</button>
+        </nav>
+
+        <button type="button" class="lang-btn" id="langToggleBtn" onclick="toggleLanguage()">English</button>
+      </div>
     </div>
   </header>
 
@@ -870,31 +881,31 @@
     <!-- الصفحة الرئيسية -->
     <section id="page-home" class="page-view active">
       <div class="hero-card animate__animated animate__fadeInUp" data-tilt data-tilt-max="4">
-        <div class="welcome-pill">✨ أهلاً بك في موقع المطور عبدالله</div>
-        <h1 class="hero-title">تصميم مواقع وتطبيقات حسب الطلب بألوان فاخرة وزجاجية وذهبية</h1>
-        <p class="hero-desc">
-          مرحباً بك! نصمم تطبيقات ومواقع حسب الطلب بألوان فاخرة زجاجية وذهبية وغيرها، مع أنيميشن عالمي مستمر وهواتف محمول متحركة.
+        <div class="welcome-pill" id="t-welcomePill">✨ أهلاً بك في موقع المطور عبدالله</div>
+        <h1 class="hero-title" id="t-heroTitle">تصميم مواقع وتطبيقات حسب الطلب بألوان فاخرة وزجاجية وذهبية</h1>
+        <p class="hero-desc" id="t-heroDesc">
+          مرحباً بك! نصمم تطبيقات ومواقع حسب الطلب بألوان فاخرة زجاجية وذهبية وغيرها، مع حركة مستمرة وهواتف محمول متحركة.
         </p>
         <div class="hero-actions">
-          <button type="button" class="btn-primary" onclick="switchPage('order', null)">اطلب مشروعك الآن 🚀</button>
-          <button type="button" class="btn-secondary" onclick="switchPage('services', null)">الخدمات المتاحة</button>
+          <button type="button" class="btn-primary" id="t-heroCta1" onclick="switchPage('order', null)">اطلب مشروعك الآن 🚀</button>
+          <button type="button" class="btn-secondary" id="t-heroCta2" onclick="switchPage('services', null)">الخدمات المتاحة</button>
         </div>
       </div>
 
-      <!-- الصورة الأولى والهاتف المتحرك ثلاثي الأبعاد -->
+      <!-- الصورة الأولى (تتبدل تلقائياً مع الصور) والهاتف المتحرك -->
       <div class="showcase-stage" data-aos="fade-up">
-        <div class="dev-holder-frame" data-tilt data-tilt-max="6" onclick="openImageLightbox('/IMG-20261114-WA5719.jpg', 'المطور عبدالله')">
-          <img src="/IMG-20261114-WA5719.jpg" alt="المطور عبدالله">
-          <div class="gold-caption-bar">المطور عبدالله • اضغط للفتح</div>
+        <div class="dev-holder-frame" id="primaryAutoFrame" data-tilt data-tilt-max="6" onclick="openCurrentAutoImage()">
+          <img id="primaryAutoImg" src="/IMG-20261114-WA5719.jpg" alt="المطور عبدالله">
+          <div class="gold-caption-bar" id="primaryAutoCaption">المطور عبدالله • اضغط للفتح</div>
         </div>
 
         <div class="phone-ad-wrapper">
           <div class="floating-phone" id="interactivePhone" data-tilt data-tilt-max="10">
             <div class="phone-screen">
-              <span class="ad-badge-live">📢 إعلان تفاعلي • مواقع وتطبيقات</span>
-              <div class="phone-ad-title" id="phoneAdTitle">تصميم مواقع وتطبيقات</div>
+              <span class="ad-badge-live" id="t-adBadge">📢 إعلان تفاعلي • مواقع وتطبيقات</span>
+              <div class="phone-ad-title" id="phoneAdTitle">حلمك الرقمي يبدأ بخطوة واثقة</div>
               <p class="phone-ad-text" id="phoneAdText">
-                ألوان فاخرة زجاجية وذهبية وغيرها مع حركات ولمسات عالمية وهواتف متحركة.
+                نصمم لك تجربة بصرية ذهبية وزجاجية تخطف الأنظار وتبني ثقة عملائك من اللحظة الأولى.
               </p>
               <lottie-player
                 id="phoneLottie"
@@ -905,35 +916,35 @@
                 loop
                 autoplay>
               </lottie-player>
-              <button type="button" class="btn-primary" style="width: 100%; padding: 9px 12px; font-size: 0.85rem;" onclick="cyclePhoneAd()">تبديل الإعلان المتحرك 🔄</button>
+              <button type="button" class="btn-primary" id="t-cycleAdBtn" style="width: 100%; padding: 9px 12px; font-size: 0.85rem;" onclick="cyclePhoneAd()">تبديل الإعلان المتحرك 🔄</button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- أنيميشن مربعات تتقسم ويظهر بها هاتف محمول ولمسات عالمية -->
+      <!-- مربعات تتقسم ويظهر بها هاتف محمول ولمسات عالمية -->
       <div class="split-phone-stage" data-aos="fade-up">
-        <div class="welcome-pill">⚡ أنيميشن عالمي • مربعات متحركة وهاتف محمول</div>
-        <h2 style="font-size: clamp(1.3rem, 3vw, 1.95rem); font-weight: 900; color: var(--gold-light); margin-top: 6px;">
+        <div class="welcome-pill" id="t-splitPill">⚡ لمسات عالمية • مربعات متحركة وهاتف محمول</div>
+        <h2 id="t-splitTitle" style="font-size: clamp(1.3rem, 3vw, 1.95rem); font-weight: 900; color: var(--gold-light); margin-top: 6px;">
           مربعات تتقسم بانسيابية ليظهر الهاتف المحمول بلمسات عالمية
         </h2>
 
         <div class="split-grid-arena">
           <div class="split-tile">
-            <div>✨ ألوان زجاجية وذهبية</div>
-            <small style="color: var(--text-muted);">وأنماط لونية متعددة حسب الطلب</small>
+            <div id="t-tile1">✨ ألوان زجاجية وذهبية</div>
+            <small id="t-tile1Sub" style="color: var(--text-muted);">وأنماط لونية متعددة حسب الطلب</small>
           </div>
 
           <div class="split-tile">
-            <div>⚡ حركة فائقة السرعة</div>
-            <small style="color: var(--text-muted);">لمسات بصرية مستمرة</small>
+            <div id="t-tile2">⚡ حركة فائقة السرعة</div>
+            <small id="t-tile2Sub" style="color: var(--text-muted);">لمسات بصرية مستمرة</small>
           </div>
 
           <div class="center-revealed-phone" data-tilt data-tilt-max="8">
             <div class="phone-screen">
-              <span class="ad-badge-live">📱 هاتف محمول تفاعلي</span>
-              <div class="phone-ad-title">تجربة جوال فاخرة</div>
-              <p class="phone-ad-text">تطبيقات ومواقع مصممة بعناية لتعمل بسلاسة على جميع الشاشات.</p>
+              <span class="ad-badge-live" id="t-revBadge">📱 هاتف محمول تفاعلي</span>
+              <div class="phone-ad-title" id="t-revTitle">تجربة جوال فاخرة</div>
+              <p class="phone-ad-text" id="t-revText">تطبيقات ومواقع مصممة بعناية لتعمل بسلاسة على جميع الشاشات.</p>
               <lottie-player
                 src="https://assets2.lottiefiles.com/packages/lf20_xyadoh9h.json"
                 background="transparent"
@@ -947,28 +958,28 @@
         </div>
       </div>
 
-      <!-- قسم مستقل للصور الثلاث الجديدة -->
+      <!-- قسم مستقل للصور الثلاث الجديدة مع تبديل تلقائي -->
       <div class="gallery-section-box" id="newImagesSection" data-aos="fade-up">
         <div class="section-header-center">
-          <div class="welcome-pill">🖼️ قسم الصور الجديدة</div>
-          <h2>لمسات وإطلالات حصرية للمطور عبدالله</h2>
-          <p>اضغط على أي صورة لفتحها داخل الموقع مع زر إغلاق للرجوع.</p>
+          <div class="welcome-pill" id="t-galleryPill">🖼️ قسم الصور الجديدة</div>
+          <h2 id="t-galleryTitle">لمسات وإطلالات حصرية للمطور عبدالله</h2>
+          <p id="t-gallerySub">تتبدل الصور تلقائياً، ويمكنك الضغط على أي صورة لفتحها مع زر إغلاق للرجوع.</p>
         </div>
 
         <div class="grid-3-images">
-          <div class="custom-img-card" data-tilt data-tilt-max="6" onclick="openImageLightbox('/IMG-20261121-WA1103.jpg', 'إطلالة رقم 1')">
-            <img src="/IMG-20261121-WA1103.jpg" alt="إطلالة 1">
-            <div class="gold-caption-bar">إطلالة رقم 1 • اضغط للفتح</div>
+          <div class="custom-img-card" data-tilt data-tilt-max="6" onclick="openImageLightbox(document.getElementById('galImg1').src, document.getElementById('galCap1').textContent)">
+            <img id="galImg1" src="/IMG-20261121-WA1103.jpg" alt="إطلالة 1">
+            <div class="gold-caption-bar" id="galCap1">إطلالة رقم 1 • اضغط للفتح</div>
           </div>
 
-          <div class="custom-img-card" data-tilt data-tilt-max="6" onclick="openImageLightbox('/IMG-20261121-WA4788.jpg', 'إطلالة رقم 2')">
-            <img src="/IMG-20261121-WA4788.jpg" alt="إطلالة 2">
-            <div class="gold-caption-bar">إطلالة رقم 2 • اضغط للفتح</div>
+          <div class="custom-img-card" data-tilt data-tilt-max="6" onclick="openImageLightbox(document.getElementById('galImg2').src, document.getElementById('galCap2').textContent)">
+            <img id="galImg2" src="/IMG-20261121-WA4788.jpg" alt="إطلالة 2">
+            <div class="gold-caption-bar" id="galCap2">إطلالة رقم 2 • اضغط للفتح</div>
           </div>
 
-          <div class="custom-img-card" data-tilt data-tilt-max="6" onclick="openImageLightbox('/IMG-20261121-WA9704.jpg', 'إطلالة رقم 3')">
-            <img src="/IMG-20261121-WA9704.jpg" alt="إطلالة 3">
-            <div class="gold-caption-bar">إطلالة رقم 3 • اضغط للفتح</div>
+          <div class="custom-img-card" data-tilt data-tilt-max="6" onclick="openImageLightbox(document.getElementById('galImg3').src, document.getElementById('galCap3').textContent)">
+            <img id="galImg3" src="/IMG-20261121-WA9704.jpg" alt="إطلالة 3">
+            <div class="gold-caption-bar" id="galCap3">إطلالة رقم 3 • اضغط للفتح</div>
           </div>
         </div>
       </div>
@@ -977,9 +988,9 @@
     <!-- قسم الخدمات -->
     <section id="page-services" class="page-view">
       <div class="hero-card">
-        <div class="welcome-pill">💼 خدمات المطور عبدالله</div>
-        <h2 class="hero-title">تصميم تطبيقات ومواقع حسب الطلب</h2>
-        <p class="hero-desc">
+        <div class="welcome-pill" id="t-srvPill">💼 خدمات المطور عبدالله</div>
+        <h2 class="hero-title" id="t-srvTitle">تصميم تطبيقات ومواقع حسب الطلب</h2>
+        <p class="hero-desc" id="t-srvDesc">
           ننفذ تطبيقات ومواقع حسب الطلب بألوان فاخرة زجاجية وذهبية وغيرها لتناسب هوية مشروعك بدقة.
         </p>
       </div>
@@ -987,14 +998,14 @@
       <div class="grid-2">
         <article class="glass-card" data-aos="zoom-in" data-tilt data-tilt-max="6">
           <div class="card-icon">🌐</div>
-          <h3>تصميم مواقع حسب الطلب</h3>
-          <p>تصميم مواقع إلكترونية بألوان فاخرة زجاجية وذهبية وغيرها، مع حركات عالمية وتجاوب كامل على الجوال والكمبيوتر.</p>
+          <h3 id="t-srv1Title">تصميم مواقع حسب الطلب</h3>
+          <p id="t-srv1Desc">تصميم مواقع إلكترونية بألوان فاخرة زجاجية وذهبية وغيرها، مع حركات عالمية وتجاوب كامل على الجوال والكمبيوتر.</p>
         </article>
 
         <article class="glass-card" data-aos="zoom-in" data-aos-delay="120" data-tilt data-tilt-max="6">
           <div class="card-icon">📱</div>
-          <h3>تصميم تطبيقات حسب الطلب</h3>
-          <p>تصميم وبناء تطبيقات عصرية بواجهات زجاجية وذهبية وغيرها وتجربة تفاعلية سلسة مصممة خصيصاً لمتطلباتك.</p>
+          <h3 id="t-srv2Title">تصميم تطبيقات حسب الطلب</h3>
+          <p id="t-srv2Desc">تصميم وبناء تطبيقات عصرية بواجهات زجاجية وذهبية وغيرها وتجربة تفاعلية سلسة مصممة خصيصاً لمتطلباتك.</p>
         </article>
       </div>
     </section>
@@ -1002,27 +1013,27 @@
     <!-- الأسئلة الشائعة -->
     <section id="page-faq" class="page-view">
       <div class="hero-card">
-        <div class="welcome-pill">❓ الأسئلة الشائعة</div>
-        <h2 class="hero-title">إجابات سريعة على استفساراتك</h2>
+        <div class="welcome-pill" id="t-faqPill">❓ الأسئلة الشائعة</div>
+        <h2 class="hero-title" id="t-faqTitle">إجابات سريعة على استفساراتك</h2>
       </div>
 
       <div class="faq-list">
         <div class="faq-item open">
           <button type="button" class="faq-question" onclick="toggleFaq(this)">
-            <span>كيف يتم إرسال طلبي إلى المطور عبدالله؟</span>
+            <span id="t-q1">كيف يتم إرسال طلبي إلى المطور عبدالله؟</span>
             <span>−</span>
           </button>
-          <div class="faq-answer">
+          <div class="faq-answer" id="t-a1">
             عند تعبئة بياناتك وتفاصيل مشروعك في صفحة "تعبئة البيانات والطلب" والضغط على إرسال، يظهر إشعار ترحيبي ثم يتم توجيه الرسالة إلى واتساب الرقم <strong>+201151429820</strong>.
           </div>
         </div>
 
         <div class="faq-item">
           <button type="button" class="faq-question" onclick="toggleFaq(this)">
-            <span>هل يمكن اختيار ألوان غير الذهبي والزجاجي؟</span>
+            <span id="t-q2">هل يمكن اختيار ألوان غير الذهبي والزجاجي؟</span>
             <span>+</span>
           </button>
-          <div class="faq-answer">
+          <div class="faq-answer" id="t-a2">
             نعم، نصمم تطبيقات ومواقع حسب الطلب بألوان فاخرة زجاجية وذهبية وغيرها حسب ذوقك وهوية مشروعك.
           </div>
         </div>
@@ -1032,48 +1043,48 @@
     <!-- صفحة تعبئة البيانات والإرسال التلقائي إلى واتساب -->
     <section id="page-order" class="page-view">
       <div class="form-card">
-        <div class="welcome-pill">📩 تعبئة البيانات والطلب</div>
-        <h2 style="font-size: 1.55rem; font-weight: 900; margin-bottom: 8px;">أدخل بياناتك لإرسال الطلب</h2>
-        <p style="color: var(--text-muted); margin-bottom: 22px; line-height: 1.7;">
+        <div class="welcome-pill" id="t-ordPill">📩 تعبئة البيانات والطلب</div>
+        <h2 id="t-ordTitle" style="font-size: 1.55rem; font-weight: 900; margin-bottom: 8px;">أدخل بياناتك لإرسال الطلب</h2>
+        <p id="t-ordDesc" style="color: var(--text-muted); margin-bottom: 22px; line-height: 1.7;">
           اكتب اسمك، رقم هاتفك، اختر الخدمة واللون المفضل، ثم اضغط إرسال.
         </p>
 
         <form id="projectOrderForm" onsubmit="sendToWhatsApp(event)">
           <div class="form-group">
-            <label for="clientName">الاسم الكامل</label>
+            <label for="clientName" id="t-lblName">الاسم الكامل</label>
             <input type="text" id="clientName" class="form-control" placeholder="اكتب اسمك هنا..." required>
           </div>
 
           <div class="form-group">
-            <label for="clientPhone">رقم هاتف المستخدم (واتساب)</label>
+            <label for="clientPhone" id="t-lblPhone">رقم هاتف المستخدم (واتساب)</label>
             <input type="tel" id="clientPhone" class="form-control" placeholder="اكتب رقم هاتفك هنا..." required>
           </div>
 
           <div class="form-group">
-            <label for="projectType">الخدمة المطلوبة</label>
+            <label for="projectType" id="t-lblService">الخدمة المطلوبة</label>
             <select id="projectType" class="form-control" required>
-              <option value="تصميم مواقع حسب الطلب">تصميم مواقع حسب الطلب</option>
-              <option value="تصميم تطبيقات حسب الطلب">تصميم تطبيقات حسب الطلب</option>
-              <option value="تصميم مواقع وتطبيقات حسب الطلب">تصميم مواقع وتطبيقات حسب الطلب</option>
+              <option value="تصميم مواقع حسب الطلب" id="opt-web">تصميم مواقع حسب الطلب</option>
+              <option value="تصميم تطبيقات حسب الطلب" id="opt-app">تصميم تطبيقات حسب الطلب</option>
+              <option value="تصميم مواقع وتطبيقات حسب الطلب" id="opt-both">تصميم مواقع وتطبيقات حسب الطلب</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label for="colorStyle">الألوان المطلوبة</label>
+            <label for="colorStyle" id="t-lblColor">الألوان المطلوبة</label>
             <select id="colorStyle" class="form-control" required>
-              <option value="ألوان فاخرة زجاجية وذهبية">ألوان فاخرة زجاجية وذهبية</option>
-              <option value="ألوان فاخرة أخرى حسب الطلب">ألوان فاخرة أخرى حسب الطلب</option>
+              <option value="ألوان فاخرة زجاجية وذهبية" id="opt-gold">ألوان فاخرة زجاجية وذهبية</option>
+              <option value="ألوان فاخرة أخرى حسب الطلب" id="opt-other">ألوان فاخرة أخرى حسب الطلب</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label for="projectDetails">التفاصيل</label>
+            <label for="projectDetails" id="t-lblDetails">التفاصيل</label>
             <textarea id="projectDetails" class="form-control" placeholder="اكتب تفاصيل مشروعك أو طلبك هنا..." required></textarea>
           </div>
 
-          <button type="submit" class="whatsapp-btn">إرسال الطلب الآن 💬</button>
+          <button type="submit" class="whatsapp-btn" id="t-submitBtn">إرسال الطلب الآن 💬</button>
 
-          <div class="target-number-note">
+          <div class="target-number-note" id="t-waNote">
             واتساب المطور عبدالله: <strong>+201151429820</strong>
           </div>
         </form>
@@ -1082,7 +1093,6 @@
 
   </main>
 
-  <!-- نافذة فتح الصورة من الموقع مع زر X للرجوع -->
   <div id="imageLightbox" class="lightbox-modal" onclick="closeImageLightbox(event)">
     <div class="lightbox-card" onclick="event.stopPropagation()">
       <button type="button" class="lightbox-close-btn" aria-label="إغلاق الصورة" onclick="closeImageLightbox()">✕</button>
@@ -1091,19 +1101,18 @@
     </div>
   </div>
 
-  <!-- إشعار ترحيبي ملء الموقع بعد تقديم الطلب -->
   <div id="welcomeNotificationModal" class="welcome-notif-overlay">
     <div class="welcome-notif-box animate__animated animate__zoomIn">
-      <div class="welcome-pill">🎉 إشعار ترحيبي • تم استلام طلبك</div>
+      <div class="welcome-pill" id="t-notifPill">🎉 إشعار ترحيبي • تم استلام طلبك</div>
       <h2 id="welcomeNotifTitle" style="font-size: clamp(1.4rem, 3.5vw, 2.1rem); font-weight: 900; color: var(--gold-light); margin: 10px 0;">
         أهلاً بك يا صديقي!
       </h2>
-      <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.85; margin-bottom: 22px;">
+      <p id="t-notifDesc" style="color: var(--text-muted); font-size: 1rem; line-height: 1.85; margin-bottom: 22px;">
         شكراً لتواصلك مع موقع المطور عبدالله! يسعدنا جداً تنفيذ مشروعك وتجهيز تفاصيله عبر واتساب.
       </p>
       <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
         <button type="button" class="btn-primary" id="continueWhatsAppBtn">متابعة إلى واتساب الآن 💬</button>
-        <button type="button" class="btn-secondary" onclick="closeWelcomeNotification()">العودة للموقع</button>
+        <button type="button" class="btn-secondary" id="t-backSiteBtn" onclick="closeWelcomeNotification()">العودة للموقع</button>
       </div>
     </div>
   </div>
@@ -1144,6 +1153,226 @@
       });
     }
 
+    let currentLang = "ar";
+
+    const translations = {
+      ar: {
+        htmlLang: "ar",
+        htmlDir: "rtl",
+        langBtn: "English",
+        brandTitle: "موقع المطور عبدالله",
+        brandSub: "تصميم مواقع وتطبيقات حسب الطلب",
+        navHome: "الرئيسية",
+        navServices: "الخدمات",
+        navFaq: "الأسئلة الشائعة",
+        navOrder: "تعبئة البيانات والطلب",
+        welcomePill: "✨ أهلاً بك في موقع المطور عبدالله",
+        heroTitle: "تصميم مواقع وتطبيقات حسب الطلب بألوان فاخرة وزجاجية وذهبية",
+        heroDesc: "مرحباً بك! نصمم تطبيقات ومواقع حسب الطلب بألوان فاخرة زجاجية وذهبية وغيرها، مع حركة مستمرة وهواتف محمول متحركة.",
+        heroCta1: "اطلب مشروعك الآن 🚀",
+        heroCta2: "الخدمات المتاحة",
+        adBadge: "📢 إعلان تفاعلي • مواقع وتطبيقات",
+        cycleAdBtn: "تبديل الإعلان المتحرك 🔄",
+        splitPill: "⚡ لمسات عالمية • مربعات متحركة وهاتف محمول",
+        splitTitle: "مربعات تتقسم بانسيابية ليظهر الهاتف المحمول بلمسات عالمية",
+        tile1: "✨ ألوان زجاجية وذهبية",
+        tile1Sub: "وأنماط لونية متعددة حسب الطلب",
+        tile2: "⚡ حركة فائقة السرعة",
+        tile2Sub: "لمسات بصرية مستمرة",
+        revBadge: "📱 هاتف محمول تفاعلي",
+        revTitle: "تجربة جوال فاخرة",
+        revText: "تطبيقات ومواقع مصممة بعناية لتعمل بسلاسة على جميع الشاشات.",
+        galleryPill: "🖼️ قسم الصور الجديدة",
+        galleryTitle: "لمسات وإطلالات حصرية للمطور عبدالله",
+        gallerySub: "تتبدل الصور تلقائياً، ويمكنك الضغط على أي صورة لفتحها مع زر إغلاق للرجوع.",
+        srvPill: "💼 خدمات المطور عبدالله",
+        srvTitle: "تصميم تطبيقات ومواقع حسب الطلب",
+        srvDesc: "ننفذ تطبيقات ومواقع حسب الطلب بألوان فاخرة زجاجية وذهبية وغيرها لتناسب هوية مشروعك بدقة.",
+        srv1Title: "تصميم مواقع حسب الطلب",
+        srv1Desc: "تصميم مواقع إلكترونية بألوان فاخرة زجاجية وذهبية وغيرها، مع حركات عالمية وتجاوب كامل على الجوال والكمبيوتر.",
+        srv2Title: "تصميم تطبيقات حسب الطلب",
+        srv2Desc: "تصميم وبناء تطبيقات عصرية بواجهات زجاجية وذهبية وغيرها وتجربة تفاعلية سلسة مصممة خصيصاً لمتطلباتك.",
+        faqPill: "❓ الأسئلة الشائعة",
+        faqTitle: "إجابات سريعة على استفساراتك",
+        q1: "كيف يتم إرسال طلبي إلى المطور عبدالله؟",
+        a1: 'عند تعبئة بياناتك وتفاصيل مشروعك في صفحة "تعبئة البيانات والطلب" والضغط على إرسال، يظهر إشعار ترحيبي ثم يتم توجيه الرسالة إلى واتساب الرقم <strong>+201151429820</strong>.',
+        q2: "هل يمكن اختيار ألوان غير الذهبي والزجاجي؟",
+        a2: "نعم، نصمم تطبيقات ومواقع حسب الطلب بألوان فاخرة زجاجية وذهبية وغيرها حسب ذوقك وهوية مشروعك.",
+        ordPill: "📩 تعبئة البيانات والطلب",
+        ordTitle: "أدخل بياناتك لإرسال الطلب",
+        ordDesc: "اكتب اسمك، رقم هاتفك، اختر الخدمة واللون المفضل، ثم اضغط إرسال.",
+        lblName: "الاسم الكامل",
+        phName: "اكتب اسمك هنا...",
+        lblPhone: "رقم هاتف المستخدم (واتساب)",
+        phPhone: "اكتب رقم هاتفك هنا...",
+        lblService: "الخدمة المطلوبة",
+        optWeb: "تصميم مواقع حسب الطلب",
+        optApp: "تصميم تطبيقات حسب الطلب",
+        optBoth: "تصميم مواقع وتطبيقات حسب الطلب",
+        lblColor: "الألوان المطلوبة",
+        optGold: "ألوان فاخرة زجاجية وذهبية",
+        optOther: "ألوان فاخرة أخرى حسب الطلب",
+        lblDetails: "التفاصيل",
+        phDetails: "اكتب تفاصيل مشروعك أو طلبك هنا...",
+        submitBtn: "إرسال الطلب الآن 💬",
+        waNote: "واتساب المطور عبدالله: <strong>+201151429820</strong>",
+        notifPill: "🎉 إشعار ترحيبي • تم استلام طلبك",
+        notifDesc: "شكراً لتواصلك مع موقع المطور عبدالله! يسعدنا جداً تنفيذ مشروعك وتجهيز تفاصيله عبر واتساب.",
+        continueWa: "متابعة إلى واتساب الآن 💬",
+        backSite: "العودة للموقع",
+        clickToOpen: "اضغط للفتح",
+        lookPrefix: "إطلالة رقم"
+      },
+      en: {
+        htmlLang: "en",
+        htmlDir: "ltr",
+        langBtn: "العربية",
+        brandTitle: "Developer Abdullah",
+        brandSub: "Custom Websites & Apps Design",
+        navHome: "Home",
+        navServices: "Services",
+        navFaq: "FAQ",
+        navOrder: "Order & Details",
+        welcomePill: "✨ Welcome to Developer Abdullah",
+        heroTitle: "Custom Websites & Apps in Luxury Glass, Gold & More",
+        heroDesc: "Welcome! We craft custom websites and apps in luxury glass, gold, and custom palettes with continuous motion and interactive mobile frames.",
+        heroCta1: "Order Your Project Now 🚀",
+        heroCta2: "Explore Services",
+        adBadge: "📢 Interactive Showcase • Web & Apps",
+        cycleAdBtn: "Switch Showcase 🔄",
+        splitPill: "⚡ Global Touch • Splitting Tiles & Mobile",
+        splitTitle: "Smoothly splitting tiles revealing a mobile showcase with global style",
+        tile1: "✨ Luxury Glass & Gold",
+        tile1Sub: "And custom palettes upon request",
+        tile2: "⚡ Lightning Motion",
+        tile2Sub: "Continuous visual highlights",
+        revBadge: "📱 Interactive Mobile",
+        revTitle: "Luxury Mobile Experience",
+        revText: "Websites and apps thoughtfully built to shine smoothly across all screens.",
+        galleryPill: "🖼️ New Photos Gallery",
+        galleryTitle: "Exclusive Looks by Developer Abdullah",
+        gallerySub: "Images auto-rotate smoothly, and you can tap any photo to view it with a close button.",
+        srvPill: "💼 Developer Abdullah Services",
+        srvTitle: "Custom Websites & Apps Design",
+        srvDesc: "We build custom websites and apps in luxury glass, gold, and tailored color themes to match your brand.",
+        srv1Title: "Custom Website Design",
+        srv1Desc: "Modern websites in luxury glass, gold, and custom palettes with smooth global motion across mobile and desktop.",
+        srv2Title: "Custom App Design",
+        srv2Desc: "Sleek applications with glass, gold, and custom interfaces tailored specifically to your workflow.",
+        faqPill: "❓ Frequently Asked Questions",
+        faqTitle: "Quick Answers to Your Questions",
+        q1: "How do I send my request to Developer Abdullah?",
+        a1: 'Fill in your name, phone, and project details on the "Order & Details" tab and submit to see a welcome alert and open WhatsApp to <strong>+201151429820</strong>.',
+        q2: "Can I choose colors other than gold and glass?",
+        a2: "Yes! We design custom websites and apps in luxury glass, gold, and any palette that fits your vision.",
+        ordPill: "📩 Order & Details",
+        ordTitle: "Enter Your Details to Send Request",
+        ordDesc: "Enter your name, phone number, choose your service and color style, then submit.",
+        lblName: "Full Name",
+        phName: "Type your name here...",
+        lblPhone: "Your Phone Number (WhatsApp)",
+        phPhone: "Type your phone number here...",
+        lblService: "Requested Service",
+        optWeb: "Custom Website Design",
+        optApp: "Custom App Design",
+        optBoth: "Custom Website & App Design",
+        lblColor: "Preferred Colors",
+        optGold: "Luxury Glass & Gold",
+        optOther: "Other Luxury Colors on Request",
+        lblDetails: "Project Details",
+        phDetails: "Describe your project or request here...",
+        submitBtn: "Send Request Now 💬",
+        waNote: "Developer Abdullah WhatsApp: <strong>+201151429820</strong>",
+        notifPill: "🎉 Welcome Alert • Request Ready",
+        notifDesc: "Thank you for reaching out to Developer Abdullah! We are thrilled to bring your project to life via WhatsApp.",
+        continueWa: "Continue to WhatsApp 💬",
+        backSite: "Back to Site",
+        clickToOpen: "Tap to Open",
+        lookPrefix: "Look #"
+      }
+    };
+
+    function toggleLanguage() {
+      currentLang = currentLang === "ar" ? "en" : "ar";
+      const t = translations[currentLang];
+
+      document.documentElement.lang = t.htmlLang;
+      document.documentElement.dir = t.htmlDir;
+      document.getElementById("langToggleBtn").textContent = t.langBtn;
+
+      document.getElementById("t-brandTitle").textContent = t.brandTitle;
+      document.getElementById("t-brandSub").textContent = t.brandSub;
+      document.getElementById("nav-home").textContent = t.navHome;
+      document.getElementById("nav-services").textContent = t.navServices;
+      document.getElementById("nav-faq").textContent = t.navFaq;
+      document.getElementById("nav-order").textContent = t.navOrder;
+
+      document.getElementById("t-welcomePill").textContent = t.welcomePill;
+      document.getElementById("t-heroTitle").textContent = t.heroTitle;
+      document.getElementById("t-heroDesc").textContent = t.heroDesc;
+      document.getElementById("t-heroCta1").textContent = t.heroCta1;
+      document.getElementById("t-heroCta2").textContent = t.heroCta2;
+
+      document.getElementById("t-adBadge").textContent = t.adBadge;
+      document.getElementById("t-cycleAdBtn").textContent = t.cycleAdBtn;
+      applyPhoneAdContent();
+
+      document.getElementById("t-splitPill").textContent = t.splitPill;
+      document.getElementById("t-splitTitle").textContent = t.splitTitle;
+      document.getElementById("t-tile1").textContent = t.tile1;
+      document.getElementById("t-tile1Sub").textContent = t.tile1Sub;
+      document.getElementById("t-tile2").textContent = t.tile2;
+      document.getElementById("t-tile2Sub").textContent = t.tile2Sub;
+      document.getElementById("t-revBadge").textContent = t.revBadge;
+      document.getElementById("t-revTitle").textContent = t.revTitle;
+      document.getElementById("t-revText").textContent = t.revText;
+
+      document.getElementById("t-galleryPill").textContent = t.galleryPill;
+      document.getElementById("t-galleryTitle").textContent = t.galleryTitle;
+      document.getElementById("t-gallerySub").textContent = t.gallerySub;
+
+      document.getElementById("t-srvPill").textContent = t.srvPill;
+      document.getElementById("t-srvTitle").textContent = t.srvTitle;
+      document.getElementById("t-srvDesc").textContent = t.srvDesc;
+      document.getElementById("t-srv1Title").textContent = t.srv1Title;
+      document.getElementById("t-srv1Desc").textContent = t.srv1Desc;
+      document.getElementById("t-srv2Title").textContent = t.srv2Title;
+      document.getElementById("t-srv2Desc").textContent = t.srv2Desc;
+
+      document.getElementById("t-faqPill").textContent = t.faqPill;
+      document.getElementById("t-faqTitle").textContent = t.faqTitle;
+      document.getElementById("t-q1").textContent = t.q1;
+      document.getElementById("t-a1").innerHTML = t.a1;
+      document.getElementById("t-q2").textContent = t.q2;
+      document.getElementById("t-a2").textContent = t.a2;
+
+      document.getElementById("t-ordPill").textContent = t.ordPill;
+      document.getElementById("t-ordTitle").textContent = t.ordTitle;
+      document.getElementById("t-ordDesc").textContent = t.ordDesc;
+      document.getElementById("t-lblName").textContent = t.lblName;
+      document.getElementById("clientName").placeholder = t.phName;
+      document.getElementById("t-lblPhone").textContent = t.lblPhone;
+      document.getElementById("clientPhone").placeholder = t.phPhone;
+      document.getElementById("t-lblService").textContent = t.lblService;
+      document.getElementById("opt-web").textContent = t.optWeb;
+      document.getElementById("opt-app").textContent = t.optApp;
+      document.getElementById("opt-both").textContent = t.optBoth;
+      document.getElementById("t-lblColor").textContent = t.lblColor;
+      document.getElementById("opt-gold").textContent = t.optGold;
+      document.getElementById("opt-other").textContent = t.optOther;
+      document.getElementById("t-lblDetails").textContent = t.lblDetails;
+      document.getElementById("projectDetails").placeholder = t.phDetails;
+      document.getElementById("t-submitBtn").textContent = t.submitBtn;
+      document.getElementById("t-waNote").innerHTML = t.waNote;
+
+      document.getElementById("t-notifPill").textContent = t.notifPill;
+      document.getElementById("t-notifDesc").textContent = t.notifDesc;
+      document.getElementById("continueWhatsAppBtn").textContent = t.continueWa;
+      document.getElementById("t-backSiteBtn").textContent = t.backSite;
+
+      updateGalleryCaptions();
+    }
+
     function switchPage(pageKey, clickedBtn) {
       document.querySelectorAll(".page-view").forEach(page => page.classList.remove("active"));
       const targetPage = document.getElementById("page-" + pageKey);
@@ -1162,24 +1391,44 @@
       }
     }
 
+    // كلام جميل مع صور متحركة عالمية جذابة عند الضغط على تبديل الإعلان
     const phoneAds = [
       {
-        title: "تصميم مواقع فاخرة",
-        text: "ألوان زجاجية وذهبية وغيرها مع حركات ولمسات عالمية متميزة.",
+        arTitle: "حلمك الرقمي يبدأ بخطوة واثقة",
+        arText: "نصمم لك تجربة بصرية ذهبية وزجاجية تخطف الأنظار وتبني ثقة عملائك من اللحظة الأولى.",
+        enTitle: "Your Digital Vision Starts Boldly",
+        enText: "We craft luxury glass and gold experiences that captivate visitors and build instant trust.",
         lottie: "https://assets9.lottiefiles.com/packages/lf20_w51pcehl.json"
       },
       {
-        title: "تصميم تطبيقات حسب الطلب",
-        text: "تطبيقات عملية منظمة بواجهة جذابة وتجربة تفاعلية سلسة.",
+        arTitle: "إبداع يتجاوز المألوف في كل تفصيل",
+        arText: "تطبيقات ومواقع مصممة بعناية فائقة لتمنح مشروعك حضوراً استثنائياً لا يُنسى.",
+        enTitle: "Crafted Excellence in Every Detail",
+        enText: "Thoughtfully built apps and sites giving your brand a truly unforgettable presence.",
         lottie: "https://assets2.lottiefiles.com/packages/lf20_xyadoh9h.json"
       },
       {
-        title: "تواصل مباشر مع المطور عبدالله",
-        text: "عبّئ بياناتك ورقمك والتفاصيل ليصلك طلبك مباشرة عبر واتساب.",
+        arTitle: "فخامة اللون وسلاسة الأداء معاً",
+        arText: "ألوان زجاجية وذهبية وغيرها مع سرعة استجابة عالية وتواصل مباشر عبر واتساب.",
+        enTitle: "Rich Aesthetics & Smooth Performance",
+        enText: "Glass, gold, and custom palettes paired with snappy speed and direct WhatsApp orders.",
+        lottie: "https://assets10.lottiefiles.com/packages/lf20_1pxqjqps.json"
+      },
+      {
+        arTitle: "أفكارك تتحول إلى واقع يفتخر به عملاؤك",
+        arText: "ابدأ مشروعك اليوم مع المطور عبدالله بخطوات بسيطة وتصميم يليق بطموحك الكبير.",
+        enTitle: "Turn Ideas Into Work You're Proud Of",
+        enText: "Launch your project with Developer Abdullah through a refined design made for your ambition.",
         lottie: "https://assets9.lottiefiles.com/packages/lf20_w51pcehl.json"
       }
     ];
     let currentAdIndex = 0;
+
+    function applyPhoneAdContent() {
+      const ad = phoneAds[currentAdIndex];
+      document.getElementById("phoneAdTitle").textContent = currentLang === "ar" ? ad.arTitle : ad.enTitle;
+      document.getElementById("phoneAdText").textContent = currentLang === "ar" ? ad.arText : ad.enText;
+    }
 
     function cyclePhoneAd() {
       currentAdIndex = (currentAdIndex + 1) % phoneAds.length;
@@ -1188,12 +1437,63 @@
         { opacity: 0.35, scale: 0.96 },
         { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" }
       );
-      document.getElementById("phoneAdTitle").textContent = ad.title;
-      document.getElementById("phoneAdText").textContent = ad.text;
+      applyPhoneAdContent();
       const lottieEl = document.getElementById("phoneLottie");
       if (lottieEl && ad.lottie) {
         lottieEl.load(ad.lottie);
       }
+    }
+
+    // تبديل الصور تلقائياً (الصورة الأولى والصور الثلاث الجديدة)
+    const allSiteImages = [
+      "/IMG-20261114-WA5719.jpg",
+      "/IMG-20261121-WA1103.jpg",
+      "/IMG-20261121-WA4788.jpg",
+      "/IMG-20261121-WA9704.jpg"
+    ];
+    let primaryImgIdx = 0;
+    let galleryOffsetIdx = 0;
+
+    function updateGalleryCaptions() {
+      const t = translations[currentLang];
+      const pSrc = document.getElementById("primaryAutoImg").getAttribute("src");
+      const pNum = allSiteImages.indexOf(pSrc) + 1 || 1;
+      document.getElementById("primaryAutoCaption").textContent = `${t.lookPrefix} ${pNum} • ${t.clickToOpen}`;
+
+      for (let i = 0; i < 3; i++) {
+        const imgSrc = document.getElementById("galImg" + (i + 1)).getAttribute("src");
+        const num = allSiteImages.indexOf(imgSrc) + 1 || (i + 1);
+        document.getElementById("galCap" + (i + 1)).textContent = `${t.lookPrefix} ${num} • ${t.clickToOpen}`;
+      }
+    }
+
+    setInterval(() => {
+      primaryImgIdx = (primaryImgIdx + 1) % allSiteImages.length;
+      const pImg = document.getElementById("primaryAutoImg");
+      pImg.style.opacity = "0.25";
+      setTimeout(() => {
+        pImg.src = allSiteImages[primaryImgIdx];
+        pImg.style.opacity = "1";
+        updateGalleryCaptions();
+      }, 220);
+
+      galleryOffsetIdx = (galleryOffsetIdx + 1) % allSiteImages.length;
+      for (let i = 0; i < 3; i++) {
+        const nextSrc = allSiteImages[(galleryOffsetIdx + i) % allSiteImages.length];
+        const gImg = document.getElementById("galImg" + (i + 1));
+        gImg.style.opacity = "0.25";
+        setTimeout(() => {
+          gImg.src = nextSrc;
+          gImg.style.opacity = "1";
+          updateGalleryCaptions();
+        }, 220);
+      }
+    }, 3600);
+
+    function openCurrentAutoImage() {
+      const src = document.getElementById("primaryAutoImg").getAttribute("src");
+      const cap = document.getElementById("primaryAutoCaption").textContent;
+      openImageLightbox(src, cap);
     }
 
     function openImageLightbox(src, caption) {
@@ -1241,7 +1541,8 @@
 
       pendingWhatsAppUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(messageText)}`;
 
-      document.getElementById("welcomeNotifTitle").textContent = `أهلاً بك يا ${name} ✨`;
+      document.getElementById("welcomeNotifTitle").textContent =
+        currentLang === "ar" ? `أهلاً بك يا ${name} ✨` : `Welcome, ${name} ✨`;
       document.getElementById("welcomeNotificationModal").classList.add("open");
     }
 
