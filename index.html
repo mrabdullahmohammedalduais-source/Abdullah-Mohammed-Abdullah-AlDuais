@@ -141,42 +141,44 @@
       100% { transform: translate(35px, 42px) scale(1.16); }
     }
 
-    /* أسهم خطية صغيرة وخفيفة تظهر كل 20 ثانية فوق النصوص */
-    .text-arrow-host {
+    /* حاوية السهم الخطي الصغير والخفيف فوق قوالب النصوص كل 20 ثانية */
+    .text-template-box {
       position: relative;
+      overflow: visible !important;
     }
 
     .subtle-line-arrow {
       position: absolute;
-      top: -12px;
-      inset-inline-start: 14%;
-      width: 22px;
-      height: 12px;
+      top: -10px;
+      inset-inline-start: 18%;
+      width: 24px;
+      height: 13px;
       pointer-events: none;
-      z-index: 8;
+      z-index: 25;
       opacity: 0;
       color: var(--gold-light);
-      filter: drop-shadow(0 0 6px rgba(253, 230, 138, 0.45));
+      -webkit-text-fill-color: currentColor;
+      filter: drop-shadow(0 0 6px rgba(253, 230, 138, 0.55));
     }
 
     .subtle-line-arrow.is-animating {
-      animation: subtleTextArrowGlide 1.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation: subtleTextArrowGlide 2.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
     @keyframes subtleTextArrowGlide {
       0% {
         opacity: 0;
-        transform: translate(0px, 4px) scale(0.88);
+        transform: translate(0px, 3px) scale(0.9);
       }
-      20% {
-        opacity: 0.72;
+      22% {
+        opacity: 0.78;
       }
       75% {
         opacity: 0.55;
       }
       100% {
         opacity: 0;
-        transform: translate(var(--arrow-dx, 36px), -6px) scale(1.02);
+        transform: translate(var(--arrow-dx, -44px), -5px) scale(1.03);
       }
     }
 
@@ -283,128 +285,10 @@
       box-shadow: 0 8px 24px rgba(245, 158, 11, 0.42);
     }
 
-    /* شريط الروبوتين التفاعليين تحت الشريط العلوي */
-    .topbar-bots-strip {
-      max-width: 1180px;
-      margin: 18px auto 0;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-    }
-
-    .bot-chat-widget {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 14px 16px;
-      border-radius: 22px;
-      background: rgba(18, 14, 7, 0.82);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .bot-chat-widget:hover {
-      transform: translateY(-4px);
-    }
-
-    .bot-chat-widget.bot-green {
-      border: 1.5px solid rgba(52, 211, 153, 0.55);
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55), 0 0 22px rgba(16, 185, 129, 0.2);
-    }
-
-    .bot-chat-widget.bot-blue {
-      border: 1.5px solid rgba(56, 189, 248, 0.55);
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55), 0 0 22px rgba(14, 165, 233, 0.2);
-    }
-
-    .bot-avatar-badge {
-      flex-shrink: 0;
-      width: 66px;
-      height: 66px;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      animation: miniBotBob 2.8s ease-in-out infinite;
-    }
-
-    .bot-green .bot-avatar-badge {
-      background: linear-gradient(145deg, rgba(16, 185, 129, 0.22), rgba(6, 78, 59, 0.35));
-      border: 1.5px solid #34d399;
-      box-shadow: 0 0 18px rgba(16, 185, 129, 0.35);
-    }
-
-    .bot-blue .bot-avatar-badge {
-      background: linear-gradient(145deg, rgba(14, 165, 233, 0.22), rgba(12, 74, 110, 0.35));
-      border: 1.5px solid #38bdf8;
-      box-shadow: 0 0 18px rgba(56, 189, 248, 0.35);
-      animation-delay: 0.7s;
-    }
-
-    @keyframes miniBotBob {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-5px) rotate(-2deg); }
-    }
-
-    .bot-speech-bubble {
-      position: relative;
-      flex: 1;
-      padding: 11px 15px;
-      border-radius: 16px;
-      line-height: 1.55;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .bot-green .bot-speech-bubble {
-      background: rgba(16, 185, 129, 0.12);
-      border: 1px solid rgba(52, 211, 153, 0.35);
-    }
-
-    .bot-blue .bot-speech-bubble {
-      background: rgba(56, 189, 248, 0.12);
-      border: 1px solid rgba(56, 189, 248, 0.35);
-    }
-
-    .bot-speech-tag {
-      display: inline-block;
-      font-size: 0.74rem;
-      font-weight: 900;
-      padding: 2px 9px;
-      border-radius: 999px;
-      margin-bottom: 4px;
-    }
-
-    .bot-green .bot-speech-tag {
-      background: rgba(52, 211, 153, 0.2);
-      color: #6ee7b7;
-    }
-
-    .bot-blue .bot-speech-tag {
-      background: rgba(56, 189, 248, 0.2);
-      color: #7dd3fc;
-    }
-
-    .bot-speech-text {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .bubble-animate {
-      animation: bubblePopIn 0.38s ease;
-    }
-
-    @keyframes bubblePopIn {
-      0% { opacity: 0.25; transform: scale(0.96); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-
     .container {
       max-width: 1180px;
       margin: 0 auto;
-      padding: 24px 20px 80px;
+      padding: 36px 20px 80px;
     }
 
     .page-view {
@@ -628,21 +512,31 @@
       margin-bottom: 12px;
     }
 
-    .robot-showcase-box {
-      width: 112px;
-      height: 112px;
-      margin: 0 auto 10px;
+    .standing-robot-stage {
+      position: relative;
+      width: 132px;
+      height: 120px;
+      margin: 0 auto 12px;
       border-radius: 22px;
       background: rgba(245, 158, 11, 0.08);
       border: 1px solid rgba(251, 191, 36, 0.35);
-      display: grid;
-      place-items: center;
-      animation: robotFloat 2.6s ease-in-out infinite;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 8px;
     }
 
-    @keyframes robotFloat {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-6px); }
+    .hello-bubble-tag {
+      position: absolute;
+      top: 8px;
+      inset-inline-start: 10px;
+      background: rgba(16, 185, 129, 0.22);
+      border: 1px solid #34d399;
+      color: #6ee7b7;
+      font-size: 0.7rem;
+      font-weight: 900;
+      padding: 2px 8px;
+      border-radius: 999px;
     }
 
     .split-phone-stage {
@@ -1144,53 +1038,14 @@
     </div>
   </header>
 
-  <!-- روبوتان تفاعليان بألوان مختلفة تحت الشريط العلوي مع رسائل نصية تلقائية -->
-  <section class="topbar-bots-strip" aria-label="الروبوتات التفاعلية">
-    <div class="bot-chat-widget bot-green" onclick="nextBot1Message()" title="اضغط لتبديل رسالة الروبوت الأخضر">
-      <div class="bot-avatar-badge" aria-hidden="true">
-        <svg width="46" height="46" viewBox="0 0 64 64" fill="none">
-          <line x1="32" y1="4" x2="32" y2="14" stroke="#34d399" stroke-width="3" stroke-linecap="round"/>
-          <circle cx="32" cy="4" r="3.5" fill="#10b981"/>
-          <rect x="12" y="14" width="40" height="34" rx="11" fill="#06281e" stroke="#34d399" stroke-width="2.5"/>
-          <circle cx="24" cy="30" r="4.5" fill="#6ee7b7"/>
-          <circle cx="40" cy="30" r="4.5" fill="#6ee7b7"/>
-          <path d="M23 39Q32 45 41 39" stroke="#34d399" stroke-width="2.6" stroke-linecap="round" fill="none"/>
-          <rect x="20" y="50" width="24" height="7" rx="3.5" fill="#064e3b" stroke="#34d399" stroke-width="1.8"/>
-        </svg>
-      </div>
-      <div class="bot-speech-bubble" id="bot1Bubble">
-        <span class="bot-speech-tag" id="bot1Tag">🟢 روبوت الترحيب • Hello</span>
-        <div class="bot-speech-text" id="bot1Message">Hello! أهلاً بك مع المطور عبدالله، نصمم تطبيقك وموقعك بألوان زجاجية وذهبية تخطف الأنظار.</div>
-      </div>
-    </div>
-
-    <div class="bot-chat-widget bot-blue" onclick="nextBot2Message()" title="اضغط لتبديل رسالة الروبوت الأزرق">
-      <div class="bot-avatar-badge" aria-hidden="true">
-        <svg width="46" height="46" viewBox="0 0 64 64" fill="none">
-          <line x1="32" y1="4" x2="32" y2="14" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
-          <circle cx="32" cy="4" r="3.5" fill="#0ea5e9"/>
-          <rect x="12" y="14" width="40" height="34" rx="11" fill="#082438" stroke="#38bdf8" stroke-width="2.5"/>
-          <circle cx="24" cy="30" r="4.5" fill="#7dd3fc"/>
-          <circle cx="40" cy="30" r="4.5" fill="#7dd3fc"/>
-          <path d="M23 39Q32 45 41 39" stroke="#38bdf8" stroke-width="2.6" stroke-linecap="round" fill="none"/>
-          <rect x="20" y="50" width="24" height="7" rx="3.5" fill="#0c4a6e" stroke="#38bdf8" stroke-width="1.8"/>
-        </svg>
-      </div>
-      <div class="bot-speech-bubble" id="bot2Bubble">
-        <span class="bot-speech-tag" id="bot2Tag">🔵 روبوت الأمان والأنظمة</span>
-        <div class="bot-speech-text" id="bot2Message">ننفذ مشروعك بأمان تام وحماية عالية مع إمكانية إضافة نظام مشتريات وطلبات داخل موقعك أو تطبيقك.</div>
-      </div>
-    </div>
-  </section>
-
   <main class="container">
 
     <!-- الصفحة الرئيسية -->
     <section id="page-home" class="page-view active">
-      <div class="hero-card animate__animated animate__fadeInUp" data-tilt data-tilt-max="4">
+      <div class="hero-card text-template-box animate__animated animate__fadeInUp" data-tilt data-tilt-max="4">
         <div class="welcome-pill" id="t-welcomePill">✨ حوّل فكرتك أو مشروعك إلى تطبيق أو موقع مع المطور عبدالله</div>
-        <h1 class="hero-title" id="t-heroTitle">برمجة وتصميم مواقع وتطبيقات وتسليمها لك بألوان فاخرة وزجاجية وذهبية</h1>
-        <p class="hero-desc" id="t-heroDesc">
+        <h1 class="hero-title text-template-box" id="t-heroTitle">برمجة وتصميم مواقع وتطبيقات وتسليمها لك بألوان فاخرة وزجاجية وذهبية</h1>
+        <p class="hero-desc text-template-box" id="t-heroDesc">
           مرحباً بك! نقدم برمجة وتصميم مواقع وتطبيقات وتسليمها لك حسب الطلب بألوان فاخرة زجاجية وذهبية وغيرها، مع حركة مستمرة بلمسات حركية، ويتم بناؤها بأمان تام وحماية.
         </p>
         <div class="hero-actions">
@@ -1199,7 +1054,7 @@
         </div>
       </div>
 
-      <!-- الصورة الأولى والهاتف المتحرك مع الروبوتات والكلام الجميل -->
+      <!-- الصورة الأولى والهاتف المتحرك مع الروبوت الواقف ورسالة Hello -->
       <div class="showcase-stage">
         <div class="dev-holder-frame" id="primaryAutoFrame" data-tilt data-tilt-max="6" onclick="openCurrentAutoImage()">
           <img id="primaryAutoImg" src="/IMG-20261114-WA5719.jpg" alt="المطور عبدالله">
@@ -1210,20 +1065,23 @@
           <div class="floating-phone" id="interactivePhone" data-tilt data-tilt-max="10">
             <div class="phone-screen">
               <span class="ad-badge-live" id="t-adBadge">🤖 روبوت تفاعلي • برمجة وتصميم مواقع وتطبيقات وتسليمها لك</span>
-              <div class="phone-ad-title" id="phoneAdTitle">مرحباً بك مع روبوت المطور عبدالله 🤖</div>
-              <p class="phone-ad-text" id="phoneAdText">
+              <div class="phone-ad-title text-template-box" id="phoneAdTitle">مرحباً بك مع روبوت المطور عبدالله 🤖</div>
+              <p class="phone-ad-text text-template-box" id="phoneAdText">
                 نقدم برمجة وتصميم مواقع وتطبيقات وتسليمها لك بتجربة بصرية ذهبية وزجاجية تخطف الأنظار، ويتم بناؤها بأمان تام وحماية.
               </p>
 
-              <div class="robot-showcase-box" id="adRobotBox">
-                <svg width="78" height="78" viewBox="0 0 80 80" fill="none">
-                  <line x1="40" y1="6" x2="40" y2="18" stroke="#fde68a" stroke-width="3" stroke-linecap="round"/>
-                  <circle cx="40" cy="5" r="4" fill="#f59e0b"/>
-                  <rect x="16" y="18" width="48" height="42" rx="14" fill="#0d0a04" stroke="#fde68a" stroke-width="2.5"/>
-                  <circle cx="30" cy="36" r="5" fill="#fde68a"/>
-                  <circle cx="50" cy="36" r="5" fill="#fde68a"/>
-                  <path d="M29 48Q40 55 51 48" stroke="#f59e0b" stroke-width="2.8" stroke-linecap="round" fill="none"/>
-                  <rect x="24" y="63" width="32" height="9" rx="4.5" fill="#1f1707" stroke="#f59e0b" stroke-width="2"/>
+              <div class="standing-robot-stage" id="adRobotBox">
+                <span class="hello-bubble-tag">Hello</span>
+                <svg width="74" height="86" viewBox="0 0 80 92" fill="none">
+                  <line x1="40" y1="6" x2="40" y2="16" stroke="#34d399" stroke-width="3" stroke-linecap="round"/>
+                  <circle cx="40" cy="5" r="4" fill="#10b981"/>
+                  <rect x="18" y="16" width="44" height="36" rx="13" fill="#06281e" stroke="#34d399" stroke-width="2.5"/>
+                  <circle cx="31" cy="33" r="4.5" fill="#6ee7b7"/>
+                  <circle cx="49" cy="33" r="4.5" fill="#6ee7b7"/>
+                  <path d="M31 43Q40 48 49 43" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                  <rect x="23" y="55" width="34" height="22" rx="8" fill="#064e3b" stroke="#34d399" stroke-width="2"/>
+                  <rect x="26" y="79" width="11" height="10" rx="3" fill="#06281e" stroke="#34d399" stroke-width="2"/>
+                  <rect x="43" y="79" width="11" height="10" rx="3" fill="#06281e" stroke="#34d399" stroke-width="2"/>
                 </svg>
               </div>
 
@@ -1244,19 +1102,19 @@
       </div>
 
       <!-- مربعات وصور احترافية مع المطور عبدالله -->
-      <div class="split-phone-stage" id="squaresPhoneSection">
+      <div class="split-phone-stage text-template-box" id="squaresPhoneSection">
         <div class="welcome-pill" id="t-splitPill">✨ لمسات عالمية • مربعات وصور احترافية مع المطور عبدالله</div>
-        <h2 id="t-splitTitle" style="font-size: clamp(1.3rem, 3vw, 1.95rem); font-weight: 900; color: var(--gold-light); margin-top: 6px;">
+        <h2 class="text-template-box" id="t-splitTitle" style="font-size: clamp(1.3rem, 3vw, 1.95rem); font-weight: 900; color: var(--gold-light); margin-top: 6px;">
           برمجة وتصميم مواقع وتطبيقات وتسليمها لك • صور احترافية مع المطور عبدالله
         </h2>
 
         <div class="split-grid-arena">
-          <div class="split-tile">
+          <div class="split-tile text-template-box">
             <div id="t-tile1">✨ برمجة وتصميم بألوان زجاجية وذهبية</div>
             <small id="t-tile1Sub" style="color: var(--text-muted);">وأنماط لونية متعددة حسب الطلب</small>
           </div>
 
-          <div class="split-tile">
+          <div class="split-tile text-template-box">
             <div id="t-tile2">🛡️ يتم بناؤها بأمان تام وحماية</div>
             <small id="t-tile2Sub" style="color: var(--text-muted);">حركة فائقة السرعة ولمسات بصرية مستمرة</small>
           </div>
@@ -1273,30 +1131,31 @@
         </div>
       </div>
 
-      <!-- تجربة جوال فاخرة تتغير تلقائياً مع روبوت أسود ترحيبي وكلام جميل وصور مختلفة -->
-      <div class="gallery-section-box" id="newImagesSection">
+      <!-- تجربة جوال فاخرة تتغير تلقائياً مع روبوت ترحيبي وكلام جميل وصور مختلفة -->
+      <div class="gallery-section-box text-template-box" id="newImagesSection">
         <div class="section-header-center">
           <div class="welcome-pill" id="t-galleryPill">🤖 تجربة جوال فاخرة • تتغير تلقائياً • يتم بناؤها بأمان تام وحماية</div>
-          <h2 id="t-galleryTitle">برمجة وتصميم مواقع وتطبيقات وتسليمها لك • تجربة جوال فاخرة</h2>
-          <p id="t-gallerySub">مواقع وتطبيقات يتم بناؤها بأمان تام وحماية وتعمل بسلاسة على جميع الشاشات.</p>
+          <h2 class="text-template-box" id="t-galleryTitle">برمجة وتصميم مواقع وتطبيقات وتسليمها لك • تجربة جوال فاخرة</h2>
+          <p class="text-template-box" id="t-gallerySub">مواقع وتطبيقات يتم بناؤها بأمان تام وحماية وتعمل بسلاسة على جميع الشاشات.</p>
         </div>
 
-        <div class="glass-card" id="autoLuxuryMobileBox" style="max-width: 640px; margin: 0 auto 24px; text-align: center;" data-tilt data-tilt-max="5">
-          <div class="robot-showcase-box" id="blackWelcomeRobotBox" style="background: #070604; border-color: var(--gold-main);">
-            <svg width="84" height="84" viewBox="0 0 84 84" fill="none">
-              <line x1="42" y1="6" x2="42" y2="18" stroke="#fde68a" stroke-width="3" stroke-linecap="round"/>
-              <circle cx="42" cy="5" r="4.5" fill="#f59e0b"/>
-              <rect x="15" y="18" width="54" height="44" rx="15" fill="#050402" stroke="#fde68a" stroke-width="2.6"/>
-              <circle cx="30" cy="37" r="5.5" fill="#fde68a"/>
-              <circle cx="54" cy="37" r="5.5" fill="#fde68a"/>
-              <circle cx="30" cy="37" r="2.2" fill="#050402"/>
-              <circle cx="54" cy="37" r="2.2" fill="#050402"/>
-              <path d="M29 49Q42 57 55 49" stroke="#f59e0b" stroke-width="3" stroke-linecap="round" fill="none"/>
-              <rect x="25" y="65" width="34" height="9" rx="4.5" fill="#090704" stroke="#fde68a" stroke-width="2"/>
+        <div class="glass-card text-template-box" id="autoLuxuryMobileBox" style="max-width: 640px; margin: 0 auto 24px; text-align: center;" data-tilt data-tilt-max="5">
+          <div class="standing-robot-stage" id="blackWelcomeRobotBox" style="background: #070604; border-color: var(--gold-main);">
+            <span class="hello-bubble-tag">Hello</span>
+            <svg width="74" height="86" viewBox="0 0 80 92" fill="none">
+              <line x1="40" y1="6" x2="40" y2="16" stroke="#fde68a" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="40" cy="5" r="4" fill="#f59e0b"/>
+              <rect x="18" y="16" width="44" height="36" rx="13" fill="#050402" stroke="#fde68a" stroke-width="2.5"/>
+              <circle cx="31" cy="33" r="4.5" fill="#fde68a"/>
+              <circle cx="49" cy="33" r="4.5" fill="#fde68a"/>
+              <path d="M31 43Q40 48 49 43" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+              <rect x="23" y="55" width="34" height="22" rx="8" fill="#090704" stroke="#fde68a" stroke-width="2"/>
+              <rect x="26" y="79" width="11" height="10" rx="3" fill="#050402" stroke="#fde68a" stroke-width="2"/>
+              <rect x="43" y="79" width="11" height="10" rx="3" fill="#050402" stroke="#fde68a" stroke-width="2"/>
             </svg>
           </div>
-          <h3 id="luxuryAutoTitle" style="font-size: 1.35rem;">أهلاً بك • الروبوت الترحيبي في خدمتك</h3>
-          <p id="luxuryAutoQuote" style="font-size: 1.02rem; color: var(--text-main); margin-top: 6px;">
+          <h3 class="text-template-box" id="luxuryAutoTitle" style="font-size: 1.35rem;">أهلاً بك • الروبوت الترحيبي في خدمتك</h3>
+          <p class="text-template-box" id="luxuryAutoQuote" style="font-size: 1.02rem; color: var(--text-main); margin-top: 6px;">
             نسعد بتحويل فكرتك عبر برمجة وتصميم مواقع وتطبيقات وتسليمها لك بأمان تام وحماية لتترك أثراً جميلاً لدى كل زائر.
           </p>
         </div>
@@ -1320,11 +1179,11 @@
       </div>
 
       <!-- قسم الصورة الرابعة: الصورتين الجديدتين المتحركتين مع نص مناسب وظل فاخر -->
-      <div class="gallery-section-box" id="fourthImageSection">
+      <div class="gallery-section-box text-template-box" id="fourthImageSection">
         <div class="section-header-center">
           <div class="welcome-pill" id="t-fourthPill">🌟 قسم الصورة الرابعة • إطلالات متحركة</div>
-          <h2 id="t-fourthTitle">برمجة وتصميم مواقع وتطبيقات وتسليمها لك</h2>
-          <p id="t-fourthSub">إطلالتان متحركتان بظل فاخر يبرز جمال البرمجة والتصميم، ويتم بناؤها بأمان تام وحماية.</p>
+          <h2 class="text-template-box" id="t-fourthTitle">برمجة وتصميم مواقع وتطبيقات وتسليمها لك</h2>
+          <p class="text-template-box" id="t-fourthSub">إطلالتان متحركتان بظل فاخر يبرز جمال البرمجة والتصميم، ويتم بناؤها بأمان تام وحماية.</p>
         </div>
 
         <div class="fourth-image-grid">
@@ -1349,34 +1208,34 @@
 
     <!-- قسم الخدمات -->
     <section id="page-services" class="page-view">
-      <div class="hero-card">
+      <div class="hero-card text-template-box">
         <div class="welcome-pill" id="t-srvPill">💼 خدمات المطور عبدالله • يتم بناؤها بأمان تام وحماية</div>
-        <h2 class="hero-title" id="t-srvTitle">برمجة وتصميم مواقع وتطبيقات وتسليمها لك</h2>
-        <p class="hero-desc" id="t-srvDesc">
+        <h2 class="hero-title text-template-box" id="t-srvTitle">برمجة وتصميم مواقع وتطبيقات وتسليمها لك</h2>
+        <p class="hero-desc text-template-box" id="t-srvDesc">
           ننفذ برمجة وتصميم مواقع وتطبيقات وتسليمها لك حسب الطلب بألوان فاخرة زجاجية وذهبية وغيرها، ويتم بناؤها بأمان تام وحماية لتناسب هوية مشروعك بدقة.
         </p>
       </div>
 
       <div class="grid-2">
-        <article class="glass-card" data-tilt data-tilt-max="6">
+        <article class="glass-card text-template-box" data-tilt data-tilt-max="6">
           <div class="card-icon">🌐</div>
-          <h3 id="t-srv1Title">برمجة وتصميم مواقع وتسليمها لك</h3>
-          <p id="t-srv1Desc">برمجة وتصميم مواقع إلكترونية وتسليمها لك بألوان فاخرة زجاجية وذهبية وغيرها، مع حركات عالمية وتجاوب كامل، ويتم بناؤها بأمان تام وحماية.</p>
+          <h3 class="text-template-box" id="t-srv1Title">برمجة وتصميم مواقع وتسليمها لك</h3>
+          <p class="text-template-box" id="t-srv1Desc">برمجة وتصميم مواقع إلكترونية وتسليمها لك بألوان فاخرة زجاجية وذهبية وغيرها، مع حركات عالمية وتجاوب كامل، ويتم بناؤها بأمان تام وحماية.</p>
         </article>
 
-        <article class="glass-card" data-tilt data-tilt-max="6">
+        <article class="glass-card text-template-box" data-tilt data-tilt-max="6">
           <div class="card-icon">📱</div>
-          <h3 id="t-srv2Title">برمجة وتصميم تطبيقات وتسليمها لك</h3>
-          <p id="t-srv2Desc">برمجة وتصميم تطبيقات عصرية وتسليمها لك بواجهات زجاجية وذهبية وغيرها وتجربة تفاعلية سلسة، ويتم بناؤها بأمان تام وحماية لمتطلباتك.</p>
+          <h3 class="text-template-box" id="t-srv2Title">برمجة وتصميم تطبيقات وتسليمها لك</h3>
+          <p class="text-template-box" id="t-srv2Desc">برمجة وتصميم تطبيقات عصرية وتسليمها لك بواجهات زجاجية وذهبية وغيرها وتجربة تفاعلية سلسة، ويتم بناؤها بأمان تام وحماية لمتطلباتك.</p>
         </article>
       </div>
     </section>
 
     <!-- الأسئلة الشائعة -->
     <section id="page-faq" class="page-view">
-      <div class="hero-card">
+      <div class="hero-card text-template-box">
         <div class="welcome-pill" id="t-faqPill">❓ الأسئلة الشائعة</div>
-        <h2 class="hero-title" id="t-faqTitle">برمجة وتصميم مواقع وتطبيقات وتسليمها لك</h2>
+        <h2 class="hero-title text-template-box" id="t-faqTitle">برمجة وتصميم مواقع وتطبيقات وتسليمها لك</h2>
       </div>
 
       <div class="faq-list">
@@ -1386,7 +1245,7 @@
             <span>−</span>
           </button>
           <div class="faq-answer" id="t-a1">
-            عند تعبئة بياناتك وتفاصيل مشروعك في صفحة "تعبئة البيانات والطلب" والضغط على إرسال، يظهر إشعار ترحيبي ثم يتم توجيه الرسالة إلى واتساب الرقم <strong>+201151429820</strong>.
+            التواصل معي عبر واتساب فقط؛ عند تعبئة بياناتك وتفاصيل مشروعك في صفحة "تعبئة البيانات والطلب" والضغط على إرسال، يظهر إشعار ترحيبي ثم يتم توجيه الرسالة إلى واتساب الرقم <strong>+201151429820</strong>.
           </div>
         </div>
 
@@ -1404,11 +1263,11 @@
 
     <!-- صفحة تعبئة البيانات والإرسال التلقائي إلى واتساب -->
     <section id="page-order" class="page-view">
-      <div class="form-card">
-        <div class="welcome-pill" id="t-ordPill">📩 تعبئة البيانات والطلب • يتم بناؤها بأمان تام وحماية</div>
-        <h2 id="t-ordTitle" style="font-size: 1.55rem; font-weight: 900; margin-bottom: 8px;">برمجة وتصميم مواقع وتطبيقات وتسليمها لك</h2>
-        <p id="t-ordDesc" style="color: var(--text-muted); margin-bottom: 22px; line-height: 1.7;">
-          اكتب اسمك، رقم هاتفك، اختر الخدمة واللون المفضل، ثم اضغط إرسال. يتم بناؤها بأمان تام وحماية.
+      <div class="form-card text-template-box">
+        <div class="welcome-pill" id="t-ordPill">📩 تعبئة البيانات والطلب • التواصل عبر واتساب فقط</div>
+        <h2 class="text-template-box" id="t-ordTitle" style="font-size: 1.55rem; font-weight: 900; margin-bottom: 8px;">برمجة وتصميم مواقع وتطبيقات وتسليمها لك</h2>
+        <p class="text-template-box" id="t-ordDesc" style="color: var(--text-muted); margin-bottom: 22px; line-height: 1.7;">
+          التواصل معي عبر واتساب فقط؛ اكتب اسمك، رقم هاتفك، اختر الخدمة واللون المفضل، ثم اضغط إرسال. يتم بناؤها بأمان تام وحماية.
         </p>
 
         <form id="projectOrderForm" onsubmit="sendToWhatsApp(event)">
@@ -1444,10 +1303,10 @@
             <textarea id="projectDetails" class="form-control" placeholder="اكتب تفاصيل مشروعك أو طلبك هنا..." required></textarea>
           </div>
 
-          <button type="submit" class="whatsapp-btn" id="t-submitBtn">إرسال الطلب الآن 💬</button>
+          <button type="submit" class="whatsapp-btn" id="t-submitBtn">إرسال الطلب عبر واتساب 💬</button>
 
           <div class="target-number-note" id="t-waNote">
-            واتساب المطور عبدالله: <strong>+201151429820</strong> • يتم بناؤها بأمان تام وحماية
+            التواصل معي عبر واتساب فقط: <strong>+201151429820</strong> • يتم بناؤها بأمان تام وحماية
           </div>
         </form>
       </div>
@@ -1470,7 +1329,7 @@
         أهلاً بك يا صديقي!
       </h2>
       <p id="t-notifDesc" style="color: var(--text-muted); font-size: 1rem; line-height: 1.85; margin-bottom: 22px;">
-        شكراً لتواصلك مع موقع المطور عبدالله! نقدم برمجة وتصميم مواقع وتطبيقات وتسليمها لك، ويتم بناؤها بأمان تام وحماية.
+        شكراً لتواصلك مع موقع المطور عبدالله! التواصل معي عبر واتساب فقط، ونقدم برمجة وتصميم مواقع وتطبيقات وتسليمها لك، ويتم بناؤها بأمان تام وحماية.
       </p>
       <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
         <button type="button" class="btn-primary" id="continueWhatsAppBtn">متابعة إلى واتساب الآن 💬</button>
@@ -1515,7 +1374,7 @@
       });
     }
 
-    /* أسهم خطية صغيرة وخفيفة تتحرك كل 20 ثانية فوق النصوص */
+    /* أسهم خطية صغيرة وخفيفة تظهر فوق قوالب النصوص وتتحرك كل 20 ثانية */
     function createSubtleLineArrowSvg(isRtl) {
       const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
       svg.setAttribute("viewBox", "0 0 24 14");
@@ -1525,14 +1384,14 @@
       const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
       if (isRtl) {
         path.setAttribute("d", "M21 7H4M9 2.5L3.5 7L9 11.5");
-        svg.style.setProperty("--arrow-dx", "-34px");
+        svg.style.setProperty("--arrow-dx", "-42px");
       } else {
         path.setAttribute("d", "M3 7H20M15 2.5L20.5 7L15 11.5");
-        svg.style.setProperty("--arrow-dx", "34px");
+        svg.style.setProperty("--arrow-dx", "42px");
       }
 
       path.setAttribute("stroke", "currentColor");
-      path.setAttribute("stroke-width", "1.6");
+      path.setAttribute("stroke-width", "1.75");
       path.setAttribute("stroke-linecap", "round");
       path.setAttribute("stroke-linejoin", "round");
 
@@ -1545,124 +1404,34 @@
       if (!activePage) return;
 
       const isRtl = document.documentElement.dir !== "ltr";
-      const targets = activePage.querySelectorAll("h1, h2, h3, .hero-desc");
+      const textTemplates = activePage.querySelectorAll(".hero-card, .split-phone-stage, .gallery-section-box, .glass-card, .form-card");
 
-      targets.forEach((el, idx) => {
-        if (el.offsetParent === null) return;
-        el.classList.add("text-arrow-host");
+      textTemplates.forEach((box, idx) => {
+        if (box.offsetParent === null) return;
+        box.classList.add("text-template-box");
 
-        const existing = el.querySelector(".subtle-line-arrow");
+        const existing = box.querySelector(":scope > .subtle-line-arrow");
         if (existing) existing.remove();
 
         const arrow = createSubtleLineArrowSvg(isRtl);
-        arrow.style.insetInlineStart = `${10 + ((idx * 17) % 55)}%`;
-        el.appendChild(arrow);
+        arrow.style.top = "-10px";
+        arrow.style.insetInlineStart = `${16 + ((idx * 19) % 52)}%`;
+        box.appendChild(arrow);
+
+        requestAnimationFrame(() => {
+          arrow.classList.add("is-animating");
+        });
 
         setTimeout(() => {
-          arrow.classList.add("is-animating");
-          setTimeout(() => {
-            arrow.remove();
-          }, 2000);
-        }, idx * 140);
+          arrow.remove();
+        }, 2300);
       });
     }
 
-    setTimeout(runSubtleTextArrowsWave, 1500);
+    setTimeout(runSubtleTextArrowsWave, 600);
     setInterval(runSubtleTextArrowsWave, 20000);
 
     let currentLang = "ar";
-
-    /* بيانات الروبوتين التفاعليين تحت الشريط العلوي */
-    const bot1Lines = [
-      {
-        arTag: "🟢 روبوت الترحيب • Hello",
-        arText: "Hello! أهلاً بك مع المطور عبدالله، نصمم تطبيقك وموقعك بألوان زجاجية وذهبية تخطف الأنظار.",
-        enTag: "🟢 Welcome Bot • Hello",
-        enText: "Hello! Welcome to Developer Abdullah—we craft apps & websites in eye-catching glass and gold."
-      },
-      {
-        arTag: "🟢 روبوت الإبداع • Hello",
-        arText: "Hello! حركات سلسة وتجاوب كامل على الجوال والكمبيوتر ليظهر مشروعك بأجمل صورة.",
-        enTag: "🟢 Creative Bot • Hello",
-        enText: "Hello! Smooth motion and full responsiveness on mobile and desktop so your project shines."
-      },
-      {
-        arTag: "🟢 روبوت التنفيذ • Hello",
-        arText: "Hello! اختر ألوانك المفضلة وابدأ طلبك الآن بخطوات سريعة ومباشرة.",
-        enTag: "🟢 Launch Bot • Hello",
-        enText: "Hello! Pick your favorite colors and start your order now in quick, direct steps."
-      }
-    ];
-
-    const bot2Lines = [
-      {
-        arTag: "🔵 روبوت الأمان والأنظمة",
-        arText: "ننفذ مشروعك بأمان تام وحماية عالية مع إمكانية إضافة نظام مشتريات وطلبات داخل موقعك أو تطبيقك.",
-        enTag: "🔵 Security & Systems Bot",
-        enText: "Built with full security & protection, including purchase and order systems inside your site or app."
-      },
-      {
-        arTag: "🔵 روبوت التواصل الفوري",
-        arText: "تواصل بسهولة عبر واتساب أو البريد الإلكتروني ونسلّم لك مشروعك جاهزاً ومتكاملاً.",
-        enTag: "🔵 Instant Contact Bot",
-        enText: "Connect easily via WhatsApp or email and receive your project ready and complete."
-      },
-      {
-        arTag: "🔵 روبوت الجودة والثقة",
-        arText: "كل تفصيلة مدروسة بعناية لضمان تجربة آمنة وسريعة لعملائك في كل زيارة.",
-        enTag: "🔵 Quality & Trust Bot",
-        enText: "Every detail is carefully crafted for a fast, secure experience for your visitors."
-      }
-    ];
-
-    let bot1Idx = 0;
-    let bot2Idx = 0;
-
-    function triggerBubbleAnimation(bubbleId) {
-      const el = document.getElementById(bubbleId);
-      if (!el) return;
-      el.classList.remove("bubble-animate");
-      void el.offsetWidth;
-      el.classList.add("bubble-animate");
-    }
-
-    function applyTopBotsContent(animate = false) {
-      const b1 = bot1Lines[bot1Idx];
-      const b2 = bot2Lines[bot2Idx];
-
-      document.getElementById("bot1Tag").textContent = currentLang === "ar" ? b1.arTag : b1.enTag;
-      document.getElementById("bot1Message").textContent = currentLang === "ar" ? b1.arText : b1.enText;
-
-      document.getElementById("bot2Tag").textContent = currentLang === "ar" ? b2.arTag : b2.enTag;
-      document.getElementById("bot2Message").textContent = currentLang === "ar" ? b2.arText : b2.enText;
-
-      if (animate) {
-        triggerBubbleAnimation("bot1Bubble");
-        triggerBubbleAnimation("bot2Bubble");
-      }
-    }
-
-    function nextBot1Message() {
-      bot1Idx = (bot1Idx + 1) % bot1Lines.length;
-      const b1 = bot1Lines[bot1Idx];
-      document.getElementById("bot1Tag").textContent = currentLang === "ar" ? b1.arTag : b1.enTag;
-      document.getElementById("bot1Message").textContent = currentLang === "ar" ? b1.arText : b1.enText;
-      triggerBubbleAnimation("bot1Bubble");
-    }
-
-    function nextBot2Message() {
-      bot2Idx = (bot2Idx + 1) % bot2Lines.length;
-      const b2 = bot2Lines[bot2Idx];
-      document.getElementById("bot2Tag").textContent = currentLang === "ar" ? b2.arTag : b2.enTag;
-      document.getElementById("bot2Message").textContent = currentLang === "ar" ? b2.arText : b2.enText;
-      triggerBubbleAnimation("bot2Bubble");
-    }
-
-    setInterval(() => {
-      bot1Idx = (bot1Idx + 1) % bot1Lines.length;
-      bot2Idx = (bot2Idx + 1) % bot2Lines.length;
-      applyTopBotsContent(true);
-    }, 4500);
 
     const translations = {
       ar: {
@@ -1708,12 +1477,12 @@
         faqPill: "❓ الأسئلة الشائعة",
         faqTitle: "برمجة وتصميم مواقع وتطبيقات وتسليمها لك",
         q1: "كيف يتم إرسال طلبي إلى المطور عبدالله؟",
-        a1: 'عند تعبئة بياناتك وتفاصيل مشروعك في صفحة "تعبئة البيانات والطلب" والضغط على إرسال، يظهر إشعار ترحيبي ثم يتم توجيه الرسالة إلى واتساب الرقم <strong>+201151429820</strong>.',
+        a1: 'التواصل معي عبر واتساب فقط؛ عند تعبئة بياناتك وتفاصيل مشروعك في صفحة "تعبئة البيانات والطلب" والضغط على إرسال، يظهر إشعار ترحيبي ثم يتم توجيه الرسالة إلى واتساب الرقم <strong>+201151429820</strong>.',
         q2: "هل يتم تنفيذ برمجة وتصميم مواقع وتطبيقات وتسليمها لك بأمان وحماية؟",
         a2: "نعم، نوفر برمجة وتصميم مواقع وتطبيقات وتسليمها لك بألوان فاخرة زجاجية وذهبية وغيرها، ويتم بناؤها بأمان تام وحماية.",
-        ordPill: "📩 تعبئة البيانات والطلب • يتم بناؤها بأمان تام وحماية",
+        ordPill: "📩 تعبئة البيانات والطلب • التواصل عبر واتساب فقط",
         ordTitle: "برمجة وتصميم مواقع وتطبيقات وتسليمها لك",
-        ordDesc: "اكتب اسمك، رقم هاتفك، اختر الخدمة واللون المفضل، ثم اضغط إرسال. يتم بناؤها بأمان تام وحماية.",
+        ordDesc: "التواصل معي عبر واتساب فقط؛ اكتب اسمك، رقم هاتفك، اختر الخدمة واللون المفضل، ثم اضغط إرسال. يتم بناؤها بأمان تام وحماية.",
         lblName: "الاسم الكامل",
         phName: "اكتب اسمك هنا...",
         lblPhone: "رقم هاتف المستخدم (واتساب)",
@@ -1727,10 +1496,10 @@
         optOther: "ألوان فاخرة أخرى حسب الطلب",
         lblDetails: "التفاصيل",
         phDetails: "اكتب تفاصيل مشروعك أو طلبك هنا...",
-        submitBtn: "إرسال الطلب الآن 💬",
-        waNote: "واتساب المطور عبدالله: <strong>+201151429820</strong> • يتم بناؤها بأمان تام وحماية",
+        submitBtn: "إرسال الطلب عبر واتساب 💬",
+        waNote: "التواصل معي عبر واتساب فقط: <strong>+201151429820</strong> • يتم بناؤها بأمان تام وحماية",
         notifPill: "🎉 إشعار ترحيبي • تم استلام طلبك",
-        notifDesc: "شكراً لتواصلك مع موقع المطور عبدالله! نقدم برمجة وتصميم مواقع وتطبيقات وتسليمها لك، ويتم بناؤها بأمان تام وحماية.",
+        notifDesc: "شكراً لتواصلك مع موقع المطور عبدالله! التواصل معي عبر واتساب فقط، ونقدم برمجة وتصميم مواقع وتطبيقات وتسليمها لك، ويتم بناؤها بأمان تام وحماية.",
         continueWa: "متابعة إلى واتساب الآن 💬",
         backSite: "العودة للموقع",
         clickToOpen: "اضغط للفتح",
@@ -1780,12 +1549,12 @@
         faqPill: "❓ Frequently Asked Questions",
         faqTitle: "Website & App Coding, Design & Handover",
         q1: "How do I send my request to Developer Abdullah?",
-        a1: 'Fill in your name, phone, and project details on the "Order & Details" tab and submit to see a welcome alert and open WhatsApp to <strong>+201151429820</strong>.',
+        a1: 'Contact via WhatsApp only; fill in your name, phone, and project details on the "Order & Details" tab and submit to see a welcome alert and open WhatsApp to <strong>+201151429820</strong>.',
         q2: "Are websites and apps built with full security and protection?",
         a2: "Yes! We provide website & app coding, design & handover in luxury glass, gold, and custom palettes, and they are built with full security & protection.",
-        ordPill: "📩 Order & Details • Built with Full Security & Protection",
+        ordPill: "📩 Order & Details • Contact via WhatsApp Only",
         ordTitle: "Website & App Coding, Design & Handover",
-        ordDesc: "Enter your name, phone number, choose your service and color style, then submit. Built with full security & protection.",
+        ordDesc: "Contact via WhatsApp only; enter your name, phone number, choose your service and color style, then submit. Built with full security & protection.",
         lblName: "Full Name",
         phName: "Type your name here...",
         lblPhone: "Your Phone Number (WhatsApp)",
@@ -1799,10 +1568,10 @@
         optOther: "Other Luxury Colors on Request",
         lblDetails: "Project Details",
         phDetails: "Describe your project or request here...",
-        submitBtn: "Send Request Now 💬",
-        waNote: "Developer Abdullah WhatsApp: <strong>+201151429820</strong> • Built with Full Security & Protection",
+        submitBtn: "Send via WhatsApp 💬",
+        waNote: "Contact via WhatsApp only: <strong>+201151429820</strong> • Built with Full Security & Protection",
         notifPill: "🎉 Welcome Alert • Request Ready",
-        notifDesc: "Thank you for reaching out to Developer Abdullah! We provide website & app coding, design & handover, built with full security & protection.",
+        notifDesc: "Thank you for reaching out to Developer Abdullah! Contact via WhatsApp only; we provide website & app coding, design & handover, built with full security & protection.",
         continueWa: "Continue to WhatsApp 💬",
         backSite: "Back to Site",
         clickToOpen: "Tap to Open",
@@ -1825,8 +1594,6 @@
       document.getElementById("nav-services").textContent = t.navServices;
       document.getElementById("nav-faq").textContent = t.navFaq;
       document.getElementById("nav-order").textContent = t.navOrder;
-
-      applyTopBotsContent(false);
 
       document.getElementById("t-welcomePill").textContent = t.welcomePill;
       document.getElementById("t-heroTitle").textContent = t.heroTitle;
@@ -1925,14 +1692,14 @@
         arText: "نقدم برمجة وتصميم مواقع وتطبيقات وتسليمها لك بتجربة بصرية ذهبية وزجاجية تخطف الأنظار، ويتم بناؤها بأمان تام وحماية.",
         enTitle: "Welcome with Abdullah's Smart Bot 🤖",
         enText: "We deliver website & app coding, design & handover in luxury glass and gold—built with full security & protection.",
-        robotAccent: "#fde68a",
+        robotAccent: "#34d399",
         lottie: "https://assets9.lottiefiles.com/packages/lf20_w51pcehl.json"
       },
       {
         arTitle: "تواصل وأنظمة مشتريات متكاملة ✨",
-        arText: "وتواصل عبر واتساب وانستغرام والتواصل الاجتماعي أو عبر بريدك ونوفر لك برمجة نظام مشتريات داخل تطبيقك وموقعك بأمان تام وحماية.",
-        enTitle: "Direct Channels & Purchase Systems ✨",
-        enText: "Connect via WhatsApp, Instagram, social media, or email—we build full purchase systems inside your app and website with full security & protection.",
+        arText: "التواصل معي عبر واتساب فقط ونوفر لك برمجة نظام مشتريات داخل تطبيقك وموقعك بأمان تام وحماية.",
+        enTitle: "WhatsApp & Purchase Systems ✨",
+        enText: "Contact via WhatsApp only—we build full purchase systems inside your app and website with full security & protection.",
         robotAccent: "#f59e0b",
         lottie: "https://assets2.lottiefiles.com/packages/lf20_xyadoh9h.json"
       },
@@ -1941,7 +1708,7 @@
         arText: "برمجة وتصميم مواقع وتطبيقات وتسليمها لك بألوان زجاجية وذهبية وغيرها مع سرعة استجابة عالية وأمان تام وحماية.",
         enTitle: "Creative Bot Welcomes Your Vision 🚀",
         enText: "Website & app coding, design & handover in glass, gold, and custom palettes—built with full security & protection.",
-        robotAccent: "#ffffff",
+        robotAccent: "#6ee7b7",
         lottie: "https://assets10.lottiefiles.com/packages/lf20_1pxqjqps.json"
       },
       {
@@ -1959,14 +1726,17 @@
       const box = document.getElementById("adRobotBox");
       if (!box) return;
       box.innerHTML = `
-        <svg width="78" height="78" viewBox="0 0 80 80" fill="none">
-          <line x1="40" y1="6" x2="40" y2="18" stroke="${accentColor}" stroke-width="3" stroke-linecap="round"/>
-          <circle cx="40" cy="5" r="4" fill="#f59e0b"/>
-          <rect x="16" y="18" width="48" height="42" rx="14" fill="#0d0a04" stroke="${accentColor}" stroke-width="2.5"/>
-          <circle cx="30" cy="36" r="5" fill="${accentColor}"/>
-          <circle cx="50" cy="36" r="5" fill="${accentColor}"/>
-          <path d="M29 48Q40 55 51 48" stroke="#f59e0b" stroke-width="2.8" stroke-linecap="round" fill="none"/>
-          <rect x="24" y="63" width="32" height="9" rx="4.5" fill="#1f1707" stroke="${accentColor}" stroke-width="2"/>
+        <span class="hello-bubble-tag">Hello</span>
+        <svg width="74" height="86" viewBox="0 0 80 92" fill="none">
+          <line x1="40" y1="6" x2="40" y2="16" stroke="${accentColor}" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="40" cy="5" r="4" fill="#10b981"/>
+          <rect x="18" y="16" width="44" height="36" rx="13" fill="#06281e" stroke="${accentColor}" stroke-width="2.5"/>
+          <circle cx="31" cy="33" r="4.5" fill="${accentColor}"/>
+          <circle cx="49" cy="33" r="4.5" fill="${accentColor}"/>
+          <path d="M31 43Q40 48 49 43" stroke="${accentColor}" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <rect x="23" y="55" width="34" height="22" rx="8" fill="#064e3b" stroke="${accentColor}" stroke-width="2"/>
+          <rect x="26" y="79" width="11" height="10" rx="3" fill="#06281e" stroke="${accentColor}" stroke-width="2"/>
+          <rect x="43" y="79" width="11" height="10" rx="3" fill="#06281e" stroke="${accentColor}" stroke-width="2"/>
         </svg>
       `;
     }
@@ -2149,7 +1919,7 @@
 
       const messageText =
         `مرحباً بالمطور عبدالله 👋\n` +
-        `طلب جديد من الموقع:\n\n` +
+        `طلب جديد من الموقع (التواصل عبر واتساب فقط):\n\n` +
         `👤 الاسم: ${name}\n` +
         `📞 رقم المستخدم: ${phone}\n` +
         `🛠️ الخدمة: ${service}\n` +
