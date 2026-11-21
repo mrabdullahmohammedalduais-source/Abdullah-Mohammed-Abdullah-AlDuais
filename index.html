@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>موقع المطور عبدالله</title>
 
-  <!-- خط عربي حديث -->
+  <!-- خط عربي فاخر -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -14,20 +14,21 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 
   <style>
     :root {
-      --bg-dark: #060913;
-      --bg-card: rgba(15, 23, 42, 0.78);
-      --border-glass: rgba(56, 189, 248, 0.22);
-      --primary: #38bdf8;
-      --secondary: #818cf8;
-      --accent: #22d3ee;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
+      --bg-dark: #070604;
+      --bg-card: rgba(24, 19, 10, 0.72);
+      --border-gold: rgba(251, 191, 36, 0.34);
+      --gold-light: #fde68a;
+      --gold-main: #f59e0b;
+      --gold-deep: #b45309;
+      --text-main: #fffbeb;
+      --text-muted: #d6c7a1;
     }
 
     * {
@@ -38,14 +39,14 @@
 
     body {
       font-family: 'Cairo', sans-serif;
-      background-color: var(--bg-dark);
+      background: radial-gradient(circle at top, #1f1707 0%, #090704 55%, #050402 100%);
       color: var(--text-main);
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
     }
 
-    /* شبكة جزيئات ذكية متحركة في الخلفية */
+    /* جزيئات ذهبية متحركة في الخلفية */
     #particles-js {
       position: fixed;
       inset: 0;
@@ -53,50 +54,52 @@
       pointer-events: none;
     }
 
-    .ambient-orb {
+    .gold-orb {
       position: fixed;
       border-radius: 50%;
-      filter: blur(100px);
+      filter: blur(110px);
       z-index: -1;
       pointer-events: none;
-      animation: floatOrb 7s ease-in-out infinite alternate;
+      animation: floatGoldOrb 7s ease-in-out infinite alternate;
     }
 
     .orb-1 {
-      width: 350px;
-      height: 350px;
-      background: rgba(56, 189, 248, 0.28);
-      top: -60px;
-      right: -60px;
+      width: 360px;
+      height: 360px;
+      background: rgba(245, 158, 11, 0.24);
+      top: -70px;
+      right: -70px;
     }
 
     .orb-2 {
-      width: 390px;
-      height: 390px;
-      background: rgba(129, 140, 248, 0.24);
-      bottom: -80px;
-      left: -80px;
+      width: 400px;
+      height: 400px;
+      background: rgba(253, 230, 138, 0.16);
+      bottom: -90px;
+      left: -90px;
       animation-delay: 1.5s;
     }
 
-    @keyframes floatOrb {
+    @keyframes floatGoldOrb {
       0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(32px, 40px) scale(1.16); }
+      100% { transform: translate(35px, 42px) scale(1.16); }
     }
 
-    /* الشريط العلوي */
+    /* الشريط العلوي الزجاجي الذهبي */
     .top-bar {
       position: sticky;
       top: 0;
       z-index: 100;
-      backdrop-filter: blur(18px);
-      background: rgba(6, 9, 19, 0.85);
-      border-bottom: 1px solid var(--border-glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(12, 10, 6, 0.82);
+      border-bottom: 1px solid var(--border-gold);
       padding: 14px 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
     }
 
     .top-bar-inner {
-      max-width: 1160px;
+      max-width: 1180px;
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -112,28 +115,28 @@
     }
 
     .brand-badge {
-      width: 46px;
-      height: 46px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      width: 48px;
+      height: 48px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-main), var(--gold-deep));
       display: grid;
       place-items: center;
       font-weight: 900;
       font-size: 1.15rem;
-      color: #04101e;
-      box-shadow: 0 0 22px rgba(56, 189, 248, 0.45);
-      animation: pulseBadge 2.2s ease-in-out infinite;
+      color: #140e02;
+      box-shadow: 0 0 25px rgba(245, 158, 11, 0.45);
+      animation: goldPulse 2.5s ease-in-out infinite;
     }
 
-    @keyframes pulseBadge {
+    @keyframes goldPulse {
       0%, 100% { transform: scale(1) rotate(0deg); }
-      50% { transform: scale(1.09) rotate(-5deg); }
+      50% { transform: scale(1.08) rotate(-4deg); }
     }
 
     .brand-title {
-      font-size: 1.28rem;
+      font-size: 1.3rem;
       font-weight: 900;
-      background: linear-gradient(90deg, #ffffff, var(--accent));
+      background: linear-gradient(90deg, #fffbeb, var(--gold-light), var(--gold-main));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -150,9 +153,10 @@
     }
 
     .nav-btn {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(10px);
       color: var(--text-main);
-      border: 1px solid var(--border-glass);
+      border: 1px solid var(--border-gold);
       padding: 9px 15px;
       border-radius: 12px;
       font-family: 'Cairo', sans-serif;
@@ -163,21 +167,21 @@
     }
 
     .nav-btn:hover {
-      background: rgba(56, 189, 248, 0.18);
+      background: rgba(245, 158, 11, 0.18);
       transform: translateY(-2px);
     }
 
     .nav-btn.active {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #050b16;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-main));
+      color: #140e02;
       border-color: transparent;
-      box-shadow: 0 8px 24px rgba(56, 189, 248, 0.4);
+      box-shadow: 0 8px 24px rgba(245, 158, 11, 0.42);
     }
 
     .container {
-      max-width: 1160px;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 28px 20px 70px;
+      padding: 28px 20px 80px;
     }
 
     .page-view {
@@ -194,42 +198,55 @@
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    .hero-card {
+    /* البطاقات الزجاجية الذهبية الفاخرة */
+    .hero-card,
+    .glass-card,
+    .showcase-stage,
+    .gallery-section-box,
+    .form-card,
+    .faq-item {
       background: var(--bg-card);
-      backdrop-filter: blur(18px);
-      border: 1px solid var(--border-glass);
-      border-radius: 26px;
-      padding: 36px 28px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-gold);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(253, 230, 138, 0.18);
+    }
+
+    .hero-card {
+      border-radius: 28px;
+      padding: 38px 28px;
       text-align: center;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
-      margin-bottom: 26px;
+      margin-bottom: 28px;
     }
 
     .welcome-pill {
       display: inline-block;
-      padding: 6px 16px;
+      padding: 6px 18px;
       border-radius: 999px;
-      background: rgba(56, 189, 248, 0.14);
-      border: 1px solid rgba(56, 189, 248, 0.35);
-      color: var(--accent);
-      font-weight: 700;
+      background: rgba(245, 158, 11, 0.14);
+      border: 1px solid rgba(251, 191, 36, 0.45);
+      color: var(--gold-light);
+      font-weight: 800;
       font-size: 0.88rem;
       margin-bottom: 14px;
     }
 
     .hero-title {
-      font-size: clamp(1.7rem, 4vw, 2.65rem);
+      font-size: clamp(1.7rem, 4vw, 2.7rem);
       font-weight: 900;
       line-height: 1.35;
       margin-bottom: 14px;
+      background: linear-gradient(90deg, #ffffff, var(--gold-light), var(--gold-main));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .hero-desc {
-      max-width: 720px;
+      max-width: 740px;
       margin: 0 auto 24px;
       color: var(--text-muted);
-      font-size: 1.04rem;
-      line-height: 1.8;
+      font-size: 1.05rem;
+      line-height: 1.85;
     }
 
     .hero-actions {
@@ -240,61 +257,59 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #050b16;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-main), var(--gold-deep));
+      color: #140e02;
       border: none;
       padding: 13px 26px;
       border-radius: 14px;
       font-family: 'Cairo', sans-serif;
-      font-weight: 800;
+      font-weight: 900;
       font-size: 1rem;
       cursor: pointer;
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .btn-primary:hover {
       transform: translateY(-4px) scale(1.03);
-      box-shadow: 0 14px 32px rgba(56, 189, 248, 0.42);
+      box-shadow: 0 16px 34px rgba(245, 158, 11, 0.48);
     }
 
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text-main);
-      border: 1px solid var(--border-glass);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--gold-light);
+      border: 1px solid var(--border-gold);
       padding: 13px 24px;
       border-radius: 14px;
       font-family: 'Cairo', sans-serif;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 1rem;
       cursor: pointer;
       transition: all 0.3s ease;
     }
 
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.14);
+      background: rgba(245, 158, 11, 0.16);
       transform: translateY(-3px);
     }
 
-    /* منصة عرض صورتك الحقيقية والهاتف المتحرك ثلاثي الأبعاد */
+    /* منصة العرض الرئيسية: الصورة الأولى + الهاتف المتحرك ثلاثي الأبعاد */
     .showcase-stage {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 26px;
+      gap: 28px;
       align-items: center;
-      background: var(--bg-card);
-      border: 1px solid var(--border-glass);
-      border-radius: 26px;
+      border-radius: 28px;
       padding: 28px;
-      margin-bottom: 26px;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      margin-bottom: 28px;
     }
 
     .dev-holder-frame {
       position: relative;
-      border-radius: 22px;
+      border-radius: 24px;
       overflow: hidden;
-      border: 2px solid rgba(56, 189, 248, 0.45);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 25px rgba(56, 189, 248, 0.2);
+      border: 2px solid rgba(251, 191, 36, 0.55);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.65), 0 0 28px rgba(245, 158, 11, 0.25);
       animation: gentleFloat 4.2s ease-in-out infinite;
     }
 
@@ -311,20 +326,20 @@
       display: block;
     }
 
-    .dev-caption-bar {
+    .gold-caption-bar {
       position: absolute;
       bottom: 14px;
       right: 14px;
       left: 14px;
-      background: rgba(6, 9, 19, 0.84);
+      background: rgba(12, 10, 6, 0.85);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(56, 189, 248, 0.38);
+      border: 1px solid var(--border-gold);
       border-radius: 14px;
       padding: 10px 14px;
       text-align: center;
       font-weight: 800;
       font-size: 0.94rem;
-      color: #ffffff;
+      color: var(--gold-light);
     }
 
     .phone-ad-wrapper {
@@ -335,12 +350,12 @@
     }
 
     .floating-phone {
-      width: 265px;
+      width: 268px;
       border-radius: 36px;
       padding: 13px;
-      background: linear-gradient(145deg, #1e293b, #0f172a);
-      border: 2px solid rgba(56, 189, 248, 0.6);
-      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.65), 0 0 32px rgba(56, 189, 248, 0.28);
+      background: linear-gradient(145deg, #2a2110, #0d0a04);
+      border: 2px solid rgba(251, 191, 36, 0.65);
+      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.75), 0 0 35px rgba(245, 158, 11, 0.3);
       animation: phoneBounceFloat 3.4s ease-in-out infinite;
     }
 
@@ -350,27 +365,27 @@
     }
 
     .phone-screen {
-      background: linear-gradient(180deg, #0b1326, #111c38);
+      background: linear-gradient(180deg, #171208, #0c0904);
       border-radius: 25px;
       padding: 18px 14px;
       text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(251, 191, 36, 0.25);
     }
 
     .ad-badge-live {
       display: inline-block;
-      background: rgba(34, 211, 238, 0.16);
-      color: var(--accent);
-      border: 1px solid rgba(34, 211, 238, 0.4);
+      background: rgba(245, 158, 11, 0.18);
+      color: var(--gold-light);
+      border: 1px solid rgba(251, 191, 36, 0.5);
       font-size: 0.76rem;
       font-weight: 800;
       padding: 4px 12px;
       border-radius: 999px;
       margin-bottom: 10px;
-      animation: blinkAd 1.7s infinite;
+      animation: blinkGold 1.7s infinite;
     }
 
-    @keyframes blinkAd {
+    @keyframes blinkGold {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.55; }
     }
@@ -389,6 +404,61 @@
       margin-bottom: 12px;
     }
 
+    /* قسم مستقل للصور الثلاث الجديدة */
+    .gallery-section-box {
+      border-radius: 28px;
+      padding: 30px 24px;
+      margin-bottom: 28px;
+    }
+
+    .section-header-center {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .section-header-center h2 {
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      font-weight: 900;
+      background: linear-gradient(90deg, #ffffff, var(--gold-light), var(--gold-main));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+    }
+
+    .section-header-center p {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+    }
+
+    .grid-3-images {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .custom-img-card {
+      position: relative;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1.5px solid var(--border-gold);
+      background: rgba(12, 10, 6, 0.8);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .custom-img-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 48px rgba(245, 158, 11, 0.28);
+    }
+
+    .custom-img-card img {
+      width: 100%;
+      height: 310px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
     /* شبكة الخدمات (تصميم مواقع وتطبيقات فقط) */
     .grid-2 {
       display: grid;
@@ -398,34 +468,32 @@
     }
 
     .glass-card {
-      background: var(--bg-card);
-      backdrop-filter: blur(14px);
-      border: 1px solid var(--border-glass);
-      border-radius: 22px;
-      padding: 26px;
-      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+      border-radius: 24px;
+      padding: 28px;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
     }
 
     .glass-card:hover {
       transform: translateY(-8px);
-      border-color: rgba(56, 189, 248, 0.6);
-      box-shadow: 0 20px 42px rgba(56, 189, 248, 0.22);
+      box-shadow: 0 22px 45px rgba(245, 158, 11, 0.25);
     }
 
     .card-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 14px;
-      background: rgba(56, 189, 248, 0.16);
+      width: 52px;
+      height: 52px;
+      border-radius: 15px;
+      background: rgba(245, 158, 11, 0.16);
+      border: 1px solid var(--border-gold);
       display: grid;
       place-items: center;
-      font-size: 1.45rem;
+      font-size: 1.5rem;
       margin-bottom: 14px;
     }
 
     .glass-card h3 {
-      font-size: 1.22rem;
-      font-weight: 800;
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--gold-light);
       margin-bottom: 8px;
     }
 
@@ -444,8 +512,6 @@
     }
 
     .faq-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border-glass);
       border-radius: 18px;
       overflow: hidden;
     }
@@ -482,12 +548,8 @@
     .form-card {
       max-width: 720px;
       margin: 0 auto;
-      background: var(--bg-card);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--border-glass);
-      border-radius: 26px;
-      padding: 32px 26px;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      border-radius: 28px;
+      padding: 34px 26px;
     }
 
     .form-group {
@@ -496,7 +558,8 @@
 
     .form-group label {
       display: block;
-      font-weight: 700;
+      font-weight: 800;
+      color: var(--gold-light);
       margin-bottom: 8px;
     }
 
@@ -504,8 +567,8 @@
       width: 100%;
       padding: 13px 15px;
       border-radius: 14px;
-      border: 1px solid var(--border-glass);
-      background: rgba(7, 11, 20, 0.7);
+      border: 1px solid var(--border-gold);
+      background: rgba(10, 8, 4, 0.78);
       color: var(--text-main);
       font-family: 'Cairo', sans-serif;
       font-size: 0.98rem;
@@ -513,8 +576,8 @@
 
     .form-control:focus {
       outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.22);
+      border-color: var(--gold-main);
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25);
     }
 
     textarea.form-control {
@@ -524,27 +587,28 @@
 
     .whatsapp-btn {
       width: 100%;
-      background: linear-gradient(135deg, #10b981, #059669);
+      background: linear-gradient(135deg, #10b981, #047857);
       color: #ffffff;
       border: none;
       padding: 15px 24px;
       border-radius: 16px;
       font-family: 'Cairo', sans-serif;
-      font-weight: 800;
+      font-weight: 900;
       font-size: 1.05rem;
       cursor: pointer;
+      box-shadow: 0 12px 28px rgba(16, 185, 129, 0.35);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .whatsapp-btn:hover {
       transform: translateY(-3px);
-      box-shadow: 0 14px 30px rgba(16, 185, 129, 0.38);
+      box-shadow: 0 16px 34px rgba(16, 185, 129, 0.48);
     }
 
     .target-number-note {
       margin-top: 12px;
       text-align: center;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
     }
   </style>
@@ -552,8 +616,8 @@
 
 <body>
   <div id="particles-js"></div>
-  <div class="ambient-orb orb-1"></div>
-  <div class="ambient-orb orb-2"></div>
+  <div class="gold-orb orb-1"></div>
+  <div class="gold-orb orb-2"></div>
 
   <header class="top-bar">
     <div class="top-bar-inner">
@@ -580,9 +644,9 @@
     <section id="page-home" class="page-view active">
       <div class="hero-card animate__animated animate__fadeInUp" data-tilt data-tilt-max="4">
         <div class="welcome-pill">✨ أهلاً بك في موقع المطور عبدالله</div>
-        <h1 class="hero-title">نحوّل أفكارك إلى مواقع وتطبيقات عصرية وحركة مبهرة</h1>
+        <h1 class="hero-title">نحوّل أفكارك إلى مواقع وتطبيقات فاخرة وحركة عالمية</h1>
         <p class="hero-desc">
-          مرحباً بك! هنا نجمع بين الحركة التفاعلية المستمرة، الهواتف المتحركة، وتجربة المستخدم السريعة لتصميم مواقع وتطبيقات تبرز مشروعك بأسلوب عصري.
+          مرحباً بك! تصميم ذهبي زجاجي عصري يجمع بين الفخامة والأنيميشن المستمر والهواتف المتحركة لتقديم مواقع وتطبيقات تليق بطموحك.
         </p>
         <div class="hero-actions">
           <button type="button" class="btn-primary" onclick="switchPage('order', null)">اطلب مشروعك الآن 🚀</button>
@@ -590,32 +654,58 @@
         </div>
       </div>
 
-      <!-- صورتك الحقيقية والهاتف المتحرك ثلاثي الأبعاد -->
+      <!-- الصورة الأولى والهاتف المتحرك ثلاثي الأبعاد -->
       <div class="showcase-stage" data-aos="fade-up">
         <div class="dev-holder-frame" data-tilt data-tilt-max="6">
           <img src="/IMG-20261114-WA5719.jpg" alt="المطور عبدالله">
-          <div class="dev-caption-bar">المطور عبدالله • تصميم مواقع وتطبيقات</div>
+          <div class="gold-caption-bar">المطور عبدالله • إبداع وفخامة رقمية</div>
         </div>
 
         <div class="phone-ad-wrapper">
           <div class="floating-phone" id="interactivePhone" data-tilt data-tilt-max="10">
             <div class="phone-screen">
-              <span class="ad-badge-live">📢 عرض تفاعلي • مواقع وتطبيقات</span>
+              <span class="ad-badge-live">📢 إعلان تفاعلي • مواقع وتطبيقات</span>
               <div class="phone-ad-title" id="phoneAdTitle">تصميم مواقع وتطبيقات</div>
               <p class="phone-ad-text" id="phoneAdText">
-                حركات ولمسات تفاعلية وهواتف متحركة تبرز خدماتك وتوصل طلبات عملائك مباشرة.
+                حركات ولمسات ذهبية وهواتف متحركة تبرز مشاريعك وتوصل طلباتك مباشرة إلى واتساب.
               </p>
               <lottie-player
                 id="phoneLottie"
                 src="https://assets9.lottiefiles.com/packages/lf20_w51pcehl.json"
                 background="transparent"
-                speed="1.15"
+                speed="1.2"
                 style="width: 120px; height: 120px; margin: 0 auto 10px;"
                 loop
                 autoplay>
               </lottie-player>
-              <button type="button" class="btn-primary" style="width: 100%; padding: 9px 12px; font-size: 0.85rem;" onclick="cyclePhoneAd()">تبديل العرض المتحرك 🔄</button>
+              <button type="button" class="btn-primary" style="width: 100%; padding: 9px 12px; font-size: 0.85rem;" onclick="cyclePhoneAd()">تبديل الإعلان المتحرك 🔄</button>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- قسم مستقل للصور الثلاث الجديدة -->
+      <div class="gallery-section-box" id="newImagesSection" data-aos="fade-up">
+        <div class="section-header-center">
+          <div class="welcome-pill">🖼️ قسم الصور الجديدة</div>
+          <h2>لمسات وإطلالات حصرية للمطور عبدالله</h2>
+          <p>عرض مستقل للصور الثلاث الجديدة بتأثير زجاجي ذهبي وحركة تفاعلية.</p>
+        </div>
+
+        <div class="grid-3-images">
+          <div class="custom-img-card" data-tilt data-tilt-max="6">
+            <img src="/IMG-20261121-WA1103.jpg" alt="إطلالة 1">
+            <div class="gold-caption-bar">إطلالة رقم 1</div>
+          </div>
+
+          <div class="custom-img-card" data-tilt data-tilt-max="6">
+            <img src="/IMG-20261121-WA4788.jpg" alt="إطلالة 2">
+            <div class="gold-caption-bar">إطلالة رقم 2</div>
+          </div>
+
+          <div class="custom-img-card" data-tilt data-tilt-max="6">
+            <img src="/IMG-20261121-WA9704.jpg" alt="إطلالة 3">
+            <div class="gold-caption-bar">إطلالة رقم 3</div>
           </div>
         </div>
       </div>
@@ -627,7 +717,7 @@
         <div class="welcome-pill">💼 خدمات المطور عبدالله</div>
         <h2 class="hero-title">الخدمات الأساسية</h2>
         <p class="hero-desc">
-          نركز على تصميم المواقع وتصميم التطبيقات بجودة عالية وحركة تفاعلية واضحة.
+          نركز على تصميم المواقع وتصميم التطبيقات بفخامة بصرية وحركة تفاعلية واضحة.
         </p>
       </div>
 
@@ -635,7 +725,7 @@
         <article class="glass-card" data-aos="zoom-in" data-tilt data-tilt-max="6">
           <div class="card-icon">🌐</div>
           <h3>تصميم مواقع</h3>
-          <p>تصميم وبرمجة مواقع إلكترونية عصرية متجاوبة مع الجوال والكمبيوتر مع حركات ولمسات تفاعلية سلسة.</p>
+          <p>تصميم وبرمجة مواقع إلكترونية فاخرة متجاوبة مع الجوال والكمبيوتر مع حركات ولمسات تفاعلية سلسة.</p>
         </article>
 
         <article class="glass-card" data-aos="zoom-in" data-aos-delay="120" data-tilt data-tilt-max="6">
@@ -660,7 +750,7 @@
             <span>−</span>
           </button>
           <div class="faq-answer">
-            عند تعبئة اسمك ورقم هاتفك وتفاصيل مشروعك في صفحة "تعبئة البيانات والطلب" والضغط على إرسال، يتم فتح واتساب تلقائياً برسالة جاهزة إلى الرقم <strong>+20115142920</strong>.
+            عند تعبئة اسمك ورقم هاتفك وتفاصيل مشروعك في صفحة "تعبئة البيانات والطلب" والضغط على إرسال، يتم فتح واتساب تلقائياً برسالة جاهزة إلى الرقم <strong>+201151429820</strong>.
           </div>
         </div>
 
@@ -670,7 +760,7 @@
             <span>+</span>
           </button>
           <div class="faq-answer">
-            نوفر خدمات تصميم المواقع وتصميم التطبيقات بأسلوب عصري وحركات تفاعلية جذابة.
+            نوفر خدمات تصميم المواقع وتصميم التطبيقات بأسلوب ذهبي زجاجي وحركات تفاعلية جذابة.
           </div>
         </div>
       </div>
@@ -713,7 +803,7 @@
           <button type="submit" class="whatsapp-btn">إرسال الطلب إلى واتساب الآن 💬</button>
 
           <div class="target-number-note">
-            سيتم إرسال الرسالة تلقائياً إلى واتساب الرقم: <strong>+20115142920</strong>
+            سيتم إرسال الرسالة تلقائياً إلى واتساب الرقم: <strong>+201151429820</strong>
           </div>
         </form>
       </div>
@@ -723,38 +813,40 @@
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({ duration: 750, once: true });
+    AOS.init({ duration: 800, once: true });
 
-    // تشغيل شبكة الجزيئات الذكية المتحركة في الخلفية
+    if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.from(".top-bar", { y: -25, opacity: 0, duration: 0.75, ease: "power3.out" });
+      gsap.to(".gold-orb", {
+        scale: 1.18,
+        duration: 3.2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+    }
+
+    // تشغيل جزيئات ذهبية تفاعلية في الخلفية
     if (typeof particlesJS !== "undefined") {
       particlesJS("particles-js", {
         particles: {
-          number: { value: 55, density: { enable: true, value_area: 800 } },
-          color: { value: ["#38bdf8", "#818cf8", "#22d3ee"] },
+          number: { value: 65, density: { enable: true, value_area: 800 } },
+          color: { value: ["#fde68a", "#f59e0b", "#d97706"] },
           shape: { type: "circle" },
-          opacity: { value: 0.45, random: true },
-          size: { value: 3, random: true },
-          line_linked: { enable: true, distance: 140, color: "#38bdf8", opacity: 0.25, width: 1 },
+          opacity: { value: 0.55, random: true },
+          size: { value: 3.2, random: true },
+          line_linked: { enable: true, distance: 140, color: "#f59e0b", opacity: 0.25, width: 1 },
           move: { enable: true, speed: 2.2, direction: "none", random: false, out_mode: "out" }
         },
         interactivity: {
           detect_on: "canvas",
           events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" } },
-          modes: { grab: { distance: 150, line_linked: { opacity: 0.6 } }, push: { particles_nb: 3 } }
+          modes: { grab: { distance: 150, line_linked: { opacity: 0.65 } }, push: { particles_nb: 3 } }
         },
         retina_detect: true
       });
     }
-
-    // حركات GSAP مستمرة
-    gsap.from(".top-bar", { y: -25, opacity: 0, duration: 0.7, ease: "power3.out" });
-    gsap.to(".ambient-orb", {
-      scale: 1.18,
-      duration: 3.2,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut"
-    });
 
     function switchPage(pageKey, clickedBtn) {
       document.querySelectorAll(".page-view").forEach(page => page.classList.remove("active"));
@@ -776,13 +868,13 @@
 
     const phoneAds = [
       {
-        title: "تصميم مواقع عصرية",
-        text: "واجهات سريعة ومتجاوبة مع حركة ولمسات جذابة تناسب مشروعك.",
+        title: "تصميم مواقع فاخرة",
+        text: "واجهات ذهبية وزجاجية سريعة الاستجابة مع حركات ولمسات عالمية.",
         lottie: "https://assets9.lottiefiles.com/packages/lf20_w51pcehl.json"
       },
       {
         title: "تصميم تطبيقات ذكية",
-        text: "تطبيقات عملية سهلة الاستخدام مع تجربة تفاعلية مميزة.",
+        text: "تطبيقات عملية منظمة بواجهة جذابة وتجربة تفاعلية مميزة.",
         lottie: "https://assets2.lottiefiles.com/packages/lf20_xyadoh9h.json"
       },
       {
@@ -824,7 +916,7 @@
       const service = document.getElementById("projectType").value;
       const details = document.getElementById("projectDetails").value.trim();
 
-      const whatsappNumber = "20115142920";
+      const whatsappNumber = "201151429820";
 
       const messageText =
         `مرحباً بالمطور عبدالله 👋\n` +
