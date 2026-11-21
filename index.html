@@ -496,7 +496,6 @@
     }
 
     .split-grid-arena {
-      position: relative;
       max-width: 720px;
       margin: 22px auto 0;
       display: grid;
@@ -539,7 +538,6 @@
       50% { transform: translate(-8px, 6px) scale(1.03); }
     }
 
-    /* هاتف حقيقي كبير بارز يظهر داخل المربع */
     .large-real-phone-box {
       grid-column: 1 / -1;
       width: min(330px, 100%);
@@ -640,6 +638,68 @@
       object-position: top center;
       display: block;
       transition: opacity 0.45s ease;
+    }
+
+    /* قسم الصورة الرابعة للصورتين الجديدتين مع ظل فاخر ونص مناسب */
+    .fourth-image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 14px;
+    }
+
+    .fourth-shadow-card {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1.5px solid rgba(253, 230, 138, 0.55);
+      background: rgba(14, 11, 5, 0.88);
+      box-shadow: 0 26px 65px rgba(0, 0, 0, 0.85), 0 10px 35px rgba(245, 158, 11, 0.28);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      cursor: pointer;
+      animation: fourthCardMotion 4.4s ease-in-out infinite;
+    }
+
+    .fourth-shadow-card:nth-child(2) {
+      animation-delay: 1.2s;
+    }
+
+    @keyframes fourthCardMotion {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-8px) scale(1.015); }
+    }
+
+    .fourth-shadow-card:hover {
+      box-shadow: 0 30px 75px rgba(0, 0, 0, 0.9), 0 14px 42px rgba(245, 158, 11, 0.42);
+    }
+
+    .fourth-shadow-card img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: opacity 0.45s ease;
+    }
+
+    .fourth-shadow-overlay {
+      padding: 16px 18px;
+      background: linear-gradient(180deg, rgba(12, 10, 6, 0.78), rgba(7, 6, 4, 0.96));
+      box-shadow: 0 -12px 28px rgba(0, 0, 0, 0.75);
+      text-align: center;
+    }
+
+    .fourth-shadow-title {
+      font-size: 1.08rem;
+      font-weight: 900;
+      color: var(--gold-light);
+      text-shadow: 0 4px 16px rgba(245, 158, 11, 0.45);
+      margin-bottom: 4px;
+    }
+
+    .fourth-shadow-sub {
+      font-size: 0.88rem;
+      color: var(--text-muted);
     }
 
     .lightbox-modal {
@@ -944,8 +1004,8 @@
         </div>
       </div>
 
-      <!-- الصورة الأولى (تتبدل تلقائياً) والهاتف المتحرك مع الروبوتات والكلام الجميل -->
-      <div class="showcase-stage" data-aos="fade-up">
+      <!-- الصورة الأولى والهاتف المتحرك مع الروبوتات والكلام الجميل -->
+      <div class="showcase-stage">
         <div class="dev-holder-frame" id="primaryAutoFrame" data-tilt data-tilt-max="6" onclick="openCurrentAutoImage()">
           <img id="primaryAutoImg" src="/IMG-20261114-WA5719.jpg" alt="المطور عبدالله">
           <div class="gold-caption-bar" id="primaryAutoCaption">إطلالة رقم 1 • اضغط للفتح</div>
@@ -955,7 +1015,7 @@
           <div class="floating-phone" id="interactivePhone" data-tilt data-tilt-max="10">
             <div class="phone-screen">
               <span class="ad-badge-live" id="t-adBadge">🤖 روبوت تفاعلي • مواقع وتطبيقات</span>
-              <div class="phone-ad-title" id="phoneAdTitle">حلمك الرقمي يبدأ بخطوة واثقة</div>
+              <div class="phone-ad-title" id="phoneAdTitle">مرحباً بك مع روبوت المطور عبدالله 🤖</div>
               <p class="phone-ad-text" id="phoneAdText">
                 نصمم لك تجربة بصرية ذهبية وزجاجية تخطف الأنظار وتبني ثقة عملائك من اللحظة الأولى.
               </p>
@@ -988,11 +1048,11 @@
         </div>
       </div>
 
-      <!-- مربعات مع هاتف حقيقي كبير يظهر في المربع -->
-      <div class="split-phone-stage" data-aos="fade-up">
-        <div class="welcome-pill" id="t-splitPill">📱 لمسات عالمية • مربعات وهاتف حقيقي</div>
+      <!-- مربعات وهواتف محمولة بلمسات عالمية -->
+      <div class="split-phone-stage" id="squaresPhoneSection">
+        <div class="welcome-pill" id="t-splitPill">📱 لمسات عالمية • مربعات وهواتف محمولة</div>
         <h2 id="t-splitTitle" style="font-size: clamp(1.3rem, 3vw, 1.95rem); font-weight: 900; color: var(--gold-light); margin-top: 6px;">
-          مربعات وهاتف محمول بلمسات عالمية
+          مربعات وهواتف محمولة بلمسات عالمية
         </h2>
 
         <div class="split-grid-arena">
@@ -1006,21 +1066,21 @@
             <small id="t-tile2Sub" style="color: var(--text-muted);">لمسات بصرية مستمرة</small>
           </div>
 
-          <!-- هاتف حقيقي كبير داخل المربع -->
-          <div class="large-real-phone-box" data-tilt data-tilt-max="7" onclick="openRealPhoneLightbox()">
+          <!-- هاتف حقيقي كبير يظهر في المربع -->
+          <div class="large-real-phone-box" id="squareRealPhoneCard" data-tilt data-tilt-max="7" onclick="openRealPhoneLightbox()">
             <div class="real-phone-notch">
               <span class="real-phone-cam"></span>
             </div>
-            <img id="realPhoneImg" class="real-phone-img" src="/IMG-20261114-WA5719.jpg" alt="هاتف حقيقي">
+            <img id="realPhoneImg" class="real-phone-img" src="/IMG-20261121-WA1049.jpg" alt="هاتف محمول بلمسات عالمية">
             <div class="gold-caption-bar" id="realPhoneCaption" style="position: static; margin-top: 10px;">
-              هاتف حقيقي • إطلالة رقم 1 • اضغط للفتح
+              هاتف محمول • إطلالة رقم 1 • اضغط للفتح
             </div>
           </div>
         </div>
       </div>
 
       <!-- تجربة جوال فاخرة تتغير تلقائياً مع روبوت أسود ترحيبي وكلام جميل وصور مختلفة -->
-      <div class="gallery-section-box" id="newImagesSection" data-aos="fade-up">
+      <div class="gallery-section-box" id="newImagesSection">
         <div class="section-header-center">
           <div class="welcome-pill" id="t-galleryPill">🤖 تجربة جوال فاخرة • تتغير تلقائياً</div>
           <h2 id="t-galleryTitle">تجربة جوال فاخرة</h2>
@@ -1029,7 +1089,6 @@
 
         <div class="glass-card" id="autoLuxuryMobileBox" style="max-width: 640px; margin: 0 auto 24px; text-align: center;" data-tilt data-tilt-max="5">
           <div class="robot-showcase-box" id="blackWelcomeRobotBox" style="background: #070604; border-color: var(--gold-main);">
-            <!-- روبوت أسود ترحيبي -->
             <svg width="84" height="84" viewBox="0 0 84 84" fill="none">
               <line x1="42" y1="6" x2="42" y2="18" stroke="#fde68a" stroke-width="3" stroke-linecap="round"/>
               <circle cx="42" cy="5" r="4.5" fill="#f59e0b"/>
@@ -1042,9 +1101,9 @@
               <rect x="25" y="65" width="34" height="9" rx="4.5" fill="#090704" stroke="#fde68a" stroke-width="2"/>
             </svg>
           </div>
-          <h3 id="luxuryAutoTitle" style="font-size: 1.35rem;">أهلاً بك في تجربة الجوال الفاخرة</h3>
+          <h3 id="luxuryAutoTitle" style="font-size: 1.35rem;">أهلاً بك • الروبوت الترحيبي في خدمتك</h3>
           <p id="luxuryAutoQuote" style="font-size: 1.02rem; color: var(--text-main); margin-top: 6px;">
-            نصمم لك حضوراً رقمياً أنيقاً يجمع بين الفخامة والسرعة والبساطة في كل شاشة.
+            نسعد بتحويل فكرتك إلى موقع أو تطبيق فاخر يترك أثراً جميلاً لدى كل زائر.
           </p>
         </div>
 
@@ -1065,6 +1124,33 @@
           </div>
         </div>
       </div>
+
+      <!-- قسم الصورة الرابعة: الصورتين الجديدتين المتحركتين مع نص مناسب وظل فاخر -->
+      <div class="gallery-section-box" id="fourthImageSection">
+        <div class="section-header-center">
+          <div class="welcome-pill" id="t-fourthPill">🌟 قسم الصورة الرابعة • إطلالات متحركة</div>
+          <h2 id="t-fourthTitle">رؤية عصرية وهواتف ذكية بلمسات المطور عبدالله</h2>
+          <p id="t-fourthSub">إطلالتان متحركتان بظل فاخر يبرز جمال التصميم واحترافية التنفيذ.</p>
+        </div>
+
+        <div class="fourth-image-grid">
+          <div class="fourth-shadow-card" data-tilt data-tilt-max="6" onclick="openImageLightbox(document.getElementById('fourthImgA').src, document.getElementById('t-fourthTitle1').textContent)">
+            <img id="fourthImgA" src="/IMG-20261121-WA1049.jpg" alt="إطلالة المطور عبدالله الذهبية">
+            <div class="fourth-shadow-overlay">
+              <div class="fourth-shadow-title" id="t-fourthTitle1">إبداع ذهبي وحلول متكاملة</div>
+              <div class="fourth-shadow-sub" id="t-fourthSub1">تصميم مواقع وتطبيقات تعكس فخامة مشروعك</div>
+            </div>
+          </div>
+
+          <div class="fourth-shadow-card" data-tilt data-tilt-max="6" onclick="openImageLightbox(document.getElementById('fourthImgB').src, document.getElementById('t-fourthTitle2').textContent)">
+            <img id="fourthImgB" src="/IMG-20261121-WA4356.jpg" alt="إطلالة المطور عبدالله العصرية">
+            <div class="fourth-shadow-overlay">
+              <div class="fourth-shadow-title" id="t-fourthTitle2">حضور رقمي سريع وملهم</div>
+              <div class="fourth-shadow-sub" id="t-fourthSub2">تجربة تفاعلية متكاملة على الجوال والويب</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- قسم الخدمات -->
@@ -1078,13 +1164,13 @@
       </div>
 
       <div class="grid-2">
-        <article class="glass-card" data-aos="zoom-in" data-tilt data-tilt-max="6">
+        <article class="glass-card" data-tilt data-tilt-max="6">
           <div class="card-icon">🌐</div>
           <h3 id="t-srv1Title">تصميم مواقع حسب الطلب</h3>
           <p id="t-srv1Desc">تصميم مواقع إلكترونية بألوان فاخرة زجاجية وذهبية وغيرها، مع حركات عالمية وتجاوب كامل على الجوال والكمبيوتر.</p>
         </article>
 
-        <article class="glass-card" data-aos="zoom-in" data-aos-delay="120" data-tilt data-tilt-max="6">
+        <article class="glass-card" data-tilt data-tilt-max="6">
           <div class="card-icon">📱</div>
           <h3 id="t-srv2Title">تصميم تطبيقات حسب الطلب</h3>
           <p id="t-srv2Desc">تصميم وبناء تطبيقات عصرية بواجهات زجاجية وذهبية وغيرها وتجربة تفاعلية سلسة مصممة خصيصاً لمتطلباتك.</p>
@@ -1255,8 +1341,8 @@
         heroCta2: "الخدمات المتاحة",
         adBadge: "🤖 روبوت تفاعلي • مواقع وتطبيقات",
         cycleAdBtn: "تبديل الإعلان المتحرك 🔄",
-        splitPill: "📱 لمسات عالمية • مربعات وهاتف حقيقي",
-        splitTitle: "مربعات وهاتف محمول بلمسات عالمية",
+        splitPill: "📱 لمسات عالمية • مربعات وهواتف محمولة",
+        splitTitle: "مربعات وهواتف محمولة بلمسات عالمية",
         tile1: "✨ ألوان زجاجية وذهبية",
         tile1Sub: "وأنماط لونية متعددة حسب الطلب",
         tile2: "⚡ حركة فائقة السرعة",
@@ -1264,6 +1350,13 @@
         galleryPill: "🤖 تجربة جوال فاخرة • تتغير تلقائياً",
         galleryTitle: "تجربة جوال فاخرة",
         gallerySub: "تطبيقات ومواقع مصممة بعناية لتعمل بسلاسة على جميع الشاشات.",
+        fourthPill: "🌟 قسم الصورة الرابعة • إطلالات متحركة",
+        fourthTitle: "رؤية عصرية وهواتف ذكية بلمسات المطور عبدالله",
+        fourthSub: "إطلالتان متحركتان بظل فاخر يبرز جمال التصميم واحترافية التنفيذ.",
+        fourthTitle1: "إبداع ذهبي وحلول متكاملة",
+        fourthSub1: "تصميم مواقع وتطبيقات تعكس فخامة مشروعك",
+        fourthTitle2: "حضور رقمي سريع وملهم",
+        fourthSub2: "تجربة تفاعلية متكاملة على الجوال والويب",
         srvPill: "💼 خدمات المطور عبدالله",
         srvTitle: "تصميم تطبيقات ومواقع حسب الطلب",
         srvDesc: "ننفذ تطبيقات ومواقع حسب الطلب بألوان فاخرة زجاجية وذهبية وغيرها لتناسب هوية مشروعك بدقة.",
@@ -1301,7 +1394,7 @@
         backSite: "العودة للموقع",
         clickToOpen: "اضغط للفتح",
         lookPrefix: "إطلالة رقم",
-        realPhonePrefix: "هاتف حقيقي • إطلالة رقم"
+        realPhonePrefix: "هاتف محمول • إطلالة رقم"
       },
       en: {
         htmlLang: "en",
@@ -1320,8 +1413,8 @@
         heroCta2: "Explore Services",
         adBadge: "🤖 Interactive Robot • Web & Apps",
         cycleAdBtn: "Switch Showcase 🔄",
-        splitPill: "📱 Global Touch • Tiles & Real Phone",
-        splitTitle: "Tiles & Mobile Phone with Global Style",
+        splitPill: "📱 Global Touch • Tiles & Mobile Phones",
+        splitTitle: "Tiles & Mobile Phones with Global Style",
         tile1: "✨ Luxury Glass & Gold",
         tile1Sub: "And custom palettes upon request",
         tile2: "⚡ Lightning Motion",
@@ -1329,6 +1422,13 @@
         galleryPill: "🤖 Luxury Mobile Experience • Auto Rotating",
         galleryTitle: "Luxury Mobile Experience",
         gallerySub: "Websites and apps thoughtfully built to shine smoothly across all screens.",
+        fourthPill: "🌟 Fourth Image Section • Animated Looks",
+        fourthTitle: "Modern Vision & Smart Phones by Developer Abdullah",
+        fourthSub: "Two animated looks with a rich shadow highlighting design craft.",
+        fourthTitle1: "Golden Craft & Complete Solutions",
+        fourthSub1: "Websites and apps reflecting your brand prestige",
+        fourthTitle2: "Fast & Inspiring Digital Presence",
+        fourthSub2: "Seamless interactive experience across mobile and web",
         srvPill: "💼 Developer Abdullah Services",
         srvTitle: "Custom Websites & Apps Design",
         srvDesc: "We build custom websites and apps in luxury glass, gold, and tailored color themes to match your brand.",
@@ -1366,7 +1466,7 @@
         backSite: "Back to Site",
         clickToOpen: "Tap to Open",
         lookPrefix: "Look #",
-        realPhonePrefix: "Real Phone • Look #"
+        realPhonePrefix: "Mobile Phone • Look #"
       }
     };
 
@@ -1406,6 +1506,14 @@
       document.getElementById("t-galleryTitle").textContent = t.galleryTitle;
       document.getElementById("t-gallerySub").textContent = t.gallerySub;
       applyLuxuryMobileContent();
+
+      document.getElementById("t-fourthPill").textContent = t.fourthPill;
+      document.getElementById("t-fourthTitle").textContent = t.fourthTitle;
+      document.getElementById("t-fourthSub").textContent = t.fourthSub;
+      document.getElementById("t-fourthTitle1").textContent = t.fourthTitle1;
+      document.getElementById("t-fourthSub1").textContent = t.fourthSub1;
+      document.getElementById("t-fourthTitle2").textContent = t.fourthTitle2;
+      document.getElementById("t-fourthSub2").textContent = t.fourthSub2;
 
       document.getElementById("t-srvPill").textContent = t.srvPill;
       document.getElementById("t-srvTitle").textContent = t.srvTitle;
@@ -1467,7 +1575,6 @@
       }
     }
 
-    // روبوتات وكلام جميل ورسوم متحركة عند الضغط على تبديل الإعلان المتحرك
     const phoneAds = [
       {
         arTitle: "مرحباً بك مع روبوت المطور عبدالله 🤖",
@@ -1541,7 +1648,6 @@
       }
     }
 
-    // تجربة جوال فاخرة تتغير تلقائياً مع روبوت أسود ترحيبي وكلام جميل وصور مختلفة
     const luxuryMobileSlides = [
       {
         arTitle: "أهلاً بك • الروبوت الترحيبي في خدمتك",
@@ -1568,16 +1674,20 @@
       document.getElementById("luxuryAutoQuote").textContent = currentLang === "ar" ? s.arQuote : s.enQuote;
     }
 
-    // تبديل الصور تلقائياً (الصورة الأولى + الهاتف الحقيقي + الصور الثلاث الجديدة)
+    // جميع الصور بما فيها الصورتين الجديدتين IMG-20261121-WA1049.jpg و IMG-20261121-WA4356.jpg
     const allSiteImages = [
+      "/IMG-20261121-WA1049.jpg",
+      "/IMG-20261121-WA4356.jpg",
       "/IMG-20261114-WA5719.jpg",
       "/IMG-20261121-WA1103.jpg",
       "/IMG-20261121-WA4788.jpg",
       "/IMG-20261121-WA9704.jpg"
     ];
+
     let primaryImgIdx = 0;
     let realPhoneImgIdx = 1;
-    let galleryOffsetIdx = 0;
+    let galleryOffsetIdx = 2;
+    let fourthSwapToggle = false;
 
     function updateGalleryCaptions() {
       const t = translations[currentLang];
@@ -1614,6 +1724,19 @@
         rpImg.src = allSiteImages[realPhoneImgIdx];
         rpImg.style.opacity = "1";
         updateGalleryCaptions();
+      }, 220);
+
+      // تبديل الصورتين الجديدتين في قسم الصورة الرابعة بحركة مستمرة
+      fourthSwapToggle = !fourthSwapToggle;
+      const fA = document.getElementById("fourthImgA");
+      const fB = document.getElementById("fourthImgB");
+      fA.style.opacity = "0.3";
+      fB.style.opacity = "0.3";
+      setTimeout(() => {
+        fA.src = fourthSwapToggle ? "/IMG-20261121-WA4356.jpg" : "/IMG-20261121-WA1049.jpg";
+        fB.src = fourthSwapToggle ? "/IMG-20261121-WA1049.jpg" : "/IMG-20261121-WA4356.jpg";
+        fA.style.opacity = "1";
+        fB.style.opacity = "1";
       }, 220);
 
       luxurySlideIdx = (luxurySlideIdx + 1) % luxuryMobileSlides.length;
