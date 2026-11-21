@@ -10,17 +10,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- مكتبات أنيميشن وحركة عالمية -->
+  <!-- مكتبات أنيميشن وتأثيرات عالمية مشهورة -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 
   <style>
     :root {
-      --bg-dark: #070b14;
-      --bg-card: rgba(17, 25, 46, 0.75);
-      --border-glass: rgba(255, 255, 255, 0.14);
+      --bg-dark: #060913;
+      --bg-card: rgba(15, 23, 42, 0.78);
+      --border-glass: rgba(56, 189, 248, 0.22);
       --primary: #38bdf8;
       --secondary: #818cf8;
       --accent: #22d3ee;
@@ -43,36 +45,43 @@
       position: relative;
     }
 
-    /* توهجات متحركة في الخلفية */
+    /* شبكة جزيئات ذكية متحركة في الخلفية */
+    #particles-js {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+    }
+
     .ambient-orb {
       position: fixed;
       border-radius: 50%;
-      filter: blur(95px);
+      filter: blur(100px);
       z-index: -1;
       pointer-events: none;
-      animation: floatOrb 8s ease-in-out infinite alternate;
+      animation: floatOrb 7s ease-in-out infinite alternate;
     }
 
     .orb-1 {
-      width: 340px;
-      height: 340px;
+      width: 350px;
+      height: 350px;
       background: rgba(56, 189, 248, 0.28);
       top: -60px;
       right: -60px;
     }
 
     .orb-2 {
-      width: 380px;
-      height: 380px;
+      width: 390px;
+      height: 390px;
       background: rgba(129, 140, 248, 0.24);
       bottom: -80px;
       left: -80px;
-      animation-delay: 2s;
+      animation-delay: 1.5s;
     }
 
     @keyframes floatOrb {
       0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(30px, 38px) scale(1.14); }
+      100% { transform: translate(32px, 40px) scale(1.16); }
     }
 
     /* الشريط العلوي */
@@ -80,8 +89,8 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      backdrop-filter: blur(16px);
-      background: rgba(7, 11, 20, 0.82);
+      backdrop-filter: blur(18px);
+      background: rgba(6, 9, 19, 0.85);
       border-bottom: 1px solid var(--border-glass);
       padding: 14px 24px;
     }
@@ -112,17 +121,18 @@
       font-weight: 900;
       font-size: 1.15rem;
       color: #04101e;
-      animation: pulseBadge 2.4s ease-in-out infinite;
+      box-shadow: 0 0 22px rgba(56, 189, 248, 0.45);
+      animation: pulseBadge 2.2s ease-in-out infinite;
     }
 
     @keyframes pulseBadge {
       0%, 100% { transform: scale(1) rotate(0deg); }
-      50% { transform: scale(1.08) rotate(-4deg); }
+      50% { transform: scale(1.09) rotate(-5deg); }
     }
 
     .brand-title {
-      font-size: 1.25rem;
-      font-weight: 800;
+      font-size: 1.28rem;
+      font-weight: 900;
       background: linear-gradient(90deg, #ffffff, var(--accent));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -153,7 +163,7 @@
     }
 
     .nav-btn:hover {
-      background: rgba(56, 189, 248, 0.16);
+      background: rgba(56, 189, 248, 0.18);
       transform: translateY(-2px);
     }
 
@@ -161,7 +171,7 @@
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: #050b16;
       border-color: transparent;
-      box-shadow: 0 8px 22px rgba(56, 189, 248, 0.35);
+      box-shadow: 0 8px 24px rgba(56, 189, 248, 0.4);
     }
 
     .container {
@@ -191,7 +201,7 @@
       border-radius: 26px;
       padding: 36px 28px;
       text-align: center;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
       margin-bottom: 26px;
     }
 
@@ -243,8 +253,8 @@
     }
 
     .btn-primary:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 14px 30px rgba(56, 189, 248, 0.38);
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 14px 32px rgba(56, 189, 248, 0.42);
     }
 
     .btn-secondary {
@@ -261,34 +271,30 @@
     }
 
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.14);
       transform: translateY(-3px);
     }
 
-    /* منصة ظهور المطور والهاتف المتحرك والإعلان */
+    /* منصة عرض صورتك الحقيقية والهاتف المتحرك ثلاثي الأبعاد */
     .showcase-stage {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 24px;
+      gap: 26px;
       align-items: center;
       background: var(--bg-card);
       border: 1px solid var(--border-glass);
       border-radius: 26px;
       padding: 28px;
       margin-bottom: 26px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
     }
 
     .dev-holder-frame {
       position: relative;
       border-radius: 22px;
       overflow: hidden;
-      border: 1px solid rgba(56, 189, 248, 0.4);
-      background: linear-gradient(180deg, rgba(15, 23, 42, 0.9), rgba(7, 11, 20, 0.95));
-      min-height: 410px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      border: 2px solid rgba(56, 189, 248, 0.45);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 25px rgba(56, 189, 248, 0.2);
       animation: gentleFloat 4.2s ease-in-out infinite;
     }
 
@@ -299,25 +305,25 @@
 
     .dev-holder-frame img {
       width: 100%;
-      height: 410px;
+      height: 440px;
       object-fit: cover;
       object-position: top center;
       display: block;
     }
 
-    .dev-smile-badge {
+    .dev-caption-bar {
       position: absolute;
       bottom: 14px;
       right: 14px;
       left: 14px;
-      background: rgba(7, 11, 20, 0.82);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(56, 189, 248, 0.35);
+      background: rgba(6, 9, 19, 0.84);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(56, 189, 248, 0.38);
       border-radius: 14px;
       padding: 10px 14px;
       text-align: center;
       font-weight: 800;
-      font-size: 0.92rem;
+      font-size: 0.94rem;
       color: #ffffff;
     }
 
@@ -329,24 +335,24 @@
     }
 
     .floating-phone {
-      width: 250px;
-      border-radius: 34px;
-      padding: 12px;
+      width: 265px;
+      border-radius: 36px;
+      padding: 13px;
       background: linear-gradient(145deg, #1e293b, #0f172a);
-      border: 2px solid rgba(56, 189, 248, 0.55);
-      box-shadow: 0 24px 55px rgba(0, 0, 0, 0.6), 0 0 28px rgba(56, 189, 248, 0.24);
-      animation: phoneBounceFloat 3.5s ease-in-out infinite;
+      border: 2px solid rgba(56, 189, 248, 0.6);
+      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.65), 0 0 32px rgba(56, 189, 248, 0.28);
+      animation: phoneBounceFloat 3.4s ease-in-out infinite;
     }
 
     @keyframes phoneBounceFloat {
       0%, 100% { transform: translateY(0px) rotate(-1.5deg); }
-      50% { transform: translateY(-12px) rotate(1.5deg); }
+      50% { transform: translateY(-13px) rotate(1.5deg); }
     }
 
     .phone-screen {
       background: linear-gradient(180deg, #0b1326, #111c38);
-      border-radius: 24px;
-      padding: 16px 14px;
+      border-radius: 25px;
+      padding: 18px 14px;
       text-align: center;
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
@@ -361,7 +367,7 @@
       padding: 4px 12px;
       border-radius: 999px;
       margin-bottom: 10px;
-      animation: blinkAd 1.8s infinite;
+      animation: blinkAd 1.7s infinite;
     }
 
     @keyframes blinkAd {
@@ -370,19 +376,20 @@
     }
 
     .phone-ad-title {
-      font-size: 1.02rem;
+      font-size: 1.05rem;
       font-weight: 900;
       margin-bottom: 6px;
       color: #ffffff;
     }
 
     .phone-ad-text {
-      font-size: 0.84rem;
+      font-size: 0.85rem;
       color: var(--text-muted);
-      line-height: 1.55;
+      line-height: 1.6;
       margin-bottom: 12px;
     }
 
+    /* شبكة الخدمات (تصميم مواقع وتطبيقات فقط) */
     .grid-2 {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -401,15 +408,15 @@
 
     .glass-card:hover {
       transform: translateY(-8px);
-      border-color: rgba(56, 189, 248, 0.55);
-      box-shadow: 0 20px 40px rgba(56, 189, 248, 0.18);
+      border-color: rgba(56, 189, 248, 0.6);
+      box-shadow: 0 20px 42px rgba(56, 189, 248, 0.22);
     }
 
     .card-icon {
       width: 50px;
       height: 50px;
       border-radius: 14px;
-      background: rgba(56, 189, 248, 0.15);
+      background: rgba(56, 189, 248, 0.16);
       display: grid;
       place-items: center;
       font-size: 1.45rem;
@@ -498,7 +505,7 @@
       padding: 13px 15px;
       border-radius: 14px;
       border: 1px solid var(--border-glass);
-      background: rgba(7, 11, 20, 0.65);
+      background: rgba(7, 11, 20, 0.7);
       color: var(--text-main);
       font-family: 'Cairo', sans-serif;
       font-size: 0.98rem;
@@ -507,7 +514,7 @@
     .form-control:focus {
       outline: none;
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.22);
     }
 
     textarea.form-control {
@@ -531,7 +538,7 @@
 
     .whatsapp-btn:hover {
       transform: translateY(-3px);
-      box-shadow: 0 14px 30px rgba(16, 185, 129, 0.35);
+      box-shadow: 0 14px 30px rgba(16, 185, 129, 0.38);
     }
 
     .target-number-note {
@@ -544,6 +551,7 @@
 </head>
 
 <body>
+  <div id="particles-js"></div>
   <div class="ambient-orb orb-1"></div>
   <div class="ambient-orb orb-2"></div>
 
@@ -570,7 +578,7 @@
 
     <!-- الصفحة الرئيسية -->
     <section id="page-home" class="page-view active">
-      <div class="hero-card animate__animated animate__fadeInUp">
+      <div class="hero-card animate__animated animate__fadeInUp" data-tilt data-tilt-max="4">
         <div class="welcome-pill">✨ أهلاً بك في موقع المطور عبدالله</div>
         <h1 class="hero-title">نحوّل أفكارك إلى مواقع وتطبيقات عصرية وحركة مبهرة</h1>
         <p class="hero-desc">
@@ -582,16 +590,17 @@
         </div>
       </div>
 
+      <!-- صورتك الحقيقية والهاتف المتحرك ثلاثي الأبعاد -->
       <div class="showcase-stage" data-aos="fade-up">
-        <div class="dev-holder-frame" id="devPhotoBox">
-          <img id="devPhotoImg" src="IMG-20261114-WA5719.jpg" alt="المطور عبدالله مبتسماً ويحمل هاتفاً">
-          <div class="dev-smile-badge">😊 المطور عبدالله • تجربة تفاعلية وحركة مستمرة</div>
+        <div class="dev-holder-frame" data-tilt data-tilt-max="6">
+          <img src="/IMG-20261114-WA5719.jpg" alt="المطور عبدالله">
+          <div class="dev-caption-bar">المطور عبدالله • تصميم مواقع وتطبيقات</div>
         </div>
 
         <div class="phone-ad-wrapper">
-          <div class="floating-phone" id="interactivePhone">
+          <div class="floating-phone" id="interactivePhone" data-tilt data-tilt-max="10">
             <div class="phone-screen">
-              <span class="ad-badge-live">📢 إعلان متحرك • مواقع وتطبيقات</span>
+              <span class="ad-badge-live">📢 عرض تفاعلي • مواقع وتطبيقات</span>
               <div class="phone-ad-title" id="phoneAdTitle">تصميم مواقع وتطبيقات</div>
               <p class="phone-ad-text" id="phoneAdText">
                 حركات ولمسات تفاعلية وهواتف متحركة تبرز خدماتك وتوصل طلبات عملائك مباشرة.
@@ -600,12 +609,12 @@
                 id="phoneLottie"
                 src="https://assets9.lottiefiles.com/packages/lf20_w51pcehl.json"
                 background="transparent"
-                speed="1"
-                style="width: 115px; height: 115px; margin: 0 auto 10px;"
+                speed="1.15"
+                style="width: 120px; height: 120px; margin: 0 auto 10px;"
                 loop
                 autoplay>
               </lottie-player>
-              <button type="button" class="btn-primary" style="width: 100%; padding: 9px 12px; font-size: 0.85rem;" onclick="cyclePhoneAd()">تبديل الإعلان المتحرك 🔄</button>
+              <button type="button" class="btn-primary" style="width: 100%; padding: 9px 12px; font-size: 0.85rem;" onclick="cyclePhoneAd()">تبديل العرض المتحرك 🔄</button>
             </div>
           </div>
         </div>
@@ -623,13 +632,13 @@
       </div>
 
       <div class="grid-2">
-        <article class="glass-card" data-aos="zoom-in">
+        <article class="glass-card" data-aos="zoom-in" data-tilt data-tilt-max="6">
           <div class="card-icon">🌐</div>
           <h3>تصميم مواقع</h3>
           <p>تصميم وبرمجة مواقع إلكترونية عصرية متجاوبة مع الجوال والكمبيوتر مع حركات ولمسات تفاعلية سلسة.</p>
         </article>
 
-        <article class="glass-card" data-aos="zoom-in" data-aos-delay="120">
+        <article class="glass-card" data-aos="zoom-in" data-aos-delay="120" data-tilt data-tilt-max="6">
           <div class="card-icon">📱</div>
           <h3>تصميم تطبيقات</h3>
           <p>تصميم وبناء تطبيقات عملية منظمة بواجهات واضحة، اختبارات وتجربة مستخدم سلسة، وتكامل عملي متكامل.</p>
@@ -716,47 +725,36 @@
   <script>
     AOS.init({ duration: 750, once: true });
 
+    // تشغيل شبكة الجزيئات الذكية المتحركة في الخلفية
+    if (typeof particlesJS !== "undefined") {
+      particlesJS("particles-js", {
+        particles: {
+          number: { value: 55, density: { enable: true, value_area: 800 } },
+          color: { value: ["#38bdf8", "#818cf8", "#22d3ee"] },
+          shape: { type: "circle" },
+          opacity: { value: 0.45, random: true },
+          size: { value: 3, random: true },
+          line_linked: { enable: true, distance: 140, color: "#38bdf8", opacity: 0.25, width: 1 },
+          move: { enable: true, speed: 2.2, direction: "none", random: false, out_mode: "out" }
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" } },
+          modes: { grab: { distance: 150, line_linked: { opacity: 0.6 } }, push: { particles_nb: 3 } }
+        },
+        retina_detect: true
+      });
+    }
+
+    // حركات GSAP مستمرة
     gsap.from(".top-bar", { y: -25, opacity: 0, duration: 0.7, ease: "power3.out" });
     gsap.to(".ambient-orb", {
-      scale: 1.15,
-      duration: 3.5,
+      scale: 1.18,
+      duration: 3.2,
       repeat: -1,
       yoyo: true,
       ease: "sine.inOut"
     });
-
-    // محاولة تحميل صورة المطور من أكثر من مسار محتمل داخل المستودع تلقائياً
-    (function loadDeveloperPhoto() {
-      const imgEl = document.getElementById("devPhotoImg");
-      const candidates = [
-        "IMG-20261114-WA5719.jpg",
-        "./IMG-20261114-WA5719.jpg",
-        "images/IMG-20261114-WA5719.jpg",
-        "assets/IMG-20261114-WA5719.jpg",
-        "abdullah.jpg",
-        "profile.jpg"
-      ];
-      let idx = 0;
-
-      imgEl.onerror = function () {
-        idx++;
-        if (idx < candidates.length) {
-          imgEl.src = candidates[idx];
-        } else {
-          // في حال لم يتم العثور على ملف الصورة في المستودع بعد، نعرض بطاقة تفاعلية واضحة دون كسر الواجهة
-          imgEl.style.display = "none";
-          const fallback = document.createElement("div");
-          fallback.style.padding = "30px";
-          fallback.style.textAlign = "center";
-          fallback.innerHTML = `
-            <div style="font-size:3.2rem;margin-bottom:10px;">😊📱</div>
-            <div style="font-weight:900;font-size:1.15rem;margin-bottom:6px;">المطور عبدالله</div>
-            <div style="color:#94a3b8;font-size:0.9rem;">يحمل هاتفاً ذكياً ويقدم حلول تصميم المواقع والتطبيقات</div>
-          `;
-          document.getElementById("devPhotoBox").prepend(fallback);
-        }
-      };
-    })();
 
     function switchPage(pageKey, clickedBtn) {
       document.querySelectorAll(".page-view").forEach(page => page.classList.remove("active"));
@@ -776,7 +774,6 @@
       }
     }
 
-    // إعلانات متحركة ومصادر Lottie خارجية متنوعة داخل الهاتف
     const phoneAds = [
       {
         title: "تصميم مواقع عصرية",
