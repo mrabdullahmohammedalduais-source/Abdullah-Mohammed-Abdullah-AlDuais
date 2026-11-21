@@ -22,8 +22,8 @@
   <style>
     :root {
       --bg-dark: #070604;
-      --bg-card: rgba(24, 19, 10, 0.72);
-      --border-gold: rgba(251, 191, 36, 0.34);
+      --bg-card: rgba(24, 19, 10, 0.74);
+      --border-gold: rgba(251, 191, 36, 0.36);
       --gold-light: #fde68a;
       --gold-main: #f59e0b;
       --gold-deep: #b45309;
@@ -44,6 +44,66 @@
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
+    }
+
+    /* خطوط متحركة عالمية تذهب يمين ويسار مثل البرق */
+    .lightning-layer {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .lightning-bolt {
+      position: absolute;
+      height: 2.5px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, var(--gold-light), #ffffff, var(--gold-main), transparent);
+      box-shadow: 0 0 14px var(--gold-main), 0 0 28px rgba(253, 230, 138, 0.8);
+      opacity: 0;
+    }
+
+    .bolt-right-1 {
+      width: 240px;
+      top: 16%;
+      left: -260px;
+      animation: boltGoRight 2.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    .bolt-right-2 {
+      width: 190px;
+      top: 52%;
+      left: -220px;
+      animation: boltGoRight 3.1s cubic-bezier(0.16, 1, 0.3, 1) 0.9s infinite;
+    }
+
+    .bolt-left-1 {
+      width: 250px;
+      top: 32%;
+      right: -270px;
+      animation: boltGoLeft 2.4s cubic-bezier(0.16, 1, 0.3, 1) 0.4s infinite;
+    }
+
+    .bolt-left-2 {
+      width: 210px;
+      top: 76%;
+      right: -230px;
+      animation: boltGoLeft 2.9s cubic-bezier(0.16, 1, 0.3, 1) 1.3s infinite;
+    }
+
+    @keyframes boltGoRight {
+      0% { transform: translateX(0) skewX(-24deg); opacity: 0; }
+      15% { opacity: 1; }
+      65% { opacity: 0.95; }
+      100% { transform: translateX(135vw) skewX(-24deg); opacity: 0; }
+    }
+
+    @keyframes boltGoLeft {
+      0% { transform: translateX(0) skewX(24deg); opacity: 0; }
+      15% { opacity: 1; }
+      65% { opacity: 0.95; }
+      100% { transform: translateX(-135vw) skewX(24deg); opacity: 0; }
     }
 
     /* جزيئات ذهبية متحركة في الخلفية */
@@ -92,7 +152,7 @@
       z-index: 100;
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      background: rgba(12, 10, 6, 0.82);
+      background: rgba(12, 10, 6, 0.84);
       border-bottom: 1px solid var(--border-gold);
       padding: 14px 24px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
@@ -202,6 +262,7 @@
     .hero-card,
     .glass-card,
     .showcase-stage,
+    .split-phone-stage,
     .gallery-section-box,
     .form-card,
     .faq-item {
@@ -311,6 +372,7 @@
       border: 2px solid rgba(251, 191, 36, 0.55);
       box-shadow: 0 22px 50px rgba(0, 0, 0, 0.65), 0 0 28px rgba(245, 158, 11, 0.25);
       animation: gentleFloat 4.2s ease-in-out infinite;
+      cursor: pointer;
     }
 
     @keyframes gentleFloat {
@@ -404,6 +466,70 @@
       margin-bottom: 12px;
     }
 
+    /* أنيميشن مربعات تتقسم ويظهر بها هاتف محمول ولمسات عالمية */
+    .split-phone-stage {
+      border-radius: 28px;
+      padding: 32px 24px;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    .split-grid-arena {
+      position: relative;
+      max-width: 680px;
+      margin: 22px auto 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      align-items: center;
+      justify-items: center;
+    }
+
+    .split-tile {
+      width: 100%;
+      min-height: 120px;
+      border-radius: 20px;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid var(--border-gold);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      font-weight: 800;
+      color: var(--gold-light);
+      animation: tileSplitPulse 3.6s ease-in-out infinite;
+    }
+
+    .split-tile:nth-child(odd) {
+      animation-name: tileShiftRight;
+    }
+
+    .split-tile:nth-child(even) {
+      animation-name: tileShiftLeft;
+    }
+
+    @keyframes tileShiftRight {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(8px, -6px) scale(1.03); }
+    }
+
+    @keyframes tileShiftLeft {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-8px, 6px) scale(1.03); }
+    }
+
+    .center-revealed-phone {
+      grid-column: 1 / -1;
+      width: 245px;
+      border-radius: 34px;
+      padding: 12px;
+      background: linear-gradient(145deg, #2a2110, #0d0a04);
+      border: 2px solid var(--gold-light);
+      box-shadow: 0 24px 55px rgba(0, 0, 0, 0.75), 0 0 32px rgba(245, 158, 11, 0.35);
+      animation: phoneBounceFloat 3.2s ease-in-out infinite;
+    }
+
     /* قسم مستقل للصور الثلاث الجديدة */
     .gallery-section-box {
       border-radius: 28px;
@@ -444,6 +570,7 @@
       background: rgba(12, 10, 6, 0.8);
       box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
       transition: transform 0.35s ease, box-shadow 0.35s ease;
+      cursor: pointer;
     }
 
     .custom-img-card:hover {
@@ -459,7 +586,99 @@
       display: block;
     }
 
-    /* شبكة الخدمات (تصميم مواقع وتطبيقات فقط) */
+    /* نافذة فتح الصورة من الموقع مع زر إغلاق X للرجوع */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(5, 4, 2, 0.92);
+      backdrop-filter: blur(14px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: pageFadeIn 0.28s ease;
+    }
+
+    .lightbox-modal.open {
+      display: flex;
+    }
+
+    .lightbox-card {
+      position: relative;
+      max-width: 680px;
+      width: 100%;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-gold);
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.85);
+      text-align: center;
+    }
+
+    .lightbox-close-btn {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-main));
+      color: #140e02;
+      border: none;
+      font-size: 1.35rem;
+      font-weight: 900;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.45);
+      transition: transform 0.25s ease;
+      z-index: 5;
+    }
+
+    .lightbox-close-btn:hover {
+      transform: scale(1.1) rotate(90deg);
+    }
+
+    .lightbox-card img {
+      width: 100%;
+      max-height: 75vh;
+      object-fit: contain;
+      border-radius: 18px;
+      display: block;
+      margin: 0 auto 12px;
+    }
+
+    /* إشعار ترحيبي ملء الموقع بعد تقديم الطلب */
+    .welcome-notif-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: radial-gradient(circle at center, rgba(245, 158, 11, 0.25), rgba(5, 4, 2, 0.94));
+      backdrop-filter: blur(18px);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      animation: pageFadeIn 0.35s ease;
+    }
+
+    .welcome-notif-overlay.open {
+      display: flex;
+    }
+
+    .welcome-notif-box {
+      max-width: 580px;
+      width: 100%;
+      background: rgba(24, 19, 10, 0.88);
+      border: 2px solid var(--gold-light);
+      border-radius: 30px;
+      padding: 36px 26px;
+      box-shadow: 0 30px 80px rgba(245, 158, 11, 0.35);
+    }
+
+    /* شبكة الخدمات */
     .grid-2 {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -615,6 +834,14 @@
 </head>
 
 <body>
+  <!-- خطوط متحركة عالمية تذهب يمين ويسار مثل البرق -->
+  <div class="lightning-layer" aria-hidden="true">
+    <div class="lightning-bolt bolt-right-1"></div>
+    <div class="lightning-bolt bolt-right-2"></div>
+    <div class="lightning-bolt bolt-left-1"></div>
+    <div class="lightning-bolt bolt-left-2"></div>
+  </div>
+
   <div id="particles-js"></div>
   <div class="gold-orb orb-1"></div>
   <div class="gold-orb orb-2"></div>
@@ -625,7 +852,7 @@
         <div class="brand-badge">&lt;/&gt;</div>
         <div>
           <div class="brand-title">موقع المطور عبدالله</div>
-          <div class="brand-sub">تصميم مواقع وتطبيقات</div>
+          <div class="brand-sub">تصميم مواقع وتطبيقات حسب الطلب</div>
         </div>
       </div>
 
@@ -644,9 +871,9 @@
     <section id="page-home" class="page-view active">
       <div class="hero-card animate__animated animate__fadeInUp" data-tilt data-tilt-max="4">
         <div class="welcome-pill">✨ أهلاً بك في موقع المطور عبدالله</div>
-        <h1 class="hero-title">نحوّل أفكارك إلى مواقع وتطبيقات فاخرة وحركة عالمية</h1>
+        <h1 class="hero-title">تصميم مواقع وتطبيقات حسب الطلب بألوان فاخرة وزجاجية وذهبية</h1>
         <p class="hero-desc">
-          مرحباً بك! تصميم ذهبي زجاجي عصري يجمع بين الفخامة والأنيميشن المستمر والهواتف المتحركة لتقديم مواقع وتطبيقات تليق بطموحك.
+          مرحباً بك! نصمم تطبيقات ومواقع حسب الطلب بألوان فاخرة زجاجية وذهبية وغيرها، مع أنيميشن عالمي مستمر وهواتف محمول متحركة.
         </p>
         <div class="hero-actions">
           <button type="button" class="btn-primary" onclick="switchPage('order', null)">اطلب مشروعك الآن 🚀</button>
@@ -656,9 +883,9 @@
 
       <!-- الصورة الأولى والهاتف المتحرك ثلاثي الأبعاد -->
       <div class="showcase-stage" data-aos="fade-up">
-        <div class="dev-holder-frame" data-tilt data-tilt-max="6">
+        <div class="dev-holder-frame" data-tilt data-tilt-max="6" onclick="openImageLightbox('/IMG-20261114-WA5719.jpg', 'المطور عبدالله')">
           <img src="/IMG-20261114-WA5719.jpg" alt="المطور عبدالله">
-          <div class="gold-caption-bar">المطور عبدالله • إبداع وفخامة رقمية</div>
+          <div class="gold-caption-bar">المطور عبدالله • اضغط للفتح</div>
         </div>
 
         <div class="phone-ad-wrapper">
@@ -667,7 +894,7 @@
               <span class="ad-badge-live">📢 إعلان تفاعلي • مواقع وتطبيقات</span>
               <div class="phone-ad-title" id="phoneAdTitle">تصميم مواقع وتطبيقات</div>
               <p class="phone-ad-text" id="phoneAdText">
-                حركات ولمسات ذهبية وهواتف متحركة تبرز مشاريعك وتوصل طلباتك مباشرة إلى واتساب.
+                ألوان فاخرة زجاجية وذهبية وغيرها مع حركات ولمسات عالمية وهواتف متحركة.
               </p>
               <lottie-player
                 id="phoneLottie"
@@ -684,54 +911,90 @@
         </div>
       </div>
 
+      <!-- أنيميشن مربعات تتقسم ويظهر بها هاتف محمول ولمسات عالمية -->
+      <div class="split-phone-stage" data-aos="fade-up">
+        <div class="welcome-pill">⚡ أنيميشن عالمي • مربعات متحركة وهاتف محمول</div>
+        <h2 style="font-size: clamp(1.3rem, 3vw, 1.95rem); font-weight: 900; color: var(--gold-light); margin-top: 6px;">
+          مربعات تتقسم بانسيابية ليظهر الهاتف المحمول بلمسات عالمية
+        </h2>
+
+        <div class="split-grid-arena">
+          <div class="split-tile">
+            <div>✨ ألوان زجاجية وذهبية</div>
+            <small style="color: var(--text-muted);">وأنماط لونية متعددة حسب الطلب</small>
+          </div>
+
+          <div class="split-tile">
+            <div>⚡ حركة فائقة السرعة</div>
+            <small style="color: var(--text-muted);">لمسات بصرية مستمرة</small>
+          </div>
+
+          <div class="center-revealed-phone" data-tilt data-tilt-max="8">
+            <div class="phone-screen">
+              <span class="ad-badge-live">📱 هاتف محمول تفاعلي</span>
+              <div class="phone-ad-title">تجربة جوال فاخرة</div>
+              <p class="phone-ad-text">تطبيقات ومواقع مصممة بعناية لتعمل بسلاسة على جميع الشاشات.</p>
+              <lottie-player
+                src="https://assets2.lottiefiles.com/packages/lf20_xyadoh9h.json"
+                background="transparent"
+                speed="1.15"
+                style="width: 105px; height: 105px; margin: 0 auto;"
+                loop
+                autoplay>
+              </lottie-player>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- قسم مستقل للصور الثلاث الجديدة -->
       <div class="gallery-section-box" id="newImagesSection" data-aos="fade-up">
         <div class="section-header-center">
           <div class="welcome-pill">🖼️ قسم الصور الجديدة</div>
           <h2>لمسات وإطلالات حصرية للمطور عبدالله</h2>
-          <p>عرض مستقل للصور الثلاث الجديدة بتأثير زجاجي ذهبي وحركة تفاعلية.</p>
+          <p>اضغط على أي صورة لفتحها داخل الموقع مع زر إغلاق للرجوع.</p>
         </div>
 
         <div class="grid-3-images">
-          <div class="custom-img-card" data-tilt data-tilt-max="6">
+          <div class="custom-img-card" data-tilt data-tilt-max="6" onclick="openImageLightbox('/IMG-20261121-WA1103.jpg', 'إطلالة رقم 1')">
             <img src="/IMG-20261121-WA1103.jpg" alt="إطلالة 1">
-            <div class="gold-caption-bar">إطلالة رقم 1</div>
+            <div class="gold-caption-bar">إطلالة رقم 1 • اضغط للفتح</div>
           </div>
 
-          <div class="custom-img-card" data-tilt data-tilt-max="6">
+          <div class="custom-img-card" data-tilt data-tilt-max="6" onclick="openImageLightbox('/IMG-20261121-WA4788.jpg', 'إطلالة رقم 2')">
             <img src="/IMG-20261121-WA4788.jpg" alt="إطلالة 2">
-            <div class="gold-caption-bar">إطلالة رقم 2</div>
+            <div class="gold-caption-bar">إطلالة رقم 2 • اضغط للفتح</div>
           </div>
 
-          <div class="custom-img-card" data-tilt data-tilt-max="6">
+          <div class="custom-img-card" data-tilt data-tilt-max="6" onclick="openImageLightbox('/IMG-20261121-WA9704.jpg', 'إطلالة رقم 3')">
             <img src="/IMG-20261121-WA9704.jpg" alt="إطلالة 3">
-            <div class="gold-caption-bar">إطلالة رقم 3</div>
+            <div class="gold-caption-bar">إطلالة رقم 3 • اضغط للفتح</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- قسم الخدمات: تصميم مواقع وتطبيقات فقط -->
+    <!-- قسم الخدمات -->
     <section id="page-services" class="page-view">
       <div class="hero-card">
         <div class="welcome-pill">💼 خدمات المطور عبدالله</div>
-        <h2 class="hero-title">الخدمات الأساسية</h2>
+        <h2 class="hero-title">تصميم تطبيقات ومواقع حسب الطلب</h2>
         <p class="hero-desc">
-          نركز على تصميم المواقع وتصميم التطبيقات بفخامة بصرية وحركة تفاعلية واضحة.
+          ننفذ تطبيقات ومواقع حسب الطلب بألوان فاخرة زجاجية وذهبية وغيرها لتناسب هوية مشروعك بدقة.
         </p>
       </div>
 
       <div class="grid-2">
         <article class="glass-card" data-aos="zoom-in" data-tilt data-tilt-max="6">
           <div class="card-icon">🌐</div>
-          <h3>تصميم مواقع</h3>
-          <p>تصميم وبرمجة مواقع إلكترونية فاخرة متجاوبة مع الجوال والكمبيوتر مع حركات ولمسات تفاعلية سلسة.</p>
+          <h3>تصميم مواقع حسب الطلب</h3>
+          <p>تصميم مواقع إلكترونية بألوان فاخرة زجاجية وذهبية وغيرها، مع حركات عالمية وتجاوب كامل على الجوال والكمبيوتر.</p>
         </article>
 
         <article class="glass-card" data-aos="zoom-in" data-aos-delay="120" data-tilt data-tilt-max="6">
           <div class="card-icon">📱</div>
-          <h3>تصميم تطبيقات</h3>
-          <p>تصميم وبناء تطبيقات عملية منظمة بواجهات واضحة، اختبارات وتجربة مستخدم سلسة، وتكامل عملي متكامل.</p>
+          <h3>تصميم تطبيقات حسب الطلب</h3>
+          <p>تصميم وبناء تطبيقات عصرية بواجهات زجاجية وذهبية وغيرها وتجربة تفاعلية سلسة مصممة خصيصاً لمتطلباتك.</p>
         </article>
       </div>
     </section>
@@ -750,17 +1013,17 @@
             <span>−</span>
           </button>
           <div class="faq-answer">
-            عند تعبئة اسمك ورقم هاتفك وتفاصيل مشروعك في صفحة "تعبئة البيانات والطلب" والضغط على إرسال، يتم فتح واتساب تلقائياً برسالة جاهزة إلى الرقم <strong>+201151429820</strong>.
+            عند تعبئة بياناتك وتفاصيل مشروعك في صفحة "تعبئة البيانات والطلب" والضغط على إرسال، يظهر إشعار ترحيبي ثم يتم توجيه الرسالة إلى واتساب الرقم <strong>+201151429820</strong>.
           </div>
         </div>
 
         <div class="faq-item">
           <button type="button" class="faq-question" onclick="toggleFaq(this)">
-            <span>ما الخدمات المتوفرة في الموقع؟</span>
+            <span>هل يمكن اختيار ألوان غير الذهبي والزجاجي؟</span>
             <span>+</span>
           </button>
           <div class="faq-answer">
-            نوفر خدمات تصميم المواقع وتصميم التطبيقات بأسلوب ذهبي زجاجي وحركات تفاعلية جذابة.
+            نعم، نصمم تطبيقات ومواقع حسب الطلب بألوان فاخرة زجاجية وذهبية وغيرها حسب ذوقك وهوية مشروعك.
           </div>
         </div>
       </div>
@@ -770,9 +1033,9 @@
     <section id="page-order" class="page-view">
       <div class="form-card">
         <div class="welcome-pill">📩 تعبئة البيانات والطلب</div>
-        <h2 style="font-size: 1.55rem; font-weight: 900; margin-bottom: 8px;">أدخل بياناتك لإرسال الطلب عبر واتساب</h2>
+        <h2 style="font-size: 1.55rem; font-weight: 900; margin-bottom: 8px;">أدخل بياناتك لإرسال الطلب</h2>
         <p style="color: var(--text-muted); margin-bottom: 22px; line-height: 1.7;">
-          اكتب اسمك، رقم هاتفك، وتفاصيل طلبك ثم اضغط إرسال ليتم توجيه الرسالة تلقائياً إلى واتساب.
+          اكتب اسمك، رقم هاتفك، اختر الخدمة واللون المفضل، ثم اضغط إرسال.
         </p>
 
         <form id="projectOrderForm" onsubmit="sendToWhatsApp(event)">
@@ -789,9 +1052,17 @@
           <div class="form-group">
             <label for="projectType">الخدمة المطلوبة</label>
             <select id="projectType" class="form-control" required>
-              <option value="تصميم مواقع">تصميم مواقع</option>
-              <option value="تصميم تطبيقات">تصميم تطبيقات</option>
-              <option value="تصميم مواقع وتطبيقات معاً">تصميم مواقع وتطبيقات معاً</option>
+              <option value="تصميم مواقع حسب الطلب">تصميم مواقع حسب الطلب</option>
+              <option value="تصميم تطبيقات حسب الطلب">تصميم تطبيقات حسب الطلب</option>
+              <option value="تصميم مواقع وتطبيقات حسب الطلب">تصميم مواقع وتطبيقات حسب الطلب</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="colorStyle">الألوان المطلوبة</label>
+            <select id="colorStyle" class="form-control" required>
+              <option value="ألوان فاخرة زجاجية وذهبية">ألوان فاخرة زجاجية وذهبية</option>
+              <option value="ألوان فاخرة أخرى حسب الطلب">ألوان فاخرة أخرى حسب الطلب</option>
             </select>
           </div>
 
@@ -800,16 +1071,42 @@
             <textarea id="projectDetails" class="form-control" placeholder="اكتب تفاصيل مشروعك أو طلبك هنا..." required></textarea>
           </div>
 
-          <button type="submit" class="whatsapp-btn">إرسال الطلب إلى واتساب الآن 💬</button>
+          <button type="submit" class="whatsapp-btn">إرسال الطلب الآن 💬</button>
 
           <div class="target-number-note">
-            سيتم إرسال الرسالة تلقائياً إلى واتساب الرقم: <strong>+201151429820</strong>
+            واتساب المطور عبدالله: <strong>+201151429820</strong>
           </div>
         </form>
       </div>
     </section>
 
   </main>
+
+  <!-- نافذة فتح الصورة من الموقع مع زر X للرجوع -->
+  <div id="imageLightbox" class="lightbox-modal" onclick="closeImageLightbox(event)">
+    <div class="lightbox-card" onclick="event.stopPropagation()">
+      <button type="button" class="lightbox-close-btn" aria-label="إغلاق الصورة" onclick="closeImageLightbox()">✕</button>
+      <img id="lightboxImg" src="" alt="معاينة الصورة">
+      <div id="lightboxCaption" style="font-weight: 800; color: var(--gold-light);"></div>
+    </div>
+  </div>
+
+  <!-- إشعار ترحيبي ملء الموقع بعد تقديم الطلب -->
+  <div id="welcomeNotificationModal" class="welcome-notif-overlay">
+    <div class="welcome-notif-box animate__animated animate__zoomIn">
+      <div class="welcome-pill">🎉 إشعار ترحيبي • تم استلام طلبك</div>
+      <h2 id="welcomeNotifTitle" style="font-size: clamp(1.4rem, 3.5vw, 2.1rem); font-weight: 900; color: var(--gold-light); margin: 10px 0;">
+        أهلاً بك يا صديقي!
+      </h2>
+      <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.85; margin-bottom: 22px;">
+        شكراً لتواصلك مع موقع المطور عبدالله! يسعدنا جداً تنفيذ مشروعك وتجهيز تفاصيله عبر واتساب.
+      </p>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <button type="button" class="btn-primary" id="continueWhatsAppBtn">متابعة إلى واتساب الآن 💬</button>
+        <button type="button" class="btn-secondary" onclick="closeWelcomeNotification()">العودة للموقع</button>
+      </div>
+    </div>
+  </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
@@ -827,7 +1124,6 @@
       });
     }
 
-    // تشغيل جزيئات ذهبية تفاعلية في الخلفية
     if (typeof particlesJS !== "undefined") {
       particlesJS("particles-js", {
         particles: {
@@ -869,12 +1165,12 @@
     const phoneAds = [
       {
         title: "تصميم مواقع فاخرة",
-        text: "واجهات ذهبية وزجاجية سريعة الاستجابة مع حركات ولمسات عالمية.",
+        text: "ألوان زجاجية وذهبية وغيرها مع حركات ولمسات عالمية متميزة.",
         lottie: "https://assets9.lottiefiles.com/packages/lf20_w51pcehl.json"
       },
       {
-        title: "تصميم تطبيقات ذكية",
-        text: "تطبيقات عملية منظمة بواجهة جذابة وتجربة تفاعلية مميزة.",
+        title: "تصميم تطبيقات حسب الطلب",
+        text: "تطبيقات عملية منظمة بواجهة جذابة وتجربة تفاعلية سلسة.",
         lottie: "https://assets2.lottiefiles.com/packages/lf20_xyadoh9h.json"
       },
       {
@@ -900,6 +1196,19 @@
       }
     }
 
+    function openImageLightbox(src, caption) {
+      const modal = document.getElementById("imageLightbox");
+      const img = document.getElementById("lightboxImg");
+      const cap = document.getElementById("lightboxCaption");
+      img.src = src;
+      cap.textContent = caption || "";
+      modal.classList.add("open");
+    }
+
+    function closeImageLightbox() {
+      document.getElementById("imageLightbox").classList.remove("open");
+    }
+
     function toggleFaq(btnElement) {
       const faqItem = btnElement.closest(".faq-item");
       if (!faqItem) return;
@@ -908,12 +1217,15 @@
       if (signSpan) signSpan.textContent = faqItem.classList.contains("open") ? "−" : "+";
     }
 
+    let pendingWhatsAppUrl = "";
+
     function sendToWhatsApp(event) {
       event.preventDefault();
 
       const name = document.getElementById("clientName").value.trim();
       const phone = document.getElementById("clientPhone").value.trim();
       const service = document.getElementById("projectType").value;
+      const colors = document.getElementById("colorStyle").value;
       const details = document.getElementById("projectDetails").value.trim();
 
       const whatsappNumber = "201151429820";
@@ -924,11 +1236,25 @@
         `👤 الاسم: ${name}\n` +
         `📞 رقم المستخدم: ${phone}\n` +
         `🛠️ الخدمة: ${service}\n` +
+        `🎨 الألوان: ${colors}\n` +
         `📝 التفاصيل:\n${details}`;
 
-      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(messageText)}`;
-      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+      pendingWhatsAppUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(messageText)}`;
+
+      document.getElementById("welcomeNotifTitle").textContent = `أهلاً بك يا ${name} ✨`;
+      document.getElementById("welcomeNotificationModal").classList.add("open");
     }
+
+    function closeWelcomeNotification() {
+      document.getElementById("welcomeNotificationModal").classList.remove("open");
+    }
+
+    document.getElementById("continueWhatsAppBtn").addEventListener("click", function () {
+      if (pendingWhatsAppUrl) {
+        window.open(pendingWhatsAppUrl, "_blank", "noopener,noreferrer");
+      }
+      closeWelcomeNotification();
+    });
   </script>
 </body>
 </html>
