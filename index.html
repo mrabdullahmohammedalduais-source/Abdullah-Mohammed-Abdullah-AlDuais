@@ -103,6 +103,157 @@
       100% { transform: translateX(-135vw) skewX(24deg); opacity: 0; }
     }
 
+    /* طبقة الخطوط النحيفة عبر كامل الشاشة كل 20 ثانية (طولياً وعرضياً والعكس) */
+    .screen-thin-lines-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .thin-screen-line {
+      position: fixed;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .thin-screen-line.v-down {
+      top: -190px;
+      width: 1px;
+      height: 180px;
+      background: linear-gradient(180deg, transparent, rgba(253, 230, 138, 0.75), transparent);
+      animation: glideScreenDown 3.2s ease-in-out forwards;
+    }
+
+    .thin-screen-line.v-up {
+      bottom: -190px;
+      width: 1px;
+      height: 180px;
+      background: linear-gradient(0deg, transparent, rgba(253, 230, 138, 0.75), transparent);
+      animation: glideScreenUp 3.2s ease-in-out forwards;
+    }
+
+    .thin-screen-line.h-right {
+      left: -190px;
+      height: 1px;
+      width: 180px;
+      background: linear-gradient(90deg, transparent, rgba(253, 230, 138, 0.75), transparent);
+      animation: glideScreenRight 3.2s ease-in-out forwards;
+    }
+
+    .thin-screen-line.h-left {
+      right: -190px;
+      height: 1px;
+      width: 180px;
+      background: linear-gradient(270deg, transparent, rgba(253, 230, 138, 0.75), transparent);
+      animation: glideScreenLeft 3.2s ease-in-out forwards;
+    }
+
+    @keyframes glideScreenDown {
+      0% { transform: translateY(0); opacity: 0; }
+      20% { opacity: 0.72; }
+      80% { opacity: 0.55; }
+      100% { transform: translateY(calc(100vh + 220px)); opacity: 0; }
+    }
+
+    @keyframes glideScreenUp {
+      0% { transform: translateY(0); opacity: 0; }
+      20% { opacity: 0.72; }
+      80% { opacity: 0.55; }
+      100% { transform: translateY(calc(-100vh - 220px)); opacity: 0; }
+    }
+
+    @keyframes glideScreenRight {
+      0% { transform: translateX(0); opacity: 0; }
+      20% { opacity: 0.72; }
+      80% { opacity: 0.55; }
+      100% { transform: translateX(calc(100vw + 220px)); opacity: 0; }
+    }
+
+    @keyframes glideScreenLeft {
+      0% { transform: translateX(0); opacity: 0; }
+      20% { opacity: 0.72; }
+      80% { opacity: 0.55; }
+      100% { transform: translateX(calc(-100vw - 220px)); opacity: 0; }
+    }
+
+    /* خطان رقيقان فقط فوق نصوص قوالب الموقع (أعلى وأسفل) ويتبدلان للعرض كل 20 ثانية */
+    .text-template-box {
+      position: relative;
+      overflow: visible !important;
+    }
+
+    .template-dual-thin-line {
+      position: absolute;
+      pointer-events: none;
+      z-index: 25;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .template-dual-thin-line.is-visible {
+      opacity: 0.78;
+    }
+
+    /* وضع العرض: خطان رقيقان أفقيان (أعلى النص وأسفل النص) */
+    .template-dual-thin-line.mode-horizontal.line-top {
+      top: -6px;
+      left: 12%;
+      right: 12%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+      animation: sweepHorizontalTop 3.6s ease-in-out infinite;
+    }
+
+    .template-dual-thin-line.mode-horizontal.line-bottom {
+      bottom: -6px;
+      left: 12%;
+      right: 12%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-main), transparent);
+      animation: sweepHorizontalBottom 3.6s ease-in-out infinite;
+    }
+
+    /* وضع العرض البديل: خطان رقيقان رأسيان (يمين ويسار النص) */
+    .template-dual-thin-line.mode-vertical.line-top {
+      top: 12%;
+      bottom: 12%;
+      left: -6px;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, var(--gold-light), transparent);
+      animation: sweepVerticalSideA 3.6s ease-in-out infinite;
+    }
+
+    .template-dual-thin-line.mode-vertical.line-bottom {
+      top: 12%;
+      bottom: 12%;
+      right: -6px;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, var(--gold-main), transparent);
+      animation: sweepVerticalSideB 3.6s ease-in-out infinite;
+    }
+
+    @keyframes sweepHorizontalTop {
+      0%, 100% { transform: scaleX(0.65); opacity: 0.45; }
+      50% { transform: scaleX(1); opacity: 0.85; }
+    }
+
+    @keyframes sweepHorizontalBottom {
+      0%, 100% { transform: scaleX(1); opacity: 0.85; }
+      50% { transform: scaleX(0.65); opacity: 0.45; }
+    }
+
+    @keyframes sweepVerticalSideA {
+      0%, 100% { transform: scaleY(0.65); opacity: 0.45; }
+      50% { transform: scaleY(1); opacity: 0.85; }
+    }
+
+    @keyframes sweepVerticalSideB {
+      0%, 100% { transform: scaleY(1); opacity: 0.85; }
+      50% { transform: scaleY(0.65); opacity: 0.45; }
+    }
+
     #particles-js {
       position: fixed;
       inset: 0;
@@ -139,47 +290,6 @@
     @keyframes floatGoldOrb {
       0% { transform: translate(0, 0) scale(1); }
       100% { transform: translate(35px, 42px) scale(1.16); }
-    }
-
-    /* حاوية السهم الخطي الصغير والخفيف فوق قوالب النصوص كل 20 ثانية */
-    .text-template-box {
-      position: relative;
-      overflow: visible !important;
-    }
-
-    .subtle-line-arrow {
-      position: absolute;
-      top: -10px;
-      inset-inline-start: 18%;
-      width: 24px;
-      height: 13px;
-      pointer-events: none;
-      z-index: 25;
-      opacity: 0;
-      color: var(--gold-light);
-      -webkit-text-fill-color: currentColor;
-      filter: drop-shadow(0 0 6px rgba(253, 230, 138, 0.55));
-    }
-
-    .subtle-line-arrow.is-animating {
-      animation: subtleTextArrowGlide 2.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    }
-
-    @keyframes subtleTextArrowGlide {
-      0% {
-        opacity: 0;
-        transform: translate(0px, 3px) scale(0.9);
-      }
-      22% {
-        opacity: 0.78;
-      }
-      75% {
-        opacity: 0.55;
-      }
-      100% {
-        opacity: 0;
-        transform: translate(var(--arrow-dx, -44px), -5px) scale(1.03);
-      }
     }
 
     .top-bar {
@@ -514,8 +624,8 @@
 
     .standing-robot-stage {
       position: relative;
-      width: 132px;
-      height: 120px;
+      width: 156px;
+      height: 124px;
       margin: 0 auto 12px;
       border-radius: 22px;
       background: rgba(245, 158, 11, 0.08);
@@ -526,17 +636,22 @@
       padding-bottom: 8px;
     }
 
-    .hello-bubble-tag {
+    .robot-explain-bubble {
       position: absolute;
-      top: 8px;
-      inset-inline-start: 10px;
+      top: 7px;
+      inset-inline-start: 8px;
+      max-width: 140px;
       background: rgba(16, 185, 129, 0.22);
       border: 1px solid #34d399;
       color: #6ee7b7;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 900;
       padding: 2px 8px;
       border-radius: 999px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: all 0.3s ease;
     }
 
     .split-phone-stage {
@@ -1004,6 +1119,8 @@
     <div class="lightning-bolt bolt-left-2"></div>
   </div>
 
+  <div class="screen-thin-lines-layer" id="screenThinLinesLayer" aria-hidden="true"></div>
+
   <div id="particles-js"></div>
   <div class="gold-orb orb-1"></div>
   <div class="gold-orb orb-2"></div>
@@ -1054,7 +1171,7 @@
         </div>
       </div>
 
-      <!-- الصورة الأولى والهاتف المتحرك مع الروبوت الواقف ورسالة Hello -->
+      <!-- الصورة الأولى والهاتف المتحرك مع الروبوت الشارح -->
       <div class="showcase-stage">
         <div class="dev-holder-frame" id="primaryAutoFrame" data-tilt data-tilt-max="6" onclick="openCurrentAutoImage()">
           <img id="primaryAutoImg" src="/IMG-20261114-WA5719.jpg" alt="المطور عبدالله">
@@ -1071,7 +1188,7 @@
               </p>
 
               <div class="standing-robot-stage" id="adRobotBox">
-                <span class="hello-bubble-tag">Hello</span>
+                <span class="robot-explain-bubble" id="adRobotBubble">نُصمّم ونُبرمج</span>
                 <svg width="74" height="86" viewBox="0 0 80 92" fill="none">
                   <line x1="40" y1="6" x2="40" y2="16" stroke="#34d399" stroke-width="3" stroke-linecap="round"/>
                   <circle cx="40" cy="5" r="4" fill="#10b981"/>
@@ -1131,17 +1248,17 @@
         </div>
       </div>
 
-      <!-- تجربة جوال فاخرة تتغير تلقائياً مع روبوت ترحيبي وكلام جميل وصور مختلفة -->
+      <!-- معرض الأعمال والواجهات التفاعلية -->
       <div class="gallery-section-box text-template-box" id="newImagesSection">
         <div class="section-header-center">
-          <div class="welcome-pill" id="t-galleryPill">🤖 تجربة جوال فاخرة • تتغير تلقائياً • يتم بناؤها بأمان تام وحماية</div>
-          <h2 class="text-template-box" id="t-galleryTitle">برمجة وتصميم مواقع وتطبيقات وتسليمها لك • تجربة جوال فاخرة</h2>
-          <p class="text-template-box" id="t-gallerySub">مواقع وتطبيقات يتم بناؤها بأمان تام وحماية وتعمل بسلاسة على جميع الشاشات.</p>
+          <div class="welcome-pill" id="t-galleryPill">🤖 معرض الأعمال والواجهات • تحديث مستمر • يتم بناؤها بأمان تام وحماية</div>
+          <h2 class="text-template-box" id="t-galleryTitle">معرض الأعمال والواجهات التفاعلية • المطور عبدالله</h2>
+          <p class="text-template-box" id="t-gallerySub">واجهات مواقع وتطبيقات مصممة ومبرمجة بعناية، وتعمل بسلاسة وأمان وحماية على جميع الأجهزة.</p>
         </div>
 
         <div class="glass-card text-template-box" id="autoLuxuryMobileBox" style="max-width: 640px; margin: 0 auto 24px; text-align: center;" data-tilt data-tilt-max="5">
           <div class="standing-robot-stage" id="blackWelcomeRobotBox" style="background: #070604; border-color: var(--gold-main);">
-            <span class="hello-bubble-tag">Hello</span>
+            <span class="robot-explain-bubble" id="showcaseRobotBubble">أمان وحماية كاملة</span>
             <svg width="74" height="86" viewBox="0 0 80 92" fill="none">
               <line x1="40" y1="6" x2="40" y2="16" stroke="#fde68a" stroke-width="3" stroke-linecap="round"/>
               <circle cx="40" cy="5" r="4" fill="#f59e0b"/>
@@ -1154,9 +1271,9 @@
               <rect x="43" y="79" width="11" height="10" rx="3" fill="#050402" stroke="#fde68a" stroke-width="2"/>
             </svg>
           </div>
-          <h3 class="text-template-box" id="luxuryAutoTitle" style="font-size: 1.35rem;">أهلاً بك • الروبوت الترحيبي في خدمتك</h3>
+          <h3 class="text-template-box" id="luxuryAutoTitle" style="font-size: 1.35rem;">جودة برمجية وتصميم يخدم مشروعك</h3>
           <p class="text-template-box" id="luxuryAutoQuote" style="font-size: 1.02rem; color: var(--text-main); margin-top: 6px;">
-            نسعد بتحويل فكرتك عبر برمجة وتصميم مواقع وتطبيقات وتسليمها لك بأمان تام وحماية لتترك أثراً جميلاً لدى كل زائر.
+            نحرص على تسليم موقعك أو تطبيقك جاهزاً بأداء سريع وتصميم أنيق، مع بناء متين يحمي بياناتك ويدعم نمو مشروعك.
           </p>
         </div>
 
@@ -1374,62 +1491,94 @@
       });
     }
 
-    /* أسهم خطية صغيرة وخفيفة تظهر فوق قوالب النصوص وتتحرك كل 20 ثانية */
-    function createSubtleLineArrowSvg(isRtl) {
-      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-      svg.setAttribute("viewBox", "0 0 24 14");
-      svg.setAttribute("fill", "none");
-      svg.classList.add("subtle-line-arrow");
+    /* خطوط نحيفة تمشي على كامل الشاشة (طولياً من أعلى لأسفل والعكس + عرضياً والعكس) كل 20 ثانية */
+    let screenAxisCycle = 0;
 
-      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-      if (isRtl) {
-        path.setAttribute("d", "M21 7H4M9 2.5L3.5 7L9 11.5");
-        svg.style.setProperty("--arrow-dx", "-42px");
-      } else {
-        path.setAttribute("d", "M3 7H20M15 2.5L20.5 7L15 11.5");
-        svg.style.setProperty("--arrow-dx", "42px");
-      }
+    function spawnScreenThinLines() {
+      const layer = document.getElementById("screenThinLinesLayer");
+      if (!layer) return;
 
-      path.setAttribute("stroke", "currentColor");
-      path.setAttribute("stroke-width", "1.75");
-      path.setAttribute("stroke-linecap", "round");
-      path.setAttribute("stroke-linejoin", "round");
+      const isVerticalPass = screenAxisCycle % 2 === 0;
+      screenAxisCycle++;
 
-      svg.appendChild(path);
-      return svg;
-    }
+      const configs = isVerticalPass
+        ? [
+            { cls: "v-down", pos: "24%" },
+            { cls: "v-up", pos: "72%" }
+          ]
+        : [
+            { cls: "h-right", pos: "28%" },
+            { cls: "h-left", pos: "74%" }
+          ];
 
-    function runSubtleTextArrowsWave() {
-      const activePage = document.querySelector(".page-view.active");
-      if (!activePage) return;
-
-      const isRtl = document.documentElement.dir !== "ltr";
-      const textTemplates = activePage.querySelectorAll(".hero-card, .split-phone-stage, .gallery-section-box, .glass-card, .form-card");
-
-      textTemplates.forEach((box, idx) => {
-        if (box.offsetParent === null) return;
-        box.classList.add("text-template-box");
-
-        const existing = box.querySelector(":scope > .subtle-line-arrow");
-        if (existing) existing.remove();
-
-        const arrow = createSubtleLineArrowSvg(isRtl);
-        arrow.style.top = "-10px";
-        arrow.style.insetInlineStart = `${16 + ((idx * 19) % 52)}%`;
-        box.appendChild(arrow);
-
-        requestAnimationFrame(() => {
-          arrow.classList.add("is-animating");
-        });
+      configs.forEach(cfg => {
+        const line = document.createElement("div");
+        line.className = `thin-screen-line ${cfg.cls}`;
+        if (isVerticalPass) {
+          line.style.left = cfg.pos;
+        } else {
+          line.style.top = cfg.pos;
+        }
+        layer.appendChild(line);
 
         setTimeout(() => {
-          arrow.remove();
-        }, 2300);
+          line.remove();
+        }, 3400);
       });
     }
 
-    setTimeout(runSubtleTextArrowsWave, 600);
-    setInterval(runSubtleTextArrowsWave, 20000);
+    /* خطان رقيقان فقط فوق نصوص قوالب الموقع (أعلى وأسفل) ويتبدلان للعرض كل 20 ثانية */
+    let templateLineOrientationToggle = false;
+
+    function refreshTemplateDualLines(toggleOrientation = false) {
+      if (toggleOrientation) {
+        templateLineOrientationToggle = !templateLineOrientationToggle;
+      }
+
+      const activePage = document.querySelector(".page-view.active");
+      if (!activePage) return;
+
+      const modeClass = templateLineOrientationToggle ? "mode-vertical" : "mode-horizontal";
+      const textTemplates = activePage.querySelectorAll(".hero-card, .split-phone-stage, .gallery-section-box, .glass-card, .form-card");
+
+      textTemplates.forEach(box => {
+        if (box.offsetParent === null) return;
+        box.classList.add("text-template-box");
+
+        let topLine = box.querySelector(":scope > .template-dual-thin-line.line-top");
+        let bottomLine = box.querySelector(":scope > .template-dual-thin-line.line-bottom");
+
+        if (!topLine) {
+          topLine = document.createElement("span");
+          topLine.className = "template-dual-thin-line line-top";
+          box.appendChild(topLine);
+        }
+
+        if (!bottomLine) {
+          bottomLine = document.createElement("span");
+          bottomLine.className = "template-dual-thin-line line-bottom";
+          box.appendChild(bottomLine);
+        }
+
+        topLine.classList.remove("mode-horizontal", "mode-vertical", "is-visible");
+        bottomLine.classList.remove("mode-horizontal", "mode-vertical", "is-visible");
+
+        void topLine.offsetWidth;
+
+        topLine.classList.add(modeClass, "is-visible");
+        bottomLine.classList.add(modeClass, "is-visible");
+      });
+    }
+
+    setTimeout(() => {
+      spawnScreenThinLines();
+      refreshTemplateDualLines(false);
+    }, 500);
+
+    setInterval(() => {
+      spawnScreenThinLines();
+      refreshTemplateDualLines(true);
+    }, 20000);
 
     let currentLang = "ar";
 
@@ -1457,9 +1606,9 @@
         tile1Sub: "وأنماط لونية متعددة حسب الطلب",
         tile2: "🛡️ يتم بناؤها بأمان تام وحماية",
         tile2Sub: "حركة فائقة السرعة ولمسات بصرية مستمرة",
-        galleryPill: "🤖 تجربة جوال فاخرة • تتغير تلقائياً • يتم بناؤها بأمان تام وحماية",
-        galleryTitle: "برمجة وتصميم مواقع وتطبيقات وتسليمها لك • تجربة جوال فاخرة",
-        gallerySub: "مواقع وتطبيقات يتم بناؤها بأمان تام وحماية وتعمل بسلاسة على جميع الشاشات.",
+        galleryPill: "🤖 معرض الأعمال والواجهات • تحديث مستمر • يتم بناؤها بأمان تام وحماية",
+        galleryTitle: "معرض الأعمال والواجهات التفاعلية • المطور عبدالله",
+        gallerySub: "واجهات مواقع وتطبيقات مصممة ومبرمجة بعناية، وتعمل بسلاسة وأمان وحماية على جميع الأجهزة.",
         fourthPill: "🌟 قسم الصورة الرابعة • إطلالات متحركة",
         fourthTitle: "برمجة وتصميم مواقع وتطبيقات وتسليمها لك",
         fourthSub: "إطلالتان متحركتان بظل فاخر يبرز جمال البرمجة والتصميم، ويتم بناؤها بأمان تام وحماية.",
@@ -1529,9 +1678,9 @@
         tile1Sub: "And custom palettes upon request",
         tile2: "🛡️ Built with Full Security & Protection",
         tile2Sub: "Lightning motion & continuous visual highlights",
-        galleryPill: "🤖 Luxury Mobile Experience • Auto Rotating • Built with Full Security & Protection",
-        galleryTitle: "Website & App Coding, Design & Handover • Luxury Mobile Experience",
-        gallerySub: "Websites and apps built with full security & protection to shine smoothly across all screens.",
+        galleryPill: "🤖 UI & Project Showcase • Live Rotation • Built with Full Security & Protection",
+        galleryTitle: "UI & Project Showcase • Developer Abdullah",
+        gallerySub: "Web and app interfaces crafted with care, running smoothly with full security & protection on every device.",
         fourthPill: "🌟 Fourth Image Section • Animated Looks",
         fourthTitle: "Website & App Coding, Design & Handover",
         fourthSub: "Two animated looks with a rich shadow highlighting coding & design—built with full security & protection.",
@@ -1615,7 +1764,7 @@
       document.getElementById("t-galleryPill").textContent = t.galleryPill;
       document.getElementById("t-galleryTitle").textContent = t.galleryTitle;
       document.getElementById("t-gallerySub").textContent = t.gallerySub;
-      applyLuxuryMobileContent();
+      applyShowcaseContent();
 
       document.getElementById("t-fourthPill").textContent = t.fourthPill;
       document.getElementById("t-fourthTitle").textContent = t.fourthTitle;
@@ -1674,7 +1823,7 @@
         targetPage.classList.add("active");
         window.scrollTo({ top: 0, behavior: "smooth" });
         AOS.refresh();
-        setTimeout(runSubtleTextArrowsWave, 500);
+        setTimeout(() => refreshTemplateDualLines(false), 350);
       }
 
       document.querySelectorAll(".nav-btn").forEach(btn => btn.classList.remove("active"));
@@ -1688,6 +1837,8 @@
 
     const phoneAds = [
       {
+        arBubble: "نُصمّم ونُبرمج",
+        enBubble: "Design & Code",
         arTitle: "مرحباً بك مع روبوت المطور عبدالله 🤖",
         arText: "نقدم برمجة وتصميم مواقع وتطبيقات وتسليمها لك بتجربة بصرية ذهبية وزجاجية تخطف الأنظار، ويتم بناؤها بأمان تام وحماية.",
         enTitle: "Welcome with Abdullah's Smart Bot 🤖",
@@ -1696,6 +1847,8 @@
         lottie: "https://assets9.lottiefiles.com/packages/lf20_w51pcehl.json"
       },
       {
+        arBubble: "أنظمة طلب متكاملة",
+        enBubble: "Smart Order Flows",
         arTitle: "تواصل وأنظمة مشتريات متكاملة ✨",
         arText: "التواصل معي عبر واتساب فقط ونوفر لك برمجة نظام مشتريات داخل تطبيقك وموقعك بأمان تام وحماية.",
         enTitle: "WhatsApp & Purchase Systems ✨",
@@ -1704,6 +1857,8 @@
         lottie: "https://assets2.lottiefiles.com/packages/lf20_xyadoh9h.json"
       },
       {
+        arBubble: "سرعة واستجابة عالية",
+        enBubble: "Fast & Responsive",
         arTitle: "روبوت الإبداع يرحب بطموحك 🚀",
         arText: "برمجة وتصميم مواقع وتطبيقات وتسليمها لك بألوان زجاجية وذهبية وغيرها مع سرعة استجابة عالية وأمان تام وحماية.",
         enTitle: "Creative Bot Welcomes Your Vision 🚀",
@@ -1712,6 +1867,8 @@
         lottie: "https://assets10.lottiefiles.com/packages/lf20_1pxqjqps.json"
       },
       {
+        arBubble: "تسليم جاهز لعملائك",
+        enBubble: "Ready Handover",
         arTitle: "أفكارك تتحول إلى واقع يفتخر به عملاؤك 🌟",
         arText: "ابدأ مشروعك اليوم عبر برمجة وتصميم مواقع وتطبيقات وتسليمها لك، ويتم بناؤها بأمان تام وحماية.",
         enTitle: "Turn Ideas Into Work You're Proud Of 🌟",
@@ -1722,11 +1879,11 @@
     ];
     let currentAdIndex = 0;
 
-    function renderAdRobot(accentColor) {
+    function renderAdRobot(accentColor, bubbleText) {
       const box = document.getElementById("adRobotBox");
       if (!box) return;
       box.innerHTML = `
-        <span class="hello-bubble-tag">Hello</span>
+        <span class="robot-explain-bubble" id="adRobotBubble">${bubbleText}</span>
         <svg width="74" height="86" viewBox="0 0 80 92" fill="none">
           <line x1="40" y1="6" x2="40" y2="16" stroke="${accentColor}" stroke-width="3" stroke-linecap="round"/>
           <circle cx="40" cy="5" r="4" fill="#10b981"/>
@@ -1745,7 +1902,8 @@
       const ad = phoneAds[currentAdIndex];
       document.getElementById("phoneAdTitle").textContent = currentLang === "ar" ? ad.arTitle : ad.enTitle;
       document.getElementById("phoneAdText").textContent = currentLang === "ar" ? ad.arText : ad.enText;
-      renderAdRobot(ad.robotAccent);
+      const bubble = currentLang === "ar" ? ad.arBubble : ad.enBubble;
+      renderAdRobot(ad.robotAccent, bubble);
     }
 
     function cyclePhoneAd() {
@@ -1762,30 +1920,40 @@
       }
     }
 
-    const luxuryMobileSlides = [
+    const showcaseSlides = [
       {
-        arTitle: "أهلاً بك • الروبوت الترحيبي في خدمتك",
-        arQuote: "نسعد بتحويل فكرتك عبر برمجة وتصميم مواقع وتطبيقات وتسليمها لك بأمان تام وحماية لتترك أثراً جميلاً لدى كل زائر.",
-        enTitle: "Welcome • Greeting Bot at Your Service",
-        enQuote: "We turn your idea via website & app coding, design & handover—built with full security & protection."
+        arBubble: "أمان وحماية كاملة",
+        enBubble: "Full Security",
+        arTitle: "جودة برمجية وتصميم يخدم مشروعك",
+        arQuote: "نحرص على تسليم موقعك أو تطبيقك جاهزاً بأداء سريع وتصميم أنيق، مع بناء متين يحمي بياناتك ويدعم نمو مشروعك.",
+        enTitle: "Code & Design Built for Your Project",
+        enQuote: "We deliver fast, refined websites and apps with strong security that protects your data and supports growth."
       },
       {
-        arTitle: "أناقة التفاصيل تصنع الفارق",
-        arQuote: "برمجة وتصميم مواقع وتطبيقات وتسليمها لك بعناية فائقة، ويتم بناؤها بأمان تام وحماية على كل هاتف.",
-        enQuote: "Website & app coding, design & handover crafted with care—built with full security & protection on every phone."
+        arBubble: "تجاوب على كل شاشة",
+        enBubble: "All Screens Ready",
+        arTitle: "هوية بصرية واضحة وتجربة استخدام سلسة",
+        arQuote: "برمجة وتصميم مواقع وتطبيقات وتسليمها لك بعناية فائقة لتظهر بأفضل شكل على الجوال والحاسوب.",
+        enQuote: "Website & app coding, design & handover crafted to look sharp on both mobile and desktop screens."
       },
       {
-        arTitle: "طموحك يستحق واجهة تليق به",
+        arBubble: "تسليم وموثوقية",
+        enBubble: "Reliable Handover",
+        arTitle: "حوّل رؤيتك إلى منتج رقمي متكامل",
         arQuote: "ابدأ اليوم مع المطور عبدالله عبر برمجة وتصميم مواقع وتطبيقات وتسليمها لك بأمان تام وحماية.",
-        enQuote: "Start today with website & app coding, design & handover—built with full security & protection."
+        enQuote: "Start today with Developer Abdullah for website & app coding, design & handover with full protection."
       }
     ];
-    let luxurySlideIdx = 0;
+    let showcaseSlideIdx = 0;
 
-    function applyLuxuryMobileContent() {
-      const s = luxuryMobileSlides[luxurySlideIdx];
+    function applyShowcaseContent() {
+      const s = showcaseSlides[showcaseSlideIdx];
       document.getElementById("luxuryAutoTitle").textContent = currentLang === "ar" ? s.arTitle : s.enTitle;
       document.getElementById("luxuryAutoQuote").textContent = currentLang === "ar" ? s.arQuote : s.enQuote;
+      const bubbleEl = document.getElementById("showcaseRobotBubble");
+      if (bubbleEl) {
+        bubbleEl.textContent = currentLang === "ar" ? s.arBubble : s.enBubble;
+      }
     }
 
     const allSiteImages = [
@@ -1851,12 +2019,18 @@
         fB.style.opacity = "1";
       }, 220);
 
-      luxurySlideIdx = (luxurySlideIdx + 1) % luxuryMobileSlides.length;
+      showcaseSlideIdx = (showcaseSlideIdx + 1) % showcaseSlides.length;
       gsap.fromTo("#autoLuxuryMobileBox",
         { opacity: 0.4, y: 8 },
         { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }
       );
-      applyLuxuryMobileContent();
+      applyShowcaseContent();
+
+      const adSlide = phoneAds[showcaseSlideIdx % phoneAds.length];
+      const adBubbleEl = document.getElementById("adRobotBubble");
+      if (adBubbleEl) {
+        adBubbleEl.textContent = currentLang === "ar" ? adSlide.arBubble : adSlide.enBubble;
+      }
 
       galleryOffsetIdx = (galleryOffsetIdx + 1) % allSiteImages.length;
       for (let i = 0; i < 3; i++) {
