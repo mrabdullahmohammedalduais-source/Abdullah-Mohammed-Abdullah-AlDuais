@@ -141,6 +141,45 @@
       100% { transform: translate(35px, 42px) scale(1.16); }
     }
 
+    /* أسهم خطية صغيرة وخفيفة تظهر كل 20 ثانية فوق النصوص */
+    .text-arrow-host {
+      position: relative;
+    }
+
+    .subtle-line-arrow {
+      position: absolute;
+      top: -12px;
+      inset-inline-start: 14%;
+      width: 22px;
+      height: 12px;
+      pointer-events: none;
+      z-index: 8;
+      opacity: 0;
+      color: var(--gold-light);
+      filter: drop-shadow(0 0 6px rgba(253, 230, 138, 0.45));
+    }
+
+    .subtle-line-arrow.is-animating {
+      animation: subtleTextArrowGlide 1.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes subtleTextArrowGlide {
+      0% {
+        opacity: 0;
+        transform: translate(0px, 4px) scale(0.88);
+      }
+      20% {
+        opacity: 0.72;
+      }
+      75% {
+        opacity: 0.55;
+      }
+      100% {
+        opacity: 0;
+        transform: translate(var(--arrow-dx, 36px), -6px) scale(1.02);
+      }
+    }
+
     .top-bar {
       position: sticky;
       top: 0;
@@ -244,10 +283,128 @@
       box-shadow: 0 8px 24px rgba(245, 158, 11, 0.42);
     }
 
+    /* شريط الروبوتين التفاعليين تحت الشريط العلوي */
+    .topbar-bots-strip {
+      max-width: 1180px;
+      margin: 18px auto 0;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .bot-chat-widget {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: 22px;
+      background: rgba(18, 14, 7, 0.82);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .bot-chat-widget:hover {
+      transform: translateY(-4px);
+    }
+
+    .bot-chat-widget.bot-green {
+      border: 1.5px solid rgba(52, 211, 153, 0.55);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55), 0 0 22px rgba(16, 185, 129, 0.2);
+    }
+
+    .bot-chat-widget.bot-blue {
+      border: 1.5px solid rgba(56, 189, 248, 0.55);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55), 0 0 22px rgba(14, 165, 233, 0.2);
+    }
+
+    .bot-avatar-badge {
+      flex-shrink: 0;
+      width: 66px;
+      height: 66px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      animation: miniBotBob 2.8s ease-in-out infinite;
+    }
+
+    .bot-green .bot-avatar-badge {
+      background: linear-gradient(145deg, rgba(16, 185, 129, 0.22), rgba(6, 78, 59, 0.35));
+      border: 1.5px solid #34d399;
+      box-shadow: 0 0 18px rgba(16, 185, 129, 0.35);
+    }
+
+    .bot-blue .bot-avatar-badge {
+      background: linear-gradient(145deg, rgba(14, 165, 233, 0.22), rgba(12, 74, 110, 0.35));
+      border: 1.5px solid #38bdf8;
+      box-shadow: 0 0 18px rgba(56, 189, 248, 0.35);
+      animation-delay: 0.7s;
+    }
+
+    @keyframes miniBotBob {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-5px) rotate(-2deg); }
+    }
+
+    .bot-speech-bubble {
+      position: relative;
+      flex: 1;
+      padding: 11px 15px;
+      border-radius: 16px;
+      line-height: 1.55;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .bot-green .bot-speech-bubble {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(52, 211, 153, 0.35);
+    }
+
+    .bot-blue .bot-speech-bubble {
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+    }
+
+    .bot-speech-tag {
+      display: inline-block;
+      font-size: 0.74rem;
+      font-weight: 900;
+      padding: 2px 9px;
+      border-radius: 999px;
+      margin-bottom: 4px;
+    }
+
+    .bot-green .bot-speech-tag {
+      background: rgba(52, 211, 153, 0.2);
+      color: #6ee7b7;
+    }
+
+    .bot-blue .bot-speech-tag {
+      background: rgba(56, 189, 248, 0.2);
+      color: #7dd3fc;
+    }
+
+    .bot-speech-text {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .bubble-animate {
+      animation: bubblePopIn 0.38s ease;
+    }
+
+    @keyframes bubblePopIn {
+      0% { opacity: 0.25; transform: scale(0.96); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
     .container {
       max-width: 1180px;
       margin: 0 auto;
-      padding: 28px 20px 80px;
+      padding: 24px 20px 80px;
     }
 
     .page-view {
@@ -987,6 +1144,45 @@
     </div>
   </header>
 
+  <!-- روبوتان تفاعليان بألوان مختلفة تحت الشريط العلوي مع رسائل نصية تلقائية -->
+  <section class="topbar-bots-strip" aria-label="الروبوتات التفاعلية">
+    <div class="bot-chat-widget bot-green" onclick="nextBot1Message()" title="اضغط لتبديل رسالة الروبوت الأخضر">
+      <div class="bot-avatar-badge" aria-hidden="true">
+        <svg width="46" height="46" viewBox="0 0 64 64" fill="none">
+          <line x1="32" y1="4" x2="32" y2="14" stroke="#34d399" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="32" cy="4" r="3.5" fill="#10b981"/>
+          <rect x="12" y="14" width="40" height="34" rx="11" fill="#06281e" stroke="#34d399" stroke-width="2.5"/>
+          <circle cx="24" cy="30" r="4.5" fill="#6ee7b7"/>
+          <circle cx="40" cy="30" r="4.5" fill="#6ee7b7"/>
+          <path d="M23 39Q32 45 41 39" stroke="#34d399" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+          <rect x="20" y="50" width="24" height="7" rx="3.5" fill="#064e3b" stroke="#34d399" stroke-width="1.8"/>
+        </svg>
+      </div>
+      <div class="bot-speech-bubble" id="bot1Bubble">
+        <span class="bot-speech-tag" id="bot1Tag">🟢 روبوت الترحيب • Hello</span>
+        <div class="bot-speech-text" id="bot1Message">Hello! أهلاً بك مع المطور عبدالله، نصمم تطبيقك وموقعك بألوان زجاجية وذهبية تخطف الأنظار.</div>
+      </div>
+    </div>
+
+    <div class="bot-chat-widget bot-blue" onclick="nextBot2Message()" title="اضغط لتبديل رسالة الروبوت الأزرق">
+      <div class="bot-avatar-badge" aria-hidden="true">
+        <svg width="46" height="46" viewBox="0 0 64 64" fill="none">
+          <line x1="32" y1="4" x2="32" y2="14" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="32" cy="4" r="3.5" fill="#0ea5e9"/>
+          <rect x="12" y="14" width="40" height="34" rx="11" fill="#082438" stroke="#38bdf8" stroke-width="2.5"/>
+          <circle cx="24" cy="30" r="4.5" fill="#7dd3fc"/>
+          <circle cx="40" cy="30" r="4.5" fill="#7dd3fc"/>
+          <path d="M23 39Q32 45 41 39" stroke="#38bdf8" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+          <rect x="20" y="50" width="24" height="7" rx="3.5" fill="#0c4a6e" stroke="#38bdf8" stroke-width="1.8"/>
+        </svg>
+      </div>
+      <div class="bot-speech-bubble" id="bot2Bubble">
+        <span class="bot-speech-tag" id="bot2Tag">🔵 روبوت الأمان والأنظمة</span>
+        <div class="bot-speech-text" id="bot2Message">ننفذ مشروعك بأمان تام وحماية عالية مع إمكانية إضافة نظام مشتريات وطلبات داخل موقعك أو تطبيقك.</div>
+      </div>
+    </div>
+  </section>
+
   <main class="container">
 
     <!-- الصفحة الرئيسية -->
@@ -1319,7 +1515,154 @@
       });
     }
 
+    /* أسهم خطية صغيرة وخفيفة تتحرك كل 20 ثانية فوق النصوص */
+    function createSubtleLineArrowSvg(isRtl) {
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("viewBox", "0 0 24 14");
+      svg.setAttribute("fill", "none");
+      svg.classList.add("subtle-line-arrow");
+
+      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      if (isRtl) {
+        path.setAttribute("d", "M21 7H4M9 2.5L3.5 7L9 11.5");
+        svg.style.setProperty("--arrow-dx", "-34px");
+      } else {
+        path.setAttribute("d", "M3 7H20M15 2.5L20.5 7L15 11.5");
+        svg.style.setProperty("--arrow-dx", "34px");
+      }
+
+      path.setAttribute("stroke", "currentColor");
+      path.setAttribute("stroke-width", "1.6");
+      path.setAttribute("stroke-linecap", "round");
+      path.setAttribute("stroke-linejoin", "round");
+
+      svg.appendChild(path);
+      return svg;
+    }
+
+    function runSubtleTextArrowsWave() {
+      const activePage = document.querySelector(".page-view.active");
+      if (!activePage) return;
+
+      const isRtl = document.documentElement.dir !== "ltr";
+      const targets = activePage.querySelectorAll("h1, h2, h3, .hero-desc");
+
+      targets.forEach((el, idx) => {
+        if (el.offsetParent === null) return;
+        el.classList.add("text-arrow-host");
+
+        const existing = el.querySelector(".subtle-line-arrow");
+        if (existing) existing.remove();
+
+        const arrow = createSubtleLineArrowSvg(isRtl);
+        arrow.style.insetInlineStart = `${10 + ((idx * 17) % 55)}%`;
+        el.appendChild(arrow);
+
+        setTimeout(() => {
+          arrow.classList.add("is-animating");
+          setTimeout(() => {
+            arrow.remove();
+          }, 2000);
+        }, idx * 140);
+      });
+    }
+
+    setTimeout(runSubtleTextArrowsWave, 1500);
+    setInterval(runSubtleTextArrowsWave, 20000);
+
     let currentLang = "ar";
+
+    /* بيانات الروبوتين التفاعليين تحت الشريط العلوي */
+    const bot1Lines = [
+      {
+        arTag: "🟢 روبوت الترحيب • Hello",
+        arText: "Hello! أهلاً بك مع المطور عبدالله، نصمم تطبيقك وموقعك بألوان زجاجية وذهبية تخطف الأنظار.",
+        enTag: "🟢 Welcome Bot • Hello",
+        enText: "Hello! Welcome to Developer Abdullah—we craft apps & websites in eye-catching glass and gold."
+      },
+      {
+        arTag: "🟢 روبوت الإبداع • Hello",
+        arText: "Hello! حركات سلسة وتجاوب كامل على الجوال والكمبيوتر ليظهر مشروعك بأجمل صورة.",
+        enTag: "🟢 Creative Bot • Hello",
+        enText: "Hello! Smooth motion and full responsiveness on mobile and desktop so your project shines."
+      },
+      {
+        arTag: "🟢 روبوت التنفيذ • Hello",
+        arText: "Hello! اختر ألوانك المفضلة وابدأ طلبك الآن بخطوات سريعة ومباشرة.",
+        enTag: "🟢 Launch Bot • Hello",
+        enText: "Hello! Pick your favorite colors and start your order now in quick, direct steps."
+      }
+    ];
+
+    const bot2Lines = [
+      {
+        arTag: "🔵 روبوت الأمان والأنظمة",
+        arText: "ننفذ مشروعك بأمان تام وحماية عالية مع إمكانية إضافة نظام مشتريات وطلبات داخل موقعك أو تطبيقك.",
+        enTag: "🔵 Security & Systems Bot",
+        enText: "Built with full security & protection, including purchase and order systems inside your site or app."
+      },
+      {
+        arTag: "🔵 روبوت التواصل الفوري",
+        arText: "تواصل بسهولة عبر واتساب أو البريد الإلكتروني ونسلّم لك مشروعك جاهزاً ومتكاملاً.",
+        enTag: "🔵 Instant Contact Bot",
+        enText: "Connect easily via WhatsApp or email and receive your project ready and complete."
+      },
+      {
+        arTag: "🔵 روبوت الجودة والثقة",
+        arText: "كل تفصيلة مدروسة بعناية لضمان تجربة آمنة وسريعة لعملائك في كل زيارة.",
+        enTag: "🔵 Quality & Trust Bot",
+        enText: "Every detail is carefully crafted for a fast, secure experience for your visitors."
+      }
+    ];
+
+    let bot1Idx = 0;
+    let bot2Idx = 0;
+
+    function triggerBubbleAnimation(bubbleId) {
+      const el = document.getElementById(bubbleId);
+      if (!el) return;
+      el.classList.remove("bubble-animate");
+      void el.offsetWidth;
+      el.classList.add("bubble-animate");
+    }
+
+    function applyTopBotsContent(animate = false) {
+      const b1 = bot1Lines[bot1Idx];
+      const b2 = bot2Lines[bot2Idx];
+
+      document.getElementById("bot1Tag").textContent = currentLang === "ar" ? b1.arTag : b1.enTag;
+      document.getElementById("bot1Message").textContent = currentLang === "ar" ? b1.arText : b1.enText;
+
+      document.getElementById("bot2Tag").textContent = currentLang === "ar" ? b2.arTag : b2.enTag;
+      document.getElementById("bot2Message").textContent = currentLang === "ar" ? b2.arText : b2.enText;
+
+      if (animate) {
+        triggerBubbleAnimation("bot1Bubble");
+        triggerBubbleAnimation("bot2Bubble");
+      }
+    }
+
+    function nextBot1Message() {
+      bot1Idx = (bot1Idx + 1) % bot1Lines.length;
+      const b1 = bot1Lines[bot1Idx];
+      document.getElementById("bot1Tag").textContent = currentLang === "ar" ? b1.arTag : b1.enTag;
+      document.getElementById("bot1Message").textContent = currentLang === "ar" ? b1.arText : b1.enText;
+      triggerBubbleAnimation("bot1Bubble");
+    }
+
+    function nextBot2Message() {
+      bot2Idx = (bot2Idx + 1) % bot2Lines.length;
+      const b2 = bot2Lines[bot2Idx];
+      document.getElementById("bot2Tag").textContent = currentLang === "ar" ? b2.arTag : b2.enTag;
+      document.getElementById("bot2Message").textContent = currentLang === "ar" ? b2.arText : b2.enText;
+      triggerBubbleAnimation("bot2Bubble");
+    }
+
+    setInterval(() => {
+      bot1Idx = (bot1Idx + 1) % bot1Lines.length;
+      bot2Idx = (bot2Idx + 1) % bot2Lines.length;
+      applyTopBotsContent(true);
+    }, 4500);
 
     const translations = {
       ar: {
@@ -1483,6 +1826,8 @@
       document.getElementById("nav-faq").textContent = t.navFaq;
       document.getElementById("nav-order").textContent = t.navOrder;
 
+      applyTopBotsContent(false);
+
       document.getElementById("t-welcomePill").textContent = t.welcomePill;
       document.getElementById("t-heroTitle").textContent = t.heroTitle;
       document.getElementById("t-heroDesc").textContent = t.heroDesc;
@@ -1562,6 +1907,7 @@
         targetPage.classList.add("active");
         window.scrollTo({ top: 0, behavior: "smooth" });
         AOS.refresh();
+        setTimeout(runSubtleTextArrowsWave, 500);
       }
 
       document.querySelectorAll(".nav-btn").forEach(btn => btn.classList.remove("active"));
