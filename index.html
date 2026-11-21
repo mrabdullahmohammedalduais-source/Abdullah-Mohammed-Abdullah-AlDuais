@@ -1,797 +1,835 @@
-<!DOCTYPE html> <!-- يحدد أن المستند مكتوب بمعيار HTML5 الحديث -->
-<html lang="ar" dir="rtl"> <!-- يضبط لغة الصفحة للعربية واتجاه القراءة من اليمين لليسار -->
-<head> <!-- رأس الصفحة: يحمل الإعدادات والمكتبات والأنماط -->
-  <meta charset="UTF-8"> <!-- يدعم الحروف العربية والرموز بشكل سليم -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- يجعل التصميم متجاوباً مع كل الشاشات والموبايلات -->
-  <title>موقع المطور عبدالله | برمجة المواقع والتطبيقات</title> <!-- عنوان الصفحة في تبويب المتصفح -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>موقع المطور عبدالله</title>
 
-  <!-- استدعاء خط عربي حديث وفخم (Cairo) من Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- تسريع الاتصال بخوادم الخطوط -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- تسريع تحميل ملفات الخطوط -->
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet"> <!-- تحميل أوزان خط Cairo -->
+  <!-- خط عربي حديث -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- مكتبة Animate.css للحركات الجاهزة -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/> <!-- تنسيقات Animate.css -->
+  <!-- مكتبات أنيميشن وحركة عالمية -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-  <!-- مكتبة AOS للحركة عند التمرير -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> <!-- تنسيقات AOS -->
-
-  <!-- مكتبة GSAP للأنيميشن المتقدم والانسيابي -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> <!-- سكربت GSAP -->
-
-  <!-- مكتبة Lottie لتشغيل الرسوم المتحركة المتجهة JSON -->
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script> <!-- مشغل Lottie -->
-
-  <style> /* بداية تنسيقات CSS */
-    :root { /* متغيرات الألوان والهوية البصرية */
-      --bg-dark: #070b14; /* خلفية داكنة فخمة */
-      --bg-card: rgba(17, 25, 46, 0.72); /* خلفية بطاقات زجاجية */
-      --border-glass: rgba(255, 255, 255, 0.14); /* حد زجاجي ناعم */
-      --primary: #38bdf8; /* أزرق سماوي */
-      --secondary: #818cf8; /* بنفسجي أزرق */
-      --accent: #22d3ee; /* سماوي مضيء */
-      --text-main: #f8fafc; /* لون النص الأساسي */
-      --text-muted: #94a3b8; /* لون النص الثانوي */
+  <style>
+    :root {
+      --bg-dark: #070b14;
+      --bg-card: rgba(17, 25, 46, 0.75);
+      --border-glass: rgba(255, 255, 255, 0.14);
+      --primary: #38bdf8;
+      --secondary: #818cf8;
+      --accent: #22d3ee;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
     }
 
-    * { /* قواعد موحدة لكل العناصر */
-      box-sizing: border-box; /* حساب الحدود والحشوة ضمن العرض */
-      margin: 0; /* إزالة الهوامش الافتراضية */
-      padding: 0; /* إزالة الحشوات الافتراضية */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    body { /* تنسيق جسم الصفحة */
-      font-family: 'Cairo', sans-serif; /* خط Cairo */
-      background-color: var(--bg-dark); /* لون الخلفية الداكنة */
-      color: var(--text-main); /* لون النص الرئيسي */
-      min-height: 100vh; /* تغطية الشاشة بالكامل */
-      overflow-x: hidden; /* منع التمرير الأفقي */
-      position: relative; /* مرجع للخلفيات المتحركة */
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
     }
 
-    /* كرات ضوئية متحركة في الخلفية */
-    .ambient-orb { /* تنسيق الكرات الضوئية */
-      position: fixed; /* تثبيت في الخلفية */
-      border-radius: 50%; /* شكل دائري */
-      filter: blur(95px); /* تغبيش ناعم */
-      z-index: -1; /* خلف المحتوى */
-      pointer-events: none; /* عدم اعتراض النقر */
-      animation: floatOrb 8s ease-in-out infinite alternate; /* حركة مستمرة */
+    /* توهجات متحركة في الخلفية */
+    .ambient-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(95px);
+      z-index: -1;
+      pointer-events: none;
+      animation: floatOrb 8s ease-in-out infinite alternate;
     }
 
-    .orb-1 { /* الكرة الأولى */
-      width: 340px; /* العرض */
-      height: 340px; /* الارتفاع */
-      background: rgba(56, 189, 248, 0.28); /* لون أزرق شفاف */
-      top: -60px; /* الأعلى */
-      right: -60px; /* اليمين */
+    .orb-1 {
+      width: 340px;
+      height: 340px;
+      background: rgba(56, 189, 248, 0.28);
+      top: -60px;
+      right: -60px;
     }
 
-    .orb-2 { /* الكرة الثانية */
-      width: 380px; /* العرض */
-      height: 380px; /* الارتفاع */
-      background: rgba(129, 140, 248, 0.24); /* لون بنفسجي شفاف */
-      bottom: -80px; /* الأسفل */
-      left: -80px; /* اليسار */
-      animation-delay: 2s; /* تأخير بسيط */
+    .orb-2 {
+      width: 380px;
+      height: 380px;
+      background: rgba(129, 140, 248, 0.24);
+      bottom: -80px;
+      left: -80px;
+      animation-delay: 2s;
     }
 
-    @keyframes floatOrb { /* حركة الطفو للخلفيات */
-      0% { transform: translate(0, 0) scale(1); } /* بداية الحركة */
-      100% { transform: translate(30px, 38px) scale(1.14); } /* نهاية الحركة */
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(30px, 38px) scale(1.14); }
     }
 
     /* الشريط العلوي */
-    .top-bar { /* الهيدر العلوي */
-      position: sticky; /* تثبيت أثناء التمرير */
-      top: 0; /* الحافة العلوية */
-      z-index: 100; /* فوق العناصر */
-      backdrop-filter: blur(16px); /* تغبيش زجاجي */
-      background: rgba(7, 11, 20, 0.8); /* خلفية داكنة شفافة */
-      border-bottom: 1px solid var(--border-glass); /* خط سفلي */
-      padding: 14px 24px; /* مسافة داخلية */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(7, 11, 20, 0.82);
+      border-bottom: 1px solid var(--border-glass);
+      padding: 14px 24px;
     }
 
-    .top-bar-inner { /* حاوية المحتوى العلوي */
-      max-width: 1160px; /* أقصى عرض */
-      margin: 0 auto; /* توسيط */
-      display: flex; /* ترتيب أفقي */
-      align-items: center; /* محاذاة عمودية */
-      justify-content: space-between; /* توزيع بين الطرفين */
-      flex-wrap: wrap; /* التفاف للشاشات الصغيرة */
-      gap: 14px; /* مسافة بين العناصر */
+    .top-bar-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
     }
 
-    .brand-box { /* هوية المطور عبدالله */
-      display: flex; /* ترتيب أفقي */
-      align-items: center; /* توسيط عمودي */
-      gap: 12px; /* مسافة */
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
-    .brand-badge { /* شارة المطور المتحركة */
-      width: 46px; /* العرض */
-      height: 46px; /* الارتفاع */
-      border-radius: 14px; /* زوايا دائرية */
-      background: linear-gradient(135deg, var(--primary), var(--secondary)); /* تدرج لوني */
-      display: grid; /* توسيط */
-      place-items: center; /* في المنتصف */
-      font-weight: 900; /* خط سميك */
-      font-size: 1.15rem; /* حجم الخط */
-      color: #04101e; /* لون داكن */
-      animation: pulseBadge 2.6s ease-in-out infinite; /* نبضة حركة مستمرة */
+    .brand-badge {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 1.15rem;
+      color: #04101e;
+      animation: pulseBadge 2.4s ease-in-out infinite;
     }
 
-    @keyframes pulseBadge { /* حركة نبض الشارة */
-      0%, 100% { transform: scale(1) rotate(0deg); } /* الوضع الطبيعي */
-      50% { transform: scale(1.07) rotate(-4deg); } /* تكبير وميلان خفيف */
+    @keyframes pulseBadge {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.08) rotate(-4deg); }
     }
 
-    .brand-title { /* نص موقع المطور عبدالله */
-      font-size: 1.25rem; /* حجم الخط */
-      font-weight: 800; /* سماكة الخط */
-      background: linear-gradient(90deg, #ffffff, var(--accent)); /* تدرج لوني */
-      -webkit-background-clip: text; /* قص الخلفية على النص */
-      -webkit-text-fill-color: transparent; /* إظهار التدرج */
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #ffffff, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .brand-sub { /* وصف مختصر */
-      font-size: 0.78rem; /* حجم الخط */
-      color: var(--text-muted); /* لون رمادي */
+    .brand-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
     }
 
-    /* أزرار التنقل بين الصفحات */
-    .nav-tabs { /* حاوية التبويبات */
-      display: flex; /* ترتيب أفقي */
-      gap: 8px; /* مسافة */
-      flex-wrap: wrap; /* التفاف */
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
-    .nav-btn { /* زر التبويب */
-      background: rgba(255, 255, 255, 0.05); /* خلفية شفافة */
-      color: var(--text-main); /* لون النص */
-      border: 1px solid var(--border-glass); /* حد رفيع */
-      padding: 9px 15px; /* مسافة داخلية */
-      border-radius: 12px; /* زوايا دائرية */
-      font-family: 'Cairo', sans-serif; /* خط الموقع */
-      font-weight: 700; /* خط عريض */
-      font-size: 0.88rem; /* حجم الخط */
-      cursor: pointer; /* مؤشر يد */
-      transition: all 0.3s ease; /* انتقال ناعم */
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      border: 1px solid var(--border-glass);
+      padding: 9px 15px;
+      border-radius: 12px;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
 
-    .nav-btn:hover { /* تأثير عند المرور أو اللمس */
-      background: rgba(56, 189, 248, 0.16); /* إضاءة */
-      transform: translateY(-2px); /* ارتفاع بسيط */
+    .nav-btn:hover {
+      background: rgba(56, 189, 248, 0.16);
+      transform: translateY(-2px);
     }
 
-    .nav-btn.active { /* زر الصفحة النشطة */
-      background: linear-gradient(135deg, var(--primary), var(--secondary)); /* تدرج لوني */
-      color: #050b16; /* نص داكن */
-      border-color: transparent; /* بدون حد */
-      box-shadow: 0 8px 22px rgba(56, 189, 248, 0.35); /* ظل متوهج */
+    .nav-btn.active {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #050b16;
+      border-color: transparent;
+      box-shadow: 0 8px 22px rgba(56, 189, 248, 0.35);
     }
 
-    /* الحاوية الرئيسية */
-    .container { /* حاوية المحتوى */
-      max-width: 1160px; /* أقصى عرض */
-      margin: 0 auto; /* توسيط */
-      padding: 28px 20px 70px; /* مسافات داخلية */
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 28px 20px 70px;
     }
 
-    /* الصفحات المتنقلة */
-    .page-view { /* كل صفحة */
-      display: none; /* مخفية افتراضياً */
-      animation: pageFadeIn 0.55s cubic-bezier(0.22, 1, 0.36, 1); /* حركة دخول */
+    .page-view {
+      display: none;
+      animation: pageFadeIn 0.55s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .page-view.active { /* الصفحة النشطة */
-      display: block; /* ظاهرة */
+    .page-view.active {
+      display: block;
     }
 
-    @keyframes pageFadeIn { /* حركة دخول الصفحة */
-      from { opacity: 0; transform: translateY(18px) scale(0.99); } /* البداية */
-      to { opacity: 1; transform: translateY(0) scale(1); } /* النهاية */
+    @keyframes pageFadeIn {
+      from { opacity: 0; transform: translateY(18px) scale(0.99); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* بطاقة الترحيب الرئيسية */
-    .hero-card { /* بطاقة الترحيب */
-      background: var(--bg-card); /* خلفية زجاجية */
-      backdrop-filter: blur(18px); /* تغبيش */
-      border: 1px solid var(--border-glass); /* حد زجاجي */
-      border-radius: 26px; /* زوايا منحنية */
-      padding: 36px 28px; /* مسافة داخلية */
-      text-align: center; /* توسيط */
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45); /* ظل */
-      margin-bottom: 26px; /* مسافة سفلية */
+    .hero-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(18px);
+      border: 1px solid var(--border-glass);
+      border-radius: 26px;
+      padding: 36px 28px;
+      text-align: center;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      margin-bottom: 26px;
     }
 
-    .welcome-pill { /* شارة ترحيبية */
-      display: inline-block; /* عرض مضمّن-كتلي */
-      padding: 6px 16px; /* مسافة داخلية */
-      border-radius: 999px; /* شكل كبسولة */
-      background: rgba(56, 189, 248, 0.14); /* خلفية زرقاء شفافة */
-      border: 1px solid rgba(56, 189, 248, 0.35); /* حد أزرق */
-      color: var(--accent); /* لون نص مضيء */
-      font-weight: 700; /* خط عريض */
-      font-size: 0.88rem; /* حجم الخط */
-      margin-bottom: 14px; /* مسافة سفلية */
+    .welcome-pill {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.14);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.88rem;
+      margin-bottom: 14px;
     }
 
-    .hero-title { /* العنوان الرئيسي */
-      font-size: clamp(1.7rem, 4vw, 2.65rem); /* حجم متجاوب */
-      font-weight: 900; /* سماكة عالية */
-      line-height: 1.35; /* ارتفاع السطر */
-      margin-bottom: 14px; /* مسافة سفلية */
+    .hero-title {
+      font-size: clamp(1.7rem, 4vw, 2.65rem);
+      font-weight: 900;
+      line-height: 1.35;
+      margin-bottom: 14px;
     }
 
-    .hero-desc { /* نص الترحيب */
-      max-width: 720px; /* عرض للقراءة */
-      margin: 0 auto 24px; /* توسيط ومسافة سفلية */
-      color: var(--text-muted); /* لون رمادي */
-      font-size: 1.04rem; /* حجم الخط */
-      line-height: 1.8; /* تباعد الأسطر */
+    .hero-desc {
+      max-width: 720px;
+      margin: 0 auto 24px;
+      color: var(--text-muted);
+      font-size: 1.04rem;
+      line-height: 1.8;
     }
 
-    .hero-actions { /* أزرار الترحيب */
-      display: flex; /* ترتيب أفقي */
-      justify-content: center; /* توسيط */
-      gap: 14px; /* مسافة */
-      flex-wrap: wrap; /* التفاف */
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
     }
 
-    .btn-primary { /* زر أساسي */
-      background: linear-gradient(135deg, var(--primary), var(--secondary)); /* تدرج لوني */
-      color: #050b16; /* نص داكن */
-      border: none; /* بدون حد */
-      padding: 13px 26px; /* مسافة داخلية */
-      border-radius: 14px; /* زوايا دائرية */
-      font-family: 'Cairo', sans-serif; /* خط الموقع */
-      font-weight: 800; /* خط سميك */
-      font-size: 1rem; /* حجم الخط */
-      cursor: pointer; /* مؤشر يد */
-      transition: transform 0.3s ease, box-shadow 0.3s ease; /* انتقال */
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #050b16;
+      border: none;
+      padding: 13px 26px;
+      border-radius: 14px;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .btn-primary:hover { /* حركة الزر الأساسي */
-      transform: translateY(-4px) scale(1.02); /* ارتفاع وتكبير */
-      box-shadow: 0 14px 30px rgba(56, 189, 248, 0.38); /* ظل متوهج */
+    .btn-primary:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 14px 30px rgba(56, 189, 248, 0.38);
     }
 
-    .btn-secondary { /* زر ثانوي */
-      background: rgba(255, 255, 255, 0.06); /* خلفية شفافة */
-      color: var(--text-main); /* لون النص */
-      border: 1px solid var(--border-glass); /* حد زجاجي */
-      padding: 13px 24px; /* مسافة داخلية */
-      border-radius: 14px; /* زوايا دائرية */
-      font-family: 'Cairo', sans-serif; /* خط الموقع */
-      font-weight: 700; /* خط عريض */
-      font-size: 1rem; /* حجم الخط */
-      cursor: pointer; /* مؤشر يد */
-      transition: all 0.3s ease; /* انتقال */
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-main);
+      border: 1px solid var(--border-glass);
+      padding: 13px 24px;
+      border-radius: 14px;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
 
-    .btn-secondary:hover { /* تأثير الزر الثانوي */
-      background: rgba(255, 255, 255, 0.12); /* إضاءة */
-      transform: translateY(-3px); /* ارتفاع */
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-3px);
     }
 
-    /* قسم المطور والهاتف المتحرك مع الإعلان */
-    .showcase-stage { /* منصة عرض المطور والهواتف المتحركة */
-      display: grid; /* شبكة مرنة */
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); /* عمودان أو أكثر حسب الشاشة */
-      gap: 24px; /* مسافة بين العناصر */
-      align-items: center; /* توسيط عمودي */
-      background: var(--bg-card); /* خلفية زجاجية */
-      border: 1px solid var(--border-glass); /* حد زجاجي */
-      border-radius: 26px; /* زوايا منحنية */
-      padding: 28px; /* مسافة داخلية */
-      margin-bottom: 26px; /* مسافة سفلية */
+    /* منصة ظهور المطور والهاتف المتحرك والإعلان */
+    .showcase-stage {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 24px;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 26px;
+      padding: 28px;
+      margin-bottom: 26px;
     }
 
-    .dev-holder-frame { /* إطار صورة المطور عبدالله */
-      position: relative; /* مرجع للعناصر المتحركة فوقه */
-      border-radius: 22px; /* زوايا دائرية */
-      overflow: hidden; /* قص الزوائد */
-      border: 1px solid rgba(56, 189, 248, 0.35); /* حد أزرق ناعم */
-      background: rgba(7, 11, 20, 0.65); /* خلفية داكنة */
-      max-height: 430px; /* ارتفاع مناسب للصورة */
-      animation: gentleFloat 4.5s ease-in-out infinite; /* حركة طفو ناعمة مستمرة */
+    .dev-holder-frame {
+      position: relative;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.9), rgba(7, 11, 20, 0.95));
+      min-height: 410px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      animation: gentleFloat 4.2s ease-in-out infinite;
     }
 
-    @keyframes gentleFloat { /* حركة الطفو الهادئة */
-      0%, 100% { transform: translateY(0px); } /* الوضع الطبيعي */
-      50% { transform: translateY(-8px); } /* ارتفاع بسيط */
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-9px); }
     }
 
-    .dev-holder-frame img { /* صورة المطور عبدالله */
-      width: 100%; /* عرض كامل */
-      height: 430px; /* ارتفاع متناسق */
-      object-fit: cover; /* ملء الإطار دون تشويه */
-      object-position: top center; /* تركيز على الوجه والأعلى */
-      display: block; /* عرض كتلة */
+    .dev-holder-frame img {
+      width: 100%;
+      height: 410px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
     }
 
-    /* هاتف متحرك يظهر كإعلان تفاعلي بجانب المطور */
-    .phone-ad-wrapper { /* حاوية الهاتف المتحرك */
-      display: flex; /* توسيط */
-      flex-direction: column; /* ترتيب عمودي */
-      align-items: center; /* توسيط أفقي */
-      gap: 14px; /* مسافة */
+    .dev-smile-badge {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      left: 14px;
+      background: rgba(7, 11, 20, 0.82);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 14px;
+      padding: 10px 14px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 0.92rem;
+      color: #ffffff;
     }
 
-    .floating-phone { /* شكل الهاتف المتحرك */
-      width: 245px; /* عرض الهاتف */
-      border-radius: 34px; /* حواف هاتف عصرية */
-      padding: 12px; /* سمك إطار الهاتف */
-      background: linear-gradient(145deg, #1e293b, #0f172a); /* لون هيكل الهاتف */
-      border: 2px solid rgba(56, 189, 248, 0.55); /* حافة مضيئة */
-      box-shadow: 0 24px 55px rgba(0, 0, 0, 0.6), 0 0 28px rgba(56, 189, 248, 0.22); /* ظل عميق وتوهج */
-      animation: phoneBounceFloat 3.6s ease-in-out infinite; /* حركة الهاتف المستمرة */
+    .phone-ad-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
     }
 
-    @keyframes phoneBounceFloat { /* حركة الهاتف المتحرك */
-      0%, 100% { transform: translateY(0px) rotate(-1.5deg); } /* بداية الحركة */
-      50% { transform: translateY(-12px) rotate(1.5deg); } /* ارتفاع وميلان معاكس */
+    .floating-phone {
+      width: 250px;
+      border-radius: 34px;
+      padding: 12px;
+      background: linear-gradient(145deg, #1e293b, #0f172a);
+      border: 2px solid rgba(56, 189, 248, 0.55);
+      box-shadow: 0 24px 55px rgba(0, 0, 0, 0.6), 0 0 28px rgba(56, 189, 248, 0.24);
+      animation: phoneBounceFloat 3.5s ease-in-out infinite;
     }
 
-    .phone-screen { /* شاشة الهاتف الداخلية */
-      background: linear-gradient(180deg, #0b1326, #111c38); /* خلفية الشاشة */
-      border-radius: 24px; /* زوايا الشاشة */
-      padding: 16px 14px; /* مسافة داخلية */
-      text-align: center; /* توسيط */
-      border: 1px solid rgba(255, 255, 255, 0.08); /* حد خفيف */
+    @keyframes phoneBounceFloat {
+      0%, 100% { transform: translateY(0px) rotate(-1.5deg); }
+      50% { transform: translateY(-12px) rotate(1.5deg); }
     }
 
-    .ad-badge-live { /* شارة "إعلان مباشر" داخل الهاتف */
-      display: inline-block; /* عرض مضمّن-كتلي */
-      background: rgba(34, 211, 238, 0.16); /* لون سماوي شفاف */
-      color: var(--accent); /* نص مضيء */
-      border: 1px solid rgba(34, 211, 238, 0.4); /* حد */
-      font-size: 0.75rem; /* حجم صغير */
-      font-weight: 800; /* خط سميك */
-      padding: 3px 10px; /* مسافة */
-      border-radius: 999px; /* كبسولة */
-      margin-bottom: 10px; /* مسافة سفلية */
-      animation: blinkAd 1.8s infinite; /* نبضة إعلانية لطيفة */
+    .phone-screen {
+      background: linear-gradient(180deg, #0b1326, #111c38);
+      border-radius: 24px;
+      padding: 16px 14px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    @keyframes blinkAd { /* نبضة شارة الإعلان */
-      0%, 100% { opacity: 1; } /* واضح */
-      50% { opacity: 0.55; } /* خفوت بسيط */
+    .ad-badge-live {
+      display: inline-block;
+      background: rgba(34, 211, 238, 0.16);
+      color: var(--accent);
+      border: 1px solid rgba(34, 211, 238, 0.4);
+      font-size: 0.76rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      animation: blinkAd 1.8s infinite;
     }
 
-    .phone-ad-title { /* عنوان الإعلان داخل الهاتف */
-      font-size: 1rem; /* حجم الخط */
-      font-weight: 900; /* سماكة عالية */
-      margin-bottom: 6px; /* مسافة */
-      color: #ffffff; /* لون أبيض */
+    @keyframes blinkAd {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.55; }
     }
 
-    .phone-ad-text { /* نص الإعلان داخل الهاتف */
-      font-size: 0.82rem; /* حجم خط */
-      color: var(--text-muted); /* لون رمادي */
-      line-height: 1.5; /* تباعد الأسطر */
-      margin-bottom: 12px; /* مسافة */
+    .phone-ad-title {
+      font-size: 1.02rem;
+      font-weight: 900;
+      margin-bottom: 6px;
+      color: #ffffff;
     }
 
-    /* شبكة الخدمات (تصميم مواقع وتطبيقات فقط) */
-    .grid-2 { /* شبكة ثنائية متجاوبة */
-      display: grid; /* شبكة */
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* عمودان متجاوبان */
-      gap: 22px; /* مسافة بين البطاقات */
-      margin-top: 20px; /* مسافة علوية */
+    .phone-ad-text {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 12px;
     }
 
-    .glass-card { /* بطاقة الخدمة التفاعلية */
-      background: var(--bg-card); /* خلفية زجاجية */
-      backdrop-filter: blur(14px); /* تغبيش */
-      border: 1px solid var(--border-glass); /* حد زجاجي */
-      border-radius: 22px; /* زوايا دائرية */
-      padding: 26px; /* مسافة داخلية */
-      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease; /* حركة ناعمة */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+      margin-top: 20px;
     }
 
-    .glass-card:hover { /* لمسة عند المرور أو اللمس */
-      transform: translateY(-8px); /* ارتفاع */
-      border-color: rgba(56, 189, 248, 0.55); /* إضاءة الحد */
-      box-shadow: 0 20px 40px rgba(56, 189, 248, 0.18); /* ظل أزرق */
+    .glass-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--border-glass);
+      border-radius: 22px;
+      padding: 26px;
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
     }
 
-    .card-icon { /* أيقونة البطاقة */
-      width: 50px; /* العرض */
-      height: 50px; /* الارتفاع */
-      border-radius: 14px; /* زوايا دائرية */
-      background: rgba(56, 189, 248, 0.15); /* خلفية شفافة */
-      display: grid; /* توسيط */
-      place-items: center; /* في المنتصف */
-      font-size: 1.45rem; /* حجم الأيقونة */
-      margin-bottom: 14px; /* مسافة سفلية */
+    .glass-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(56, 189, 248, 0.55);
+      box-shadow: 0 20px 40px rgba(56, 189, 248, 0.18);
     }
 
-    .glass-card h3 { /* عنوان الخدمة */
-      font-size: 1.22rem; /* حجم الخط */
-      font-weight: 800; /* سماكة الخط */
-      margin-bottom: 8px; /* مسافة سفلية */
+    .card-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      background: rgba(56, 189, 248, 0.15);
+      display: grid;
+      place-items: center;
+      font-size: 1.45rem;
+      margin-bottom: 14px;
     }
 
-    .glass-card p { /* وصف الخدمة */
-      color: var(--text-muted); /* لون رمادي */
-      font-size: 0.96rem; /* حجم الخط */
-      line-height: 1.75; /* تباعد الأسطر */
+    .glass-card h3 {
+      font-size: 1.22rem;
+      font-weight: 800;
+      margin-bottom: 8px;
     }
 
-    /* الأسئلة الشائعة */
-    .faq-list { /* قائمة الأسئلة */
-      max-width: 840px; /* عرض مناسب */
-      margin: 0 auto; /* توسيط */
-      display: flex; /* عمودي */
-      flex-direction: column; /* تحت بعض */
-      gap: 14px; /* مسافة */
+    .glass-card p {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+      line-height: 1.75;
     }
 
-    .faq-item { /* عنصر سؤال */
-      background: var(--bg-card); /* خلفية زجاجية */
-      border: 1px solid var(--border-glass); /* حد زجاجي */
-      border-radius: 18px; /* زوايا دائرية */
-      overflow: hidden; /* قص الزوائد */
+    .faq-list {
+      max-width: 840px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
 
-    .faq-question { /* زر السؤال */
-      width: 100%; /* عرض كامل */
-      background: transparent; /* شفاف */
-      border: none; /* بدون حد */
-      color: var(--text-main); /* لون النص */
-      padding: 18px 22px; /* مسافة داخلية */
-      text-align: right; /* محاذاة عربية */
-      font-family: 'Cairo', sans-serif; /* خط الموقع */
-      font-size: 1.02rem; /* حجم الخط */
-      font-weight: 800; /* خط سميك */
-      display: flex; /* ترتيب أفقي */
-      align-items: center; /* توسيط عمودي */
-      justify-content: space-between; /* توزيع */
-      gap: 12px; /* مسافة */
-      cursor: pointer; /* مؤشر يد */
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 18px;
+      overflow: hidden;
     }
 
-    .faq-answer { /* الإجابة */
-      display: none; /* مخفية افتراضياً */
-      padding: 0 22px 18px; /* مسافة داخلية */
-      color: var(--text-muted); /* لون رمادي */
-      line-height: 1.8; /* تباعد الأسطر */
+    .faq-question {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: var(--text-main);
+      padding: 18px 22px;
+      text-align: right;
+      font-family: 'Cairo', sans-serif;
+      font-size: 1.02rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      cursor: pointer;
     }
 
-    .faq-item.open .faq-answer { /* إظهار الإجابة */
-      display: block; /* عرض */
-      animation: pageFadeIn 0.3s ease; /* حركة ظهور */
+    .faq-answer {
+      display: none;
+      padding: 0 22px 18px;
+      color: var(--text-muted);
+      line-height: 1.8;
     }
 
-    /* صفحة تعبئة البيانات وإرسال واتساب */
-    .form-card { /* بطاقة النموذج */
-      max-width: 720px; /* عرض مناسب */
-      margin: 0 auto; /* توسيط */
-      background: var(--bg-card); /* خلفية زجاجية */
-      backdrop-filter: blur(16px); /* تغبيش */
-      border: 1px solid var(--border-glass); /* حد زجاجي */
-      border-radius: 26px; /* زوايا دائرية */
-      padding: 32px 26px; /* مسافة داخلية */
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45); /* ظل */
+    .faq-item.open .faq-answer {
+      display: block;
+      animation: pageFadeIn 0.3s ease;
     }
 
-    .form-group { /* مجموعة حقل الإدخال */
-      margin-bottom: 18px; /* مسافة */
+    .form-card {
+      max-width: 720px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-glass);
+      border-radius: 26px;
+      padding: 32px 26px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
     }
 
-    .form-group label { /* تسمية الحقل */
-      display: block; /* سطر مستقل */
-      font-weight: 700; /* خط عريض */
-      margin-bottom: 8px; /* مسافة */
+    .form-group {
+      margin-bottom: 18px;
     }
 
-    .form-control { /* حقل الإدخال */
-      width: 100%; /* عرض كامل */
-      padding: 13px 15px; /* مسافة داخلية */
-      border-radius: 14px; /* زوايا دائرية */
-      border: 1px solid var(--border-glass); /* حد زجاجي */
-      background: rgba(7, 11, 20, 0.65); /* خلفية داكنة */
-      color: var(--text-main); /* لون النص */
-      font-family: 'Cairo', sans-serif; /* خط الموقع */
-      font-size: 0.98rem; /* حجم الخط */
+    .form-group label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 8px;
     }
 
-    .form-control:focus { /* عند التركيز على الحقل */
-      outline: none; /* إزالة الإطار الافتراضي */
-      border-color: var(--primary); /* حد أزرق */
-      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2); /* هالة */
+    .form-control {
+      width: 100%;
+      padding: 13px 15px;
+      border-radius: 14px;
+      border: 1px solid var(--border-glass);
+      background: rgba(7, 11, 20, 0.65);
+      color: var(--text-main);
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.98rem;
     }
 
-    textarea.form-control { /* مربع التفاصيل */
-      min-height: 120px; /* ارتفاع */
-      resize: vertical; /* تمدد عمودي فقط */
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
     }
 
-    .whatsapp-btn { /* زر إرسال واتساب */
-      width: 100%; /* عرض كامل */
-      background: linear-gradient(135deg, #10b981, #059669); /* تدرج أخضر */
-      color: #ffffff; /* لون أبيض */
-      border: none; /* بدون حد */
-      padding: 15px 24px; /* مسافة داخلية */
-      border-radius: 16px; /* زوايا دائرية */
-      font-family: 'Cairo', sans-serif; /* خط الموقع */
-      font-weight: 800; /* خط سميك */
-      font-size: 1.05rem; /* حجم الخط */
-      cursor: pointer; /* مؤشر يد */
-      transition: transform 0.3s ease, box-shadow 0.3s ease; /* انتقال */
+    textarea.form-control {
+      min-height: 120px;
+      resize: vertical;
     }
 
-    .whatsapp-btn:hover { /* تأثير زر واتساب */
-      transform: translateY(-3px); /* ارتفاع */
-      box-shadow: 0 14px 30px rgba(16, 185, 129, 0.35); /* ظل أخضر */
+    .whatsapp-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #ffffff;
+      border: none;
+      padding: 15px 24px;
+      border-radius: 16px;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .target-number-note { /* ملاحظة رقم واتساب */
-      margin-top: 12px; /* مسافة علوية */
-      text-align: center; /* توسيط */
-      font-size: 0.88rem; /* حجم الخط */
-      color: var(--text-muted); /* لون رمادي */
+    .whatsapp-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px rgba(16, 185, 129, 0.35);
     }
-  </style> <!-- نهاية تنسيقات CSS -->
-</head> <!-- نهاية رأس الصفحة -->
 
-<body> <!-- بداية جسم الصفحة -->
-  <!-- كرات ضوئية متحركة في الخلفية -->
-  <div class="ambient-orb orb-1"></div> <!-- كرة ضوئية 1 -->
-  <div class="ambient-orb orb-2"></div> <!-- كرة ضوئية 2 -->
+    .target-number-note {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
 
-  <!-- الشريط العلوي مع عنوان "موقع المطور عبدالله" والتنقل بين الصفحات -->
-  <header class="top-bar"> <!-- بداية الهيدر -->
-    <div class="top-bar-inner"> <!-- حاوية الهيدر -->
-      <div class="brand-box animate__animated animate__fadeInRight"> <!-- شعار واسم المطور -->
-        <div class="brand-badge">&lt;/&gt;</div> <!-- أيقونة متحركة -->
-        <div> <!-- نصوص العنوان -->
-          <div class="brand-title">موقع المطور عبدالله</div> <!-- العنوان في الأعلى -->
-          <div class="brand-sub">تصميم مواقع وتطبيقات</div> <!-- وصف مختصر -->
-        </div> <!-- نهاية النصوص -->
-      </div> <!-- نهاية هوية المطور -->
+<body>
+  <div class="ambient-orb orb-1"></div>
+  <div class="ambient-orb orb-2"></div>
 
-      <nav class="nav-tabs" aria-label="التنقل بين الصفحات"> <!-- أزرار الصفحات (بدون معرض أعمال) -->
-        <button type="button" class="nav-btn active" data-page="home" onclick="switchPage('home', this)">الرئيسية</button> <!-- الرئيسية -->
-        <button type="button" class="nav-btn" data-page="services" onclick="switchPage('services', this)">الخدمات</button> <!-- الخدمات -->
-        <button type="button" class="nav-btn" data-page="faq" onclick="switchPage('faq', this)">الأسئلة الشائعة</button> <!-- الأسئلة الشائعة -->
-        <button type="button" class="nav-btn" data-page="order" onclick="switchPage('order', this)">تعبئة البيانات والطلب</button> <!-- تعبئة البيانات -->
-      </nav> <!-- نهاية التنقل -->
-    </div> <!-- نهاية حاوية الهيدر -->
-  </header> <!-- نهاية الهيدر -->
+  <header class="top-bar">
+    <div class="top-bar-inner">
+      <div class="brand-box animate__animated animate__fadeInRight">
+        <div class="brand-badge">&lt;/&gt;</div>
+        <div>
+          <div class="brand-title">موقع المطور عبدالله</div>
+          <div class="brand-sub">تصميم مواقع وتطبيقات</div>
+        </div>
+      </div>
 
-  <main class="container"> <!-- بداية المحتوى الرئيسي -->
+      <nav class="nav-tabs" aria-label="التنقل بين الصفحات">
+        <button type="button" class="nav-btn active" data-page="home" onclick="switchPage('home', this)">الرئيسية</button>
+        <button type="button" class="nav-btn" data-page="services" onclick="switchPage('services', this)">الخدمات</button>
+        <button type="button" class="nav-btn" data-page="faq" onclick="switchPage('faq', this)">الأسئلة الشائعة</button>
+        <button type="button" class="nav-btn" data-page="order" onclick="switchPage('order', this)">تعبئة البيانات والطلب</button>
+      </nav>
+    </div>
+  </header>
 
-    <!-- الصفحة الأولى: الرئيسية والترحيب + ظهورك ماسكاً هاتفاً مع إعلان متحرك -->
-    <section id="page-home" class="page-view active"> <!-- قسم الرئيسية -->
-      <div class="hero-card animate__animated animate__fadeInUp"> <!-- بطاقة الترحيب -->
-        <div class="welcome-pill">✨ أهلاً بك في موقع المطور عبدالله</div> <!-- شارة ترحيبية -->
-        <h1 class="hero-title">نحوّل أفكارك إلى مواقع وتطبيقات عصرية وحركة مبهرة</h1> <!-- العنوان الترحيبي -->
-        <p class="hero-desc"> <!-- نص الترحيب -->
+  <main class="container">
+
+    <!-- الصفحة الرئيسية -->
+    <section id="page-home" class="page-view active">
+      <div class="hero-card animate__animated animate__fadeInUp">
+        <div class="welcome-pill">✨ أهلاً بك في موقع المطور عبدالله</div>
+        <h1 class="hero-title">نحوّل أفكارك إلى مواقع وتطبيقات عصرية وحركة مبهرة</h1>
+        <p class="hero-desc">
           مرحباً بك! هنا نجمع بين الحركة التفاعلية المستمرة، الهواتف المتحركة، وتجربة المستخدم السريعة لتصميم مواقع وتطبيقات تبرز مشروعك بأسلوب عصري.
-        </p> <!-- نهاية الترحيب -->
-        <div class="hero-actions"> <!-- أزرار الانتقال -->
-          <button type="button" class="btn-primary" onclick="switchPage('order', null)">اطلب مشروعك الآن 🚀</button> <!-- الانتقال لصفحة الطلب -->
-          <button type="button" class="btn-secondary" onclick="switchPage('services', null)">الخدمات المتاحة</button> <!-- الانتقال للخدمات -->
-        </div> <!-- نهاية الأزرار -->
-      </div> <!-- نهاية بطاقة الترحيب -->
+        </p>
+        <div class="hero-actions">
+          <button type="button" class="btn-primary" onclick="switchPage('order', null)">اطلب مشروعك الآن 🚀</button>
+          <button type="button" class="btn-secondary" onclick="switchPage('services', null)">الخدمات المتاحة</button>
+        </div>
+      </div>
 
-      <!-- منصة ظهورك أنت مع هاتف متحرك يظهر عليه إعلان حركي -->
-      <div class="showcase-stage" data-aos="fade-up"> <!-- حاوية العرض التفاعلي -->
-        <div class="dev-holder-frame"> <!-- إطار صورتك الشخصية -->
-          <!-- ضع صورتك المرفقة باسم IMG-20261114-WA5719.jpg في نفس مجلد المشروع -->
-          <img src="IMG-20261114-WA5719.jpg" alt="المطور عبدالله"> <!-- صورة المطور عبدالله -->
-        </div> <!-- نهاية إطار الصورة -->
+      <div class="showcase-stage" data-aos="fade-up">
+        <div class="dev-holder-frame" id="devPhotoBox">
+          <img id="devPhotoImg" src="IMG-20261114-WA5719.jpg" alt="المطور عبدالله مبتسماً ويحمل هاتفاً">
+          <div class="dev-smile-badge">😊 المطور عبدالله • تجربة تفاعلية وحركة مستمرة</div>
+        </div>
 
-        <div class="phone-ad-wrapper"> <!-- حاوية الهاتف المتحرك والإعلان -->
-          <div class="floating-phone" id="interactivePhone"> <!-- الهاتف المتحرك -->
-            <div class="phone-screen"> <!-- شاشة الهاتف -->
-              <span class="ad-badge-live">📢 إعلان مباشر • تطبيقات ومواقع</span> <!-- شارة الإعلان -->
-              <div class="phone-ad-title" id="phoneAdTitle">المطور عبدالله</div> <!-- عنوان الإعلان -->
-              <p class="phone-ad-text" id="phoneAdText"> <!-- نص الإعلان -->
-                هواتف متحركة وتجربة تفاعلية متكاملة لتصميم المواقع والتطبيقات مع إرسال مباشر إلى واتساب.
-              </p> <!-- نهاية نص الإعلان -->
-              <!-- رسم Lottie متحرك داخل شاشة الهاتف -->
+        <div class="phone-ad-wrapper">
+          <div class="floating-phone" id="interactivePhone">
+            <div class="phone-screen">
+              <span class="ad-badge-live">📢 إعلان متحرك • مواقع وتطبيقات</span>
+              <div class="phone-ad-title" id="phoneAdTitle">تصميم مواقع وتطبيقات</div>
+              <p class="phone-ad-text" id="phoneAdText">
+                حركات ولمسات تفاعلية وهواتف متحركة تبرز خدماتك وتوصل طلبات عملائك مباشرة.
+              </p>
               <lottie-player
+                id="phoneLottie"
                 src="https://assets9.lottiefiles.com/packages/lf20_w51pcehl.json"
                 background="transparent"
                 speed="1"
-                style="width: 110px; height: 110px; margin: 0 auto 10px;"
+                style="width: 115px; height: 115px; margin: 0 auto 10px;"
                 loop
                 autoplay>
-              </lottie-player> <!-- نهاية مشغل Lottie -->
-              <button type="button" class="btn-primary" style="width: 100%; padding: 9px 12px; font-size: 0.85rem;" onclick="cyclePhoneAd()">تبديل الإعلان المتحرك 🔄</button> <!-- زر تبديل الإعلان داخل الهاتف -->
-            </div> <!-- نهاية شاشة الهاتف -->
-          </div> <!-- نهاية الهاتف المتحرك -->
-        </div> <!-- نهاية حاوية الهاتف -->
-      </div> <!-- نهاية منصة العرض -->
-    </section> <!-- نهاية الرئيسية -->
+              </lottie-player>
+              <button type="button" class="btn-primary" style="width: 100%; padding: 9px 12px; font-size: 0.85rem;" onclick="cyclePhoneAd()">تبديل الإعلان المتحرك 🔄</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- الصفحة الثانية: الخدمات (تصميم مواقع وتطبيقات فقط) -->
-    <section id="page-services" class="page-view"> <!-- قسم الخدمات -->
-      <div class="hero-card"> <!-- بطاقة تعريفية -->
-        <div class="welcome-pill">💼 خدمات المطور عبدالله</div> <!-- شارة القسم -->
-        <h2 class="hero-title">الخدمات الأساسية</h2> <!-- عنوان الخدمات -->
-        <p class="hero-desc"> <!-- وصف الخدمات -->
-          نركز على خدمتين أساسيتين بجودة عالية وحركة تفاعلية واضحة.
-        </p> <!-- نهاية الوصف -->
-      </div> <!-- نهاية البطاقة -->
+    <!-- قسم الخدمات: تصميم مواقع وتطبيقات فقط -->
+    <section id="page-services" class="page-view">
+      <div class="hero-card">
+        <div class="welcome-pill">💼 خدمات المطور عبدالله</div>
+        <h2 class="hero-title">الخدمات الأساسية</h2>
+        <p class="hero-desc">
+          نركز على تصميم المواقع وتصميم التطبيقات بجودة عالية وحركة تفاعلية واضحة.
+        </p>
+      </div>
 
-      <div class="grid-2"> <!-- شبكة ثنائية تحتوي على خدمتين فقط -->
-        <article class="glass-card" data-aos="zoom-in"> <!-- خدمة 1: تصميم مواقع -->
-          <div class="card-icon">🌐</div> <!-- أيقونة -->
-          <h3>تصميم مواقع</h3> <!-- عنوان الخدمة الأولى -->
-          <p>تصميم وبرمجة مواقع إلكترونية عصرية متجاوبة مع الجوال والكمبيوتر مع حركات ولمسات تفاعلية جاهزة للنشر عبر Vercel.</p> <!-- وصف الخدمة الأولى -->
-        </article> <!-- نهاية خدمة 1 -->
+      <div class="grid-2">
+        <article class="glass-card" data-aos="zoom-in">
+          <div class="card-icon">🌐</div>
+          <h3>تصميم مواقع</h3>
+          <p>تصميم وبرمجة مواقع إلكترونية عصرية متجاوبة مع الجوال والكمبيوتر مع حركات ولمسات تفاعلية سلسة.</p>
+        </article>
 
-        <article class="glass-card" data-aos="zoom-in" data-aos-delay="120"> <!-- خدمة 2: تصميم تطبيقات -->
-          <div class="card-icon">📱</div> <!-- أيقونة -->
-          <h3>تصميم تطبيقات</h3> <!-- عنوان الخدمة الثانية -->
-          <p>تصميم وبناء تطبيقات عملية منظمة بواجهات واضحة، اختبارات وتجربة مستخدم سلسة، وتكامل عملي متكامل.</p> <!-- وصف الخدمة الثانية -->
-        </article> <!-- نهاية خدمة 2 -->
-      </div> <!-- نهاية الشبكة -->
-    </section> <!-- نهاية الخدمات -->
+        <article class="glass-card" data-aos="zoom-in" data-aos-delay="120">
+          <div class="card-icon">📱</div>
+          <h3>تصميم تطبيقات</h3>
+          <p>تصميم وبناء تطبيقات عملية منظمة بواجهات واضحة، اختبارات وتجربة مستخدم سلسة، وتكامل عملي متكامل.</p>
+        </article>
+      </div>
+    </section>
 
-    <!-- الصفحة الثالثة: الأسئلة الشائعة -->
-    <section id="page-faq" class="page-view"> <!-- قسم الأسئلة الشائعة -->
-      <div class="hero-card"> <!-- بطاقة تعريفية -->
-        <div class="welcome-pill">❓ الأسئلة الشائعة</div> <!-- شارة القسم -->
-        <h2 class="hero-title">إجابات سريعة على استفساراتك</h2> <!-- عنوان القسم -->
-      </div> <!-- نهاية البطاقة -->
+    <!-- الأسئلة الشائعة -->
+    <section id="page-faq" class="page-view">
+      <div class="hero-card">
+        <div class="welcome-pill">❓ الأسئلة الشائعة</div>
+        <h2 class="hero-title">إجابات سريعة على استفساراتك</h2>
+      </div>
 
-      <div class="faq-list"> <!-- قائمة الأسئلة -->
-        <div class="faq-item open"> <!-- سؤال 1 -->
-          <button type="button" class="faq-question" onclick="toggleFaq(this)"> <!-- زر السؤال -->
-            <span>كيف يتم إرسال طلبي إلى المطور عبدالله؟</span> <!-- نص السؤال -->
-            <span>−</span> <!-- علامة الإغلاق -->
-          </button> <!-- نهاية الزر -->
-          <div class="faq-answer"> <!-- إجابة 1 -->
+      <div class="faq-list">
+        <div class="faq-item open">
+          <button type="button" class="faq-question" onclick="toggleFaq(this)">
+            <span>كيف يتم إرسال طلبي إلى المطور عبدالله؟</span>
+            <span>−</span>
+          </button>
+          <div class="faq-answer">
             عند تعبئة اسمك ورقم هاتفك وتفاصيل مشروعك في صفحة "تعبئة البيانات والطلب" والضغط على إرسال، يتم فتح واتساب تلقائياً برسالة جاهزة إلى الرقم <strong>+20115142920</strong>.
-          </div> <!-- نهاية الإجابة -->
-        </div> <!-- نهاية سؤال 1 -->
+          </div>
+        </div>
 
-        <div class="faq-item"> <!-- سؤال 2 -->
-          <button type="button" class="faq-question" onclick="toggleFaq(this)"> <!-- زر السؤال -->
-            <span>هل الموقع جاهز للنشر المباشر على Vercel؟</span> <!-- نص السؤال -->
-            <span>+</span> <!-- علامة الفتح -->
-          </button> <!-- نهاية الزر -->
-          <div class="faq-answer"> <!-- إجابة 2 -->
-            نعم، الملف مبني بصيغة <code>index.html</code> ومرفق معه ملف <code>vercel.json</code> لضمان البناء والنشر السريع والمباشر على منصة Vercel.
-          </div> <!-- نهاية الإجابة -->
-        </div> <!-- نهاية سؤال 2 -->
-      </div> <!-- نهاية قائمة الأسئلة -->
-    </section> <!-- نهاية الأسئلة الشائعة -->
+        <div class="faq-item">
+          <button type="button" class="faq-question" onclick="toggleFaq(this)">
+            <span>ما الخدمات المتوفرة في الموقع؟</span>
+            <span>+</span>
+          </button>
+          <div class="faq-answer">
+            نوفر خدمات تصميم المواقع وتصميم التطبيقات بأسلوب عصري وحركات تفاعلية جذابة.
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- الصفحة الرابعة: صفحة تعبئة البيانات والإرسال التلقائي إلى واتساب -->
-    <section id="page-order" class="page-view"> <!-- قسم تعبئة البيانات -->
-      <div class="form-card"> <!-- بطاقة النموذج -->
-        <div class="welcome-pill">📩 تعبئة البيانات والطلب</div> <!-- شارة النموذج -->
-        <h2 style="font-size: 1.55rem; font-weight: 900; margin-bottom: 8px;">أدخل بياناتك لإرسال الطلب عبر واتساب</h2> <!-- عنوان النموذج -->
-        <p style="color: var(--text-muted); margin-bottom: 22px; line-height: 1.7;"> <!-- توضيح -->
+    <!-- صفحة تعبئة البيانات والإرسال التلقائي إلى واتساب -->
+    <section id="page-order" class="page-view">
+      <div class="form-card">
+        <div class="welcome-pill">📩 تعبئة البيانات والطلب</div>
+        <h2 style="font-size: 1.55rem; font-weight: 900; margin-bottom: 8px;">أدخل بياناتك لإرسال الطلب عبر واتساب</h2>
+        <p style="color: var(--text-muted); margin-bottom: 22px; line-height: 1.7;">
           اكتب اسمك، رقم هاتفك، وتفاصيل طلبك ثم اضغط إرسال ليتم توجيه الرسالة تلقائياً إلى واتساب.
-        </p> <!-- نهاية التوضيح -->
+        </p>
 
-        <form id="projectOrderForm" onsubmit="sendToWhatsApp(event)"> <!-- نموذج الطلب -->
-          <div class="form-group"> <!-- حقل الاسم -->
-            <label for="clientName">الاسم الكامل</label> <!-- تسمية -->
-            <input type="text" id="clientName" class="form-control" placeholder="اكتب اسمك هنا..." required> <!-- إدخال الاسم -->
-          </div> <!-- نهاية حقل الاسم -->
+        <form id="projectOrderForm" onsubmit="sendToWhatsApp(event)">
+          <div class="form-group">
+            <label for="clientName">الاسم الكامل</label>
+            <input type="text" id="clientName" class="form-control" placeholder="اكتب اسمك هنا..." required>
+          </div>
 
-          <div class="form-group"> <!-- حقل رقم المستخدم -->
-            <label for="clientPhone">رقم هاتف المستخدم (واتساب)</label> <!-- تسمية -->
-            <input type="tel" id="clientPhone" class="form-control" placeholder="اكتب رقم هاتفك هنا..." required> <!-- إدخال الرقم -->
-          </div> <!-- نهاية حقل الرقم -->
+          <div class="form-group">
+            <label for="clientPhone">رقم هاتف المستخدم (واتساب)</label>
+            <input type="tel" id="clientPhone" class="form-control" placeholder="اكتب رقم هاتفك هنا..." required>
+          </div>
 
-          <div class="form-group"> <!-- حقل نوع الخدمة -->
-            <label for="projectType">الخدمة المطلوبة</label> <!-- تسمية -->
-            <select id="projectType" class="form-control" required> <!-- قائمة الخدمات -->
-              <option value="تصميم مواقع">تصميم مواقع</option> <!-- خيار 1 -->
-              <option value="تصميم تطبيقات">تصميم تطبيقات</option> <!-- خيار 2 -->
-              <option value="تصميم مواقع وتطبيقات معاً">تصميم مواقع وتطبيقات معاً</option> <!-- خيار 3 -->
-            </select> <!-- نهاية القائمة -->
-          </div> <!-- نهاية حقل الخدمة -->
+          <div class="form-group">
+            <label for="projectType">الخدمة المطلوبة</label>
+            <select id="projectType" class="form-control" required>
+              <option value="تصميم مواقع">تصميم مواقع</option>
+              <option value="تصميم تطبيقات">تصميم تطبيقات</option>
+              <option value="تصميم مواقع وتطبيقات معاً">تصميم مواقع وتطبيقات معاً</option>
+            </select>
+          </div>
 
-          <div class="form-group"> <!-- حقل التفاصيل -->
-            <label for="projectDetails">التفاصيل</label> <!-- تسمية -->
-            <textarea id="projectDetails" class="form-control" placeholder="اكتب تفاصيل مشروعك أو طلبك هنا..." required></textarea> <!-- مربع التفاصيل -->
-          </div> <!-- نهاية حقل التفاصيل -->
+          <div class="form-group">
+            <label for="projectDetails">التفاصيل</label>
+            <textarea id="projectDetails" class="form-control" placeholder="اكتب تفاصيل مشروعك أو طلبك هنا..." required></textarea>
+          </div>
 
-          <button type="submit" class="whatsapp-btn">إرسال الطلب إلى واتساب الآن 💬</button> <!-- زر الإرسال -->
+          <button type="submit" class="whatsapp-btn">إرسال الطلب إلى واتساب الآن 💬</button>
 
-          <div class="target-number-note"> <!-- ملاحظة الرقم -->
+          <div class="target-number-note">
             سيتم إرسال الرسالة تلقائياً إلى واتساب الرقم: <strong>+20115142920</strong>
-          </div> <!-- نهاية الملاحظة -->
-        </form> <!-- نهاية النموذج -->
-      </div> <!-- نهاية بطاقة النموذج -->
-    </section> <!-- نهاية قسم تعبئة البيانات -->
+          </div>
+        </form>
+      </div>
+    </section>
 
-  </main> <!-- نهاية المحتوى الرئيسي -->
+  </main>
 
-  <!-- تفعيل مكتبة AOS -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> <!-- سكربت AOS -->
-  <script> /* بداية كود JavaScript */
-    AOS.init({ duration: 750, once: true }); // تهيئة مكتبة AOS
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 750, once: true });
 
-    // حركة GSAP مستمرة لإضافة حيوية على العناصر والهاتف المتحرك
-    gsap.from(".top-bar", { y: -25, opacity: 0, duration: 0.7, ease: "power3.out" }); // حركة الشريط العلوي
-    gsap.to(".ambient-orb", { // حركة إضافية مستمرة للكرات الضوئية
-      scale: 1.15, // تكبير خفيف
-      duration: 3.5, // مدة الدورة
-      repeat: -1, // تكرار لا نهائي
-      yoyo: true, // عكس الحركة ذهاباً وإياباً
-      ease: "sine.inOut" // نعومة الحركة
+    gsap.from(".top-bar", { y: -25, opacity: 0, duration: 0.7, ease: "power3.out" });
+    gsap.to(".ambient-orb", {
+      scale: 1.15,
+      duration: 3.5,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
     });
 
-    // التنقل بين الصفحات المتنقلة
-    function switchPage(pageKey, clickedBtn) { // دالة تبديل الصفحة
-      document.querySelectorAll(".page-view").forEach(page => page.classList.remove("active")); // إخفاء الصفحات
-      const targetPage = document.getElementById("page-" + pageKey); // تحديد الصفحة المطلوبة
-      if (targetPage) { // التحقق من وجود الصفحة
-        targetPage.classList.add("active"); // إظهار الصفحة
-        window.scrollTo({ top: 0, behavior: "smooth" }); // صعود ناعم للأعلى
-        AOS.refresh(); // تحديث AOS
+    // محاولة تحميل صورة المطور من أكثر من مسار محتمل داخل المستودع تلقائياً
+    (function loadDeveloperPhoto() {
+      const imgEl = document.getElementById("devPhotoImg");
+      const candidates = [
+        "IMG-20261114-WA5719.jpg",
+        "./IMG-20261114-WA5719.jpg",
+        "images/IMG-20261114-WA5719.jpg",
+        "assets/IMG-20261114-WA5719.jpg",
+        "abdullah.jpg",
+        "profile.jpg"
+      ];
+      let idx = 0;
+
+      imgEl.onerror = function () {
+        idx++;
+        if (idx < candidates.length) {
+          imgEl.src = candidates[idx];
+        } else {
+          // في حال لم يتم العثور على ملف الصورة في المستودع بعد، نعرض بطاقة تفاعلية واضحة دون كسر الواجهة
+          imgEl.style.display = "none";
+          const fallback = document.createElement("div");
+          fallback.style.padding = "30px";
+          fallback.style.textAlign = "center";
+          fallback.innerHTML = `
+            <div style="font-size:3.2rem;margin-bottom:10px;">😊📱</div>
+            <div style="font-weight:900;font-size:1.15rem;margin-bottom:6px;">المطور عبدالله</div>
+            <div style="color:#94a3b8;font-size:0.9rem;">يحمل هاتفاً ذكياً ويقدم حلول تصميم المواقع والتطبيقات</div>
+          `;
+          document.getElementById("devPhotoBox").prepend(fallback);
+        }
+      };
+    })();
+
+    function switchPage(pageKey, clickedBtn) {
+      document.querySelectorAll(".page-view").forEach(page => page.classList.remove("active"));
+      const targetPage = document.getElementById("page-" + pageKey);
+      if (targetPage) {
+        targetPage.classList.add("active");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        AOS.refresh();
       }
 
-      document.querySelectorAll(".nav-btn").forEach(btn => btn.classList.remove("active")); // إزالة التمييز
-      if (clickedBtn) { // إذا تم الضغط على زر علوي
-        clickedBtn.classList.add("active"); // تفعيل الزر
-      } else { // إذا تم الانتقال من زر داخلي
-        const matchingBtn = document.querySelector(`.nav-btn[data-page="${pageKey}"]`); // إيجاد الزر
-        if (matchingBtn) matchingBtn.classList.add("active"); // تفعيله
+      document.querySelectorAll(".nav-btn").forEach(btn => btn.classList.remove("active"));
+      if (clickedBtn) {
+        clickedBtn.classList.add("active");
+      } else {
+        const matchingBtn = document.querySelector(`.nav-btn[data-page="${pageKey}"]`);
+        if (matchingBtn) matchingBtn.classList.add("active");
       }
     }
 
-    // تبديل الإعلانات داخل الهاتف المتحرك بحركة GSAP
-    const phoneAds = [ // قائمة الإعلانات المعروضة داخل الهاتف
+    // إعلانات متحركة ومصادر Lottie خارجية متنوعة داخل الهاتف
+    const phoneAds = [
       {
-        title: "تصميم مواقع احترافية",
-        text: "مواقع سريعة الاستجابة مع حركات ولمسات عصرية وجاهزة للنشر الفوري على Vercel."
+        title: "تصميم مواقع عصرية",
+        text: "واجهات سريعة ومتجاوبة مع حركة ولمسات جذابة تناسب مشروعك.",
+        lottie: "https://assets9.lottiefiles.com/packages/lf20_w51pcehl.json"
       },
       {
         title: "تصميم تطبيقات ذكية",
-        text: "تطبيقات عملية منظمة بواجهة جذابة وتجربة تفاعلية سلسة تناسب مشروعك."
+        text: "تطبيقات عملية سهلة الاستخدام مع تجربة تفاعلية مميزة.",
+        lottie: "https://assets2.lottiefiles.com/packages/lf20_xyadoh9h.json"
       },
       {
         title: "تواصل مباشر مع المطور عبدالله",
-        text: "عبّئ بياناتك ورقمك والتفاصيل لتصل رسالتك مباشرة عبر واتساب."
+        text: "عبّئ بياناتك ورقمك والتفاصيل ليصلك طلبك مباشرة عبر واتساب.",
+        lottie: "https://assets9.lottiefiles.com/packages/lf20_w51pcehl.json"
       }
     ];
-    let currentAdIndex = 0; // مؤشر الإعلان الحالي
+    let currentAdIndex = 0;
 
-    function cyclePhoneAd() { // دالة تبديل الإعلان داخل الهاتف
-      currentAdIndex = (currentAdIndex + 1) % phoneAds.length; // الانتقال للإعلان التالي
-      const ad = phoneAds[currentAdIndex]; // جلب بيانات الإعلان
-      gsap.fromTo("#interactivePhone .phone-screen", // حركة انتقال داخل شاشة الهاتف
-        { opacity: 0.35, scale: 0.96 }, // بداية الحركة
-        { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" } // نهاية الحركة
+    function cyclePhoneAd() {
+      currentAdIndex = (currentAdIndex + 1) % phoneAds.length;
+      const ad = phoneAds[currentAdIndex];
+      gsap.fromTo("#interactivePhone .phone-screen",
+        { opacity: 0.35, scale: 0.96 },
+        { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" }
       );
-      document.getElementById("phoneAdTitle").textContent = ad.title; // تحديث العنوان
-      document.getElementById("phoneAdText").textContent = ad.text; // تحديث النص
+      document.getElementById("phoneAdTitle").textContent = ad.title;
+      document.getElementById("phoneAdText").textContent = ad.text;
+      const lottieEl = document.getElementById("phoneLottie");
+      if (lottieEl && ad.lottie) {
+        lottieEl.load(ad.lottie);
+      }
     }
 
-    // فتح وإغلاق الأسئلة الشائعة
-    function toggleFaq(btnElement) { // دالة الأسئلة الشائعة
-      const faqItem = btnElement.closest(".faq-item"); // الوصول للبطاقة
-      if (!faqItem) return; // حماية
-      faqItem.classList.toggle("open"); // تبديل الفتح/الإغلاق
-      const signSpan = btnElement.querySelectorAll("span")[1]; // رمز الإشارة
-      if (signSpan) signSpan.textContent = faqItem.classList.contains("open") ? "−" : "+"; // تحديث الرمز
+    function toggleFaq(btnElement) {
+      const faqItem = btnElement.closest(".faq-item");
+      if (!faqItem) return;
+      faqItem.classList.toggle("open");
+      const signSpan = btnElement.querySelectorAll("span")[1];
+      if (signSpan) signSpan.textContent = faqItem.classList.contains("open") ? "−" : "+";
     }
 
-    // إرسال البيانات تلقائياً إلى واتساب الرقم +20115142920
-    function sendToWhatsApp(event) { // دالة الإرسال إلى واتساب
-      event.preventDefault(); // منع إعادة تحميل الصفحة
+    function sendToWhatsApp(event) {
+      event.preventDefault();
 
-      const name = document.getElementById("clientName").value.trim(); // قراءة الاسم
-      const phone = document.getElementById("clientPhone").value.trim(); // قراءة رقم المستخدم
-      const service = document.getElementById("projectType").value; // قراءة الخدمة
-      const details = document.getElementById("projectDetails").value.trim(); // قراءة التفاصيل
+      const name = document.getElementById("clientName").value.trim();
+      const phone = document.getElementById("clientPhone").value.trim();
+      const service = document.getElementById("projectType").value;
+      const details = document.getElementById("projectDetails").value.trim();
 
-      const whatsappNumber = "20115142920"; // رقم واتساب المستهدف
+      const whatsappNumber = "20115142920";
 
-      const messageText = // نص الرسالة المرسلة
+      const messageText =
         `مرحباً بالمطور عبدالله 👋\n` +
         `طلب جديد من الموقع:\n\n` +
         `👤 الاسم: ${name}\n` +
@@ -799,9 +837,9 @@
         `🛠️ الخدمة: ${service}\n` +
         `📝 التفاصيل:\n${details}`;
 
-      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(messageText)}`; // رابط واتساب المباشر
-      window.open(whatsappUrl, "_blank", "noopener,noreferrer"); // فتح واتساب تلقائياً بالرسالة الجاهزة
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(messageText)}`;
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     }
-  </script> <!-- نهاية كود JavaScript -->
-</body> <!-- نهاية جسم الصفحة -->
-</html> <!-- نهاية المستند -->
+  </script>
+</body>
+</html>
